@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">C4C</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="exposures">Exposures</string>
+    <string name="report_view_previous_exposures">Report/view previous exposures</string>
+    <string name="immunizations">Immunizations</string>
+    <string name="track_immunization_history">Track immunization history</string>
+    <string name="broadcasts">Broadcasts</string>
+    <string name="schedule_broadcasts">Schedule broadcast messages</string>
+    <string name="resources">Resources</string>
+    <string name="a_collection_of_useful_medical_resources">Useful medical resources</string>
+    <string name="check_in">Check in</string>
+    <string name="checkin_location">Check in your location</string>
+    <string name="feedback">Feedback</string>
+    <string name="give_feedback">Give anonymous feedback</string>
+</resources>
