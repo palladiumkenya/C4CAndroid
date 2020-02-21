@@ -25,4 +25,34 @@
     <string name="checkin_location">Check in your location</string>
     <string name="feedback">Feedback</string>
     <string name="give_feedback">Give anonymous feedback</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="c4c_logo">c4c logo</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="new_user">New user?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="account_information">Account information</string>
+
+    <string-array name="cadre">
+        <item>Please select your Cadre</item>
+        <item>Doctor</item>
+        <item>Nurse</item>
+        <item>Clinical Officer</item>
+        <item>Lab Technologist</item>
+        <item>VCT Counselor</item>
+        <item>Waste handlers</item>
+        <item>Cleaners</item>
+        <item>Student</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Please select your gender</item>
+        <item>Male</item>
+        <item>Female</item>
+        <item>Rather not say</item>
+
+    </string-array>
+
 </resources>
