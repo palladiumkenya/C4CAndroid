@@ -12,10 +12,11 @@ public class User {
     private String created_at;
     private int id;
     private int role_id;
+    private int profile_complete;
 
 
     public User(String access_token, String token_type, String expires_at, String first_name, String surname,
-                String gender, String email, String msisdn, String created_at, int id, int role_id) {
+                String gender, String email, String msisdn, String created_at, int id, int role_id, int profile_complete) {
         this.access_token = access_token;
         this.token_type = token_type;
         this.expires_at = expires_at;
@@ -27,6 +28,7 @@ public class User {
         this.created_at = created_at;
         this.id = id;
         this.role_id = role_id;
+        this.profile_complete = profile_complete;
     }
 
     public String getAccess_token() {
@@ -115,5 +117,13 @@ public class User {
 
     public void setRole_id(int role_id) {
         this.role_id = role_id;
+    }
+
+    public int getProfile_complete() {
+        return profile_complete;
+    }
+
+    public void setProfile_complete(int profile_complete) {
+        this.profile_complete = profile_complete;
     }
 }

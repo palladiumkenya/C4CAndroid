@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/login_layout">
    <!-- android:background="@color/blue_grey_900"-->
 
     <RelativeLayout
@@ -25,7 +26,7 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <LinearLayout
-            android:layout_width="330dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_centerVertical="true"
@@ -42,95 +43,74 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="@dimen/spacing_xlarge" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginTop="@dimen/spacing_xlarge"
+                android:orientation="horizontal"
+                android:weightSum="3">
 
-                <ImageView
-                    android:layout_width="@dimen/spacing_middle"
-                    android:layout_height="@dimen/spacing_middle"
-                    android:layout_margin="@dimen/spacing_medium"
-                    android:src="@drawable/username"
-                    android:tint="@color/blue_grey_500" />
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/ccp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/phone_number"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textColor="@color/blue_grey_500"
-                    android:textStyle="bold" />
+                    app:ccp_showFlag="false"
+                    android:layout_weight="1"
+                    app:ccp_autoDetectCountry="true"
+                    app:ccp_customMasterCountries="KE"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/input_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone"
+                        android:maxLength="9"
+                        android:hint="@string/phone_number"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:id="@+id/input_phone"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="2"-->
+<!--                    android:hint="@string/phone_number"-->
+<!--                    android:inputType="phone"-->
+<!--                    android:maxLines="1"-->
+<!--                    android:maxLength="9"-->
+<!--                    android:singleLine="true"-->
+<!--                    android:textColor="@color/grey_90">-->
+
+<!--                    <requestFocus/>-->
+
+<!--                </com.google.android.material.textfield.TextInputEditText>-->
 
             </LinearLayout>
 
 
 
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true"
+                android:layout_marginBottom="8dp">
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/input_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="-4dp"
-                    android:layout_marginRight="-4dp"
-                    android:inputType="phone"
-                    android:maxLength="50"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:textColor="@color/blue_grey_300"
-                    android:theme="@style/EditText.Grey"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"/>
+                    android:inputType="textPassword"
+                    android:drawableStart="@drawable/ic_passowrd"
+                    android:hint="@string/password"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-
-
-
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="@dimen/spacing_mlarge" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="@dimen/spacing_middle"
-                    android:layout_height="@dimen/spacing_middle"
-                    android:layout_margin="@dimen/spacing_medium"
-                    android:src="@drawable/password"
-                    android:tint="@color/blue_grey_500" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/password"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textColor="@color/blue_grey_500"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-
-
-
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="-4dp"
-                android:layout_marginRight="-4dp"
-                android:inputType="textPassword"
-                android:maxLength="50"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:textColor="@color/blue_grey_300"
-                android:theme="@style/EditText.Grey"
-                app:endIconMode="password_toggle"
-                />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="@dimen/spacing_middle" />
 
             <TextView
                 android:id="@+id/forgot_password"
@@ -150,7 +130,24 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/spacing_large" />
 
+            <LinearLayout
+                android:id="@+id/lyt_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_medium"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <mhealth.login.widgets.ViewLoadingDotsBounce
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:background="@color/colorAccent" />
+
+            </LinearLayout>
+
             <Button
+                android:id="@+id/btn_login"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginLeft="-4dp"
@@ -160,8 +157,7 @@
                 android:textSize="20sp"
                 android:textColor="@color/blue_grey_50"
                 style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-                app:cornerRadius="15dp"
-                android:onClick="gotoHome"/>
+                app:cornerRadius="15dp"/>
 
             <View
                 android:layout_width="0dp"
