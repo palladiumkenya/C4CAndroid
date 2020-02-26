@@ -106,6 +106,7 @@
     <string name="must_match">Both passwords must match</string>
     <string name="welcome_to_c4c">Welcome to C4C</string>
     <string name="caring_for_the_carer_log_in_to_continue">Caring for the carer. Log in to continue</string>
+    <string name="verification_code">Verification Code</string>
 
 
 </resources>

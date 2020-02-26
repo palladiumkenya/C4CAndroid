@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import mhealth.login.R;
+import mhealth.login.SignInActivity;
 
 public class ForgotPassword extends AppCompatActivity {
 
@@ -18,7 +19,7 @@ public class ForgotPassword extends AppCompatActivity {
 
     public void gotoSignIn(View view) {
 
-        Intent mint = new Intent(getApplicationContext(), SignIn.class);
+        Intent mint = new Intent(getApplicationContext(), SignInActivity.class);
         startActivity(mint);
 
     }
