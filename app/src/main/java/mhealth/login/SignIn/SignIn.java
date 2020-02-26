@@ -1,4 +1,4 @@
-package mhealth.login;
+package mhealth.login.SignIn;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -6,6 +6,10 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import mhealth.login.MainActivity;
+import mhealth.login.R;
+import mhealth.login.SignUp.SignUp;
 
 public class SignIn extends AppCompatActivity {
 
@@ -19,7 +23,6 @@ public class SignIn extends AppCompatActivity {
 
     public void gotoHome(View view) {
 
-        // Toast.makeText(this, "You have clicked this button", Toast.LENGTH_SHORT).show();
 
         Intent mint = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(mint);
@@ -28,6 +31,13 @@ public class SignIn extends AppCompatActivity {
     public void gotoSignUp(View view) {
 
         Intent mint = new Intent(getApplicationContext(), SignUp.class);
+        startActivity(mint);
+
+    }
+
+    public void gotoForgotPassword(View view) {
+
+        Intent mint = new Intent(getApplicationContext(), ForgotPassword.class);
         startActivity(mint);
 
     }
