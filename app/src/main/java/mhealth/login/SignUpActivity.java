@@ -6,10 +6,8 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 
-public class SignUp extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +23,7 @@ public class SignUp extends AppCompatActivity {
 
         // Toast.makeText(this, "You have clicked this button", Toast.LENGTH_SHORT).show();
 
-        Intent mint = new Intent(getApplicationContext(), SignIn.class);
+        Intent mint = new Intent(getApplicationContext(), SignInActivity.class);
         startActivity(mint);
     }
 }
