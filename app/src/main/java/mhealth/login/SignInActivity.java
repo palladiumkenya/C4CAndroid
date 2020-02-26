@@ -73,6 +73,7 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Sign In");
         setSupportActionBar(toolbar);
 
         mAuth = FirebaseAuth.getInstance();

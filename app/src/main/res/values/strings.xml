@@ -50,9 +50,8 @@
 
     <string-array name="gender">
         <item>Please select your gender</item>
-        <item>Male</item>
-        <item>Female</item>
-        <item>Rather not say</item>
+        <item>MALE</item>
+        <item>FEMALE</item>
 
     </string-array>
 
@@ -87,7 +86,26 @@
     <string name="error_503">Service Unavailable</string>
     <string name="error_504">Gateway Timeout</string>
     <string name="error_505">HTTP Version Not Supported</string>
+
+
+
     <string name="log_out">Log out</string>
+    <string name="first_name">First Name</string>
+    <string name="surname">Surname</string>
+    <string name="e_mail">E-mail</string>
+    <string name="profile_information">Profile Information</string>
+    <string name="sign_in">Sign In</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="lets_get_you_started_in_one_tap_of_a_button">Let\'s get you started in one tap of a button</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="name_required">First name is required</string>
+    <string name="surname_required">Surname is required</string>
+    <string name="password_required">Password is required</string>
+    <string name="phone_number_required">Phone No. is required</string>
+    <string name="email_required">E-Mail is required</string>
+    <string name="must_match">Both passwords must match</string>
+    <string name="welcome_to_c4c">Welcome to C4C</string>
+    <string name="caring_for_the_carer_log_in_to_continue">Caring for the carer. Log in to continue</string>
 
 
 </resources>
