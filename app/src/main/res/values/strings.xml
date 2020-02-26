@@ -26,13 +26,14 @@
     <string name="feedback">Feedback</string>
     <string name="give_feedback">Give anonymous feedback</string>
     <string name="forgot_password">Forgot Password?</string>
-    <string name="phone_number">Phone Number</string>
+    <string name="phone_number">Phone No.</string>
     <string name="c4c_logo">c4c logo</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="new_user">New user?</string>
     <string name="sign_up">Sign Up</string>
     <string name="account_information">Account information</string>
+    <string name="something_went_wrong">Something went wrong</string>
 
     <string-array name="cadre">
         <item>Please select your Cadre</item>
@@ -49,10 +50,62 @@
 
     <string-array name="gender">
         <item>Please select your gender</item>
-        <item>Male</item>
-        <item>Female</item>
-        <item>Rather not say</item>
+        <item>MALE</item>
+        <item>FEMALE</item>
 
     </string-array>
+
+
+
+
+    <string name="generic_server_down">Cannot Reach Server Using Device</string>
+    <string name="connection">Please check your internet connection.</string>
+    <string name="generic_error">Connection Not Established,Resend Request</string>
+    <string name="error_400">Connection Not Established Error 400</string>
+    <string name="error_401">Unauthorized Access</string>
+    <string name="error_402">Payment Required</string>
+    <string name="error_403">Forbidden Access</string>
+    <string name="error_404">Resource not Found</string>
+    <string name="error_405">Method Not Allowed</string>
+    <string name="error_406">Connection Not Established Error 406</string>
+    <string name="error_407">Proxy Authentication Required</string>
+    <string name="error_408">TimeOut Error, Resend Request</string>
+    <string name="error_409">Conflict in connection</string>
+    <string name="error_410">Connection Not Established Error 410</string>
+    <string name="error_411">Connection Not Established Error 411</string>
+    <string name="error_412">Connection Not Established Error 412</string>
+    <string name="error_413">Connection Not Established Error 413</string>
+    <string name="error_414">Connection Not Established Error 414</string>
+    <string name="error_415">Unsupported Media Type</string>
+    <string name="error_416">Requested Range Not Satisfiable</string>
+    <string name="error_417">Expectation Failed</string>
+    <string name="error_422">Unprocessable Entity</string>
+    <string name="error_500">Server Error</string>
+    <string name="error_501">Connection Not Established Error 501</string>
+    <string name="error_502">Bad Gateway</string>
+    <string name="error_503">Service Unavailable</string>
+    <string name="error_504">Gateway Timeout</string>
+    <string name="error_505">HTTP Version Not Supported</string>
+
+
+
+    <string name="log_out">Log out</string>
+    <string name="first_name">First Name</string>
+    <string name="surname">Surname</string>
+    <string name="e_mail">E-mail</string>
+    <string name="profile_information">Profile Information</string>
+    <string name="sign_in">Sign In</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="lets_get_you_started_in_one_tap_of_a_button">Let\'s get you started in one tap of a button</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="name_required">First name is required</string>
+    <string name="surname_required">Surname is required</string>
+    <string name="password_required">Password is required</string>
+    <string name="phone_number_required">Phone No. is required</string>
+    <string name="email_required">E-Mail is required</string>
+    <string name="must_match">Both passwords must match</string>
+    <string name="welcome_to_c4c">Welcome to C4C</string>
+    <string name="caring_for_the_carer_log_in_to_continue">Caring for the carer. Log in to continue</string>
+
 
 </resources>

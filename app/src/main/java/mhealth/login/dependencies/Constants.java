@@ -8,7 +8,7 @@ public class Constants {
 
 
     /*API Variables*/
-    public static String API_VERSION = "movers_api_v0";
+    public static String API_VERSION = "c4c_api_v0";
 
     /*auth*/
     public static String REGISTER = "auth/signup";

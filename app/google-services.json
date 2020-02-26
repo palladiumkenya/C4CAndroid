@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1034453258887",
+    "firebase_url": "https://c4cfirebaseproject-e0d8b.firebaseio.com",
+    "project_id": "c4cfirebaseproject-e0d8b",
+    "storage_bucket": "c4cfirebaseproject-e0d8b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034453258887:android:71fabde9fbf17b92275e22",
+        "android_client_info": {
+          "package_name": "mhealth.login"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1034453258887-941ucjb7mjhpgbirk867mjhpb2l82rua.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mhealth.login",
+            "certificate_hash": "539b7cdaeddd25e18b70b07d4cfd2830a09e4aa9"
+          }
+        },
+        {
+          "client_id": "1034453258887-3bqm179212vt3r6hgojmld46n3inr254.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxlgfhzhDZ4zgSBPMGoHmhH4wJAuTDmqE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1034453258887-3bqm179212vt3r6hgojmld46n3inr254.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
