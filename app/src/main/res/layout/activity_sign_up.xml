@@ -85,7 +85,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/spacing_medium"
                     app:srcCompat="@drawable/ic_person"
-                    android:tint="@color/grey_80" />
+                    android:tint="@color/grey_80"
+                    android:contentDescription="@string/todo" />
 
                 <View
                     android:layout_width="@dimen/spacing_middle"
@@ -246,129 +247,6 @@
             </LinearLayout>
 
 
-            <!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="@dimen/spacing_middle"-->
-<!--                android:gravity="center_vertical"-->
-<!--                android:orientation="horizontal">-->
-
-<!--                <ImageView-->
-<!--                    android:layout_width="@dimen/spacing_middle"-->
-<!--                    android:layout_height="@dimen/spacing_middle"-->
-<!--                    android:layout_margin="@dimen/spacing_medium"-->
-<!--                    android:src="@drawable/account"-->
-<!--                    android:tint="@color/grey_80" />-->
-
-<!--                <View-->
-<!--                    android:layout_width="@dimen/spacing_middle"-->
-<!--                    android:layout_height="0dp" />-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="@string/account_information"-->
-<!--                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"-->
-<!--                    android:textColor="@color/grey_80" />-->
-
-<!--            </LinearLayout>-->
-
-<!--            <androidx.cardview.widget.CardView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="@dimen/spacing_middle"-->
-<!--                app:cardBackgroundColor="@android:color/white"-->
-<!--                app:cardCornerRadius="1dp"-->
-<!--                app:cardElevation="3dp"-->
-<!--                app:cardUseCompatPadding="true">-->
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:orientation="vertical">-->
-
-<!--                    <EditText-->
-<!--                        android:id="@+id/id_number"-->
-<!--                        style="@style/EditText.Flat.Grey"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="@dimen/spacing_xxlarge"-->
-<!--                        android:background="@android:color/transparent"-->
-<!--                        android:hint="ID Number"-->
-<!--                        android:inputType="number"-->
-<!--                        android:minHeight="@dimen/spacing_xmlarge"-->
-<!--                        android:paddingLeft="@dimen/spacing_large"-->
-<!--                        android:paddingRight="@dimen/spacing_large" />-->
-
-<!--                    <View-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="1dp"-->
-<!--                        android:background="@color/grey_5" />-->
-
-<!--                    <EditText-->
-<!--                        android:id="@+id/dob"-->
-<!--                        style="@style/EditText.Flat.Grey"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="@dimen/spacing_xxlarge"-->
-<!--                        android:background="@android:color/transparent"-->
-<!--                        android:hint="Date of Birth"-->
-<!--                        android:inputType="date"-->
-<!--                        android:minHeight="@dimen/spacing_xmlarge"-->
-<!--                        android:paddingLeft="@dimen/spacing_large"-->
-<!--                        android:paddingRight="@dimen/spacing_large" />-->
-
-<!--                    <View-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="1dp"-->
-<!--                        android:background="@color/grey_5" />-->
-
-<!--                    <EditText-->
-<!--                        android:id="@+id/facility"-->
-<!--                        style="@style/EditText.Flat.Grey"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="@dimen/spacing_xxlarge"-->
-<!--                        android:background="@android:color/transparent"-->
-<!--                        android:hint="Please Enter your facility"-->
-<!--                        android:inputType="text"-->
-<!--                        android:minHeight="@dimen/spacing_xmlarge"-->
-<!--                        android:paddingLeft="@dimen/spacing_large"-->
-<!--                        android:paddingRight="@dimen/spacing_large" />-->
-
-<!--                    <View-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="1dp"-->
-<!--                        android:background="@color/grey_5" />-->
-<!--                    <EditText-->
-<!--                        android:id="@+id/department"-->
-<!--                        style="@style/EditText.Flat.Grey"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="@dimen/spacing_xxlarge"-->
-<!--                        android:background="@android:color/transparent"-->
-<!--                        android:hint="Enter Department "-->
-<!--                        android:inputType="text"-->
-<!--                        android:minHeight="@dimen/spacing_xmlarge"-->
-<!--                        android:paddingLeft="@dimen/spacing_large"-->
-<!--                        android:paddingRight="@dimen/spacing_large" />-->
-
-<!--                    <View-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="1dp"-->
-<!--                        android:background="@color/grey_5" />-->
-
-<!--                    <Spinner-->
-<!--                        android:id="@+id/cadre"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="@dimen/spacing_xxlarge"-->
-<!--                        android:drawSelectorOnTop="true"-->
-<!--                        android:entries="@array/cadre"/>-->
-
-<!--                    <View-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="1dp"-->
-<!--                        android:background="@color/grey_5" />-->
-
-<!--                </LinearLayout>-->
-
-<!--            </androidx.cardview.widget.CardView>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -393,7 +271,8 @@
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                     android:textColor="@color/green_300"
                     android:textStyle="bold"
-                    android:onClick="gotoSignIn"/>
+                    android:onClick="gotoSignIn"
+                    android:focusable="true" />
 
             </LinearLayout>
 

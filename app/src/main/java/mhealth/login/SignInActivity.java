@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -40,6 +41,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -66,6 +68,7 @@ public class SignInActivity extends AppCompatActivity {
     private EditText input_password;
     private Button btn_login;
     private LinearLayout lyt_progress;
+    private TextView forgot_password;
 
 
     @Override
@@ -103,6 +106,7 @@ public class SignInActivity extends AppCompatActivity {
         input_password = (EditText)findViewById(R.id.input_password);
         btn_login = (Button) findViewById(R.id.btn_login);
         lyt_progress = (LinearLayout)findViewById(R.id.lyt_progress);
+        forgot_password = (TextView) findViewById(R.id.forgot_password);
 
         input_phone.addTextChangedListener(new TextWatcher() {
             @Override
@@ -137,6 +141,14 @@ public class SignInActivity extends AppCompatActivity {
                     sendLoginRequest(input_phone.getText().toString(), input_password.getText().toString());
                 }
 
+            }
+        });
+
+        forgot_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ForgotPasswordActivity.class);
+                startActivity(intent);
             }
         });
 
