@@ -1,4 +1,4 @@
-package mhealth.login.SignIn;
+package mhealth.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,7 @@ import android.view.View;
 
 import mhealth.login.R;
 
-public class ForgotPassword extends AppCompatActivity {
+public class ForgotPasswordActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +18,7 @@ public class ForgotPassword extends AppCompatActivity {
 
     public void gotoSignIn(View view) {
 
-        Intent mint = new Intent(getApplicationContext(), SignIn.class);
+        Intent mint = new Intent(getApplicationContext(), SignInActivity.class);
         startActivity(mint);
 
     }
