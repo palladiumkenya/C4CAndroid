@@ -47,7 +47,6 @@
                 android:clickable="true"
                 app:fabSize="normal"
                 app:rippleColor="@android:color/white"
-                app:backgroundTint="@color/colorPrimaryDark"
                 android:tint="@android:color/white"
                 app:srcCompat="@drawable/ic_exposure" />
 
