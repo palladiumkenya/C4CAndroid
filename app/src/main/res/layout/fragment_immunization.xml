@@ -41,7 +41,7 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_broadcast"
+        android:id="@+id/fab_immunization_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/spacing_smlarge"
@@ -53,6 +53,6 @@
         android:layout_gravity="bottom|right|end"
         app:rippleColor="@android:color/white"
         android:tint="@android:color/white"
-        app:srcCompat="@drawable/ic_message" />
+        app:srcCompat="@drawable/ic_immunization" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

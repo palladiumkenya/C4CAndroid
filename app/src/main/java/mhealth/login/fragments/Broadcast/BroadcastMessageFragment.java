@@ -1,4 +1,4 @@
-package mhealth.login.fragments;
+package mhealth.login.fragments.Broadcast;
 
 import android.os.Bundle;
 
@@ -12,10 +12,10 @@ import mhealth.login.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ReportExposuresFragment#newInstance} factory method to
+ * Use the {@link BroadcastMessageFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ReportExposuresFragment extends Fragment {
+public class BroadcastMessageFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -25,7 +25,7 @@ public class ReportExposuresFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public ReportExposuresFragment() {
+    public BroadcastMessageFragment() {
         // Required empty public constructor
     }
 
@@ -35,11 +35,11 @@ public class ReportExposuresFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ReportExposuresFragment.
+     * @return A new instance of fragment BroadcastMessageFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ReportExposuresFragment newInstance(String param1, String param2) {
-        ReportExposuresFragment fragment = new ReportExposuresFragment();
+    public static BroadcastMessageFragment newInstance(String param1, String param2) {
+        BroadcastMessageFragment fragment = new BroadcastMessageFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -60,6 +60,6 @@ public class ReportExposuresFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_report_exposures, container, false);
+        return inflater.inflate(R.layout.fragment_broadcast_message, container, false);
     }
 }
