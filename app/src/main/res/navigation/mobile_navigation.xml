@@ -40,5 +40,9 @@
         android:name="mhealth.login.ui.send.SendFragment"
         android:label="@string/menu_send"
         tools:layout="@layout/fragment_send" />
+    <fragment
+        android:id="@+id/nav_feedback"
+        android:name="mhealth.login.fragments.FeedbackFragment"
+        android:label="Feedback" />
 
 </navigation>
