@@ -179,7 +179,17 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="anonymous_feedback">Would you like to be anonymous?</string>
+    <string name="anonymous_feedback">Make me anonymous</string>
+    <string name="report_exposure">Report Exposure</string>
+    <string name="SAVE">SAVE</string>
+    <string name="submit">Submit</string>
+    <string name="please_fill_the_information_below">Please fill the information below</string>
+    <string name="exposure_type">Exposure type</string>
+    <string name="what_was_the_type_of_exposure">What was the type of Exposure</string>
+    <string name="provide_more_information_about_exposure">Provide more information about exposure....</string>
+    <string name="exposure_information">Exposure information</string>
+    <string name="you_have_not_reported_any_exposures_yet">You have not reported any exposures, yet</string>
+    <string name="please_fill_accordingly">Please fill accordingly</string>
 
 
 </resources>

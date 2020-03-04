@@ -4,13 +4,17 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.fxn.stash.Stash;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import mhealth.login.R;
@@ -24,6 +28,14 @@ public class ExposuresFragment extends Fragment {
     private Context context;
 
     private User loggedInUser;
+
+
+    @BindView(R.id.fab_add_exposure)
+    FloatingActionButton fab_add_exposure;
+
+    @BindView(R.id.shimmer_my_container)
+    ShimmerFrameLayout shimmer_my_container;
+
 
     @Override
     public void onAttach(Context ctx) {
@@ -48,6 +60,13 @@ public class ExposuresFragment extends Fragment {
 
         loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
 
+        fab_add_exposure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.nav_add_exposure);
+            }
+        });
+
 
 
         return root;
@@ -58,5 +77,18 @@ public class ExposuresFragment extends Fragment {
         super.onDestroyView();
         unbinder.unbind();
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        shimmer_my_container.startShimmerAnimation();
+    }
+
+    @Override
+    public void onPause() {
+        shimmer_my_container.stopShimmerAnimation();
+        super.onPause();
+    }
+
 
 }

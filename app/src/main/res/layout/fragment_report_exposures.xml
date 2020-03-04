@@ -6,21 +6,11 @@
     android:background="@android:color/white"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:fitsSystemWindows="false"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:contentInsetStartWithNavigation="0dp"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
+        android:layout_marginTop="@dimen/spacing_large"
         android:scrollbars="vertical">
 
         <LinearLayout
@@ -35,7 +25,7 @@
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Please fill the information below"
+                android:text="@string/please_fill_the_information_below"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"/>
 
             <LinearLayout
@@ -103,10 +93,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/spacing_xlarge"
                         android:gravity="center_vertical"
-                        android:onClick="clickLabel"
                         android:paddingLeft="@dimen/spacing_small"
                         android:paddingRight="@dimen/spacing_small"
-                        android:text="Exposure type"
+                        android:text="@string/exposure_type"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="@color/grey_90" />
 
@@ -135,7 +124,7 @@
                                         android:layout_height="wrap_content"
                                         style="@style/EditText.Flat.Grey"
                                         android:inputType="text"
-                                        android:hint="What was the type of Exposure"/>
+                                        android:hint="@string/what_was_the_type_of_exposure"/>
                                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -161,9 +150,9 @@
                                     android:layout_height="match_parent"
                                     android:background="@android:color/transparent"
                                     android:gravity="top"
-                                    android:hint="Provide more information about exposure...."
+                                    android:hint="@string/provide_more_information_about_exposure"
                                     android:padding="@dimen/spacing_large"
-                                    android:textSize="14dp"
+                                    android:textSize="14sp"
                                     android:lines="3"/>
 
 
@@ -172,15 +161,6 @@
 
                         </androidx.cardview.widget.CardView>
 
-                        <Button
-                            android:id="@+id/bt_continue_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:minWidth="0dp"
-                            android:onClick="clickAction"
-                            android:text="CONTINUE"
-                            android:theme="@style/Button.Primary" />
 
                     </LinearLayout>
 
@@ -239,10 +219,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/spacing_xlarge"
                         android:gravity="center_vertical"
-                        android:onClick="clickLabel"
                         android:paddingLeft="@dimen/spacing_small"
                         android:paddingRight="@dimen/spacing_small"
-                        android:text="Exposure information"
+                        android:text="@string/exposure_information"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="@color/grey_90" />
 
@@ -297,16 +276,6 @@
                         </androidx.cardview.widget.CardView>
 
 
-                        <Button
-                            android:id="@+id/bt_continue_description"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:minWidth="0dp"
-                            android:onClick="clickAction"
-                            android:text="Submit"
-                            android:textAllCaps="true"
-                            android:theme="@style/Button.Primary" />
 
                     </LinearLayout>
 
@@ -315,20 +284,36 @@
             </LinearLayout>
 
 
+            <Button
+                android:id="@+id/btn_submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_middle"
+                android:layout_marginBottom="@dimen/spacing_middle"
+                android:background="@drawable/btn_rounded_primary"
+                android:text="@string/submit"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textAlignment="center"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                style="@style/Widget.MaterialComponents.Button"/>
+
+
             <!--bottom line-->
 
-            <LinearLayout
-                android:layout_width="@dimen/spacing_xlarge"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+<!--            <LinearLayout-->
+<!--                android:layout_width="@dimen/spacing_xlarge"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:gravity="center_horizontal"-->
+<!--                android:orientation="vertical">-->
 
-                <View
-                    android:layout_width="2dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/grey_10" />
+<!--                <View-->
+<!--                    android:layout_width="2dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="@color/grey_10" />-->
 
-            </LinearLayout>
+<!--            </LinearLayout>-->
 
         </LinearLayout>
 

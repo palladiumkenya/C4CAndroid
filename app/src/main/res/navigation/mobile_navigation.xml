@@ -66,5 +66,10 @@
         android:name="mhealth.login.fragments.Exposures.ExposuresFragment"
         android:label="Exposures" />
 
+    <fragment
+        android:id="@+id/nav_add_exposure"
+        android:name="mhealth.login.fragments.Exposures.ReportExposuresFragment"
+        tools:layout="@layout/fragment_report_exposures"
+        android:label="Report Exposure"/>
 
 </navigation>

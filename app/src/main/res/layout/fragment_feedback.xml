@@ -1,23 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:fitsSystemWindows="false"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:contentInsetStartWithNavigation="0dp"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="15dp">
 
@@ -32,7 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                android:text="Please fill accordingly"/>
+                android:text="@string/please_fill_accordingly"/>
 
             <View
                 android:layout_width="0dp"
@@ -66,22 +55,15 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <EditText
+            android:id="@+id/et_post"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <EditText
-                android:id="@+id/et_post"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                android:gravity="top"
-                android:hint="Write something ..."
-                android:padding="@dimen/spacing_large"
-                android:textSize="14dp" />
-
-        </LinearLayout>
+            android:layout_height="match_parent"
+            android:background="@color/grey_3"
+            android:gravity="top"
+            android:hint="Write something ..."
+            android:lines="4"
+            android:padding="@dimen/spacing_middle" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -140,22 +122,29 @@
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:checked="true"
                 android:layout_marginHorizontal="20dp"
                 android:padding="10dp"
                 android:text="@string/anonymous_feedback" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/bt_submit"
+            <Button
+                android:id="@+id/btn_submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:paddingLeft="@dimen/spacing_large"
                 android:paddingRight="@dimen/spacing_large"
                 android:layout_margin="15dp"
-                android:text="SUBMIT"
-                android:textColor="@color/amber_50"
-                android:textSize="20sp"
+                android:layout_marginTop="@dimen/spacing_middle"
+                android:layout_marginBottom="@dimen/spacing_middle"
+                android:background="@drawable/btn_rounded_primary"
+                android:text="@string/submit"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textAlignment="center"
+                android:textSize="22sp"
+                android:textStyle="bold"
                 style="@style/Widget.MaterialComponents.Button"/>
+
         </LinearLayout>
 
     </LinearLayout>
@@ -163,4 +152,4 @@
 
 
 
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>

@@ -6,15 +6,6 @@
     android:background="@android:color/white"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:fitsSystemWindows="false"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:contentInsetStartWithNavigation="0dp"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -212,15 +203,6 @@
 
                         </androidx.cardview.widget.CardView>
 
-                        <Button
-                            android:id="@+id/bt_continue_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:minWidth="0dp"
-                            android:onClick="clickAction"
-                            android:text="CONTINUE"
-                            android:theme="@style/Button.Primary" />
 
                     </LinearLayout>
 
@@ -321,15 +303,6 @@
 
                         </LinearLayout>
 
-                        <Button
-                            android:id="@+id/bt_continue_description"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:minWidth="0dp"
-                            android:onClick="clickAction"
-                            android:text="CONTINUE"
-                            android:theme="@style/Button.Primary" />
 
                     </LinearLayout>
 
@@ -430,16 +403,6 @@
 
                         </LinearLayout>
 
-                        <Button
-                            android:id="@+id/bt_continue_time"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:minWidth="0dp"
-                            android:onClick="clickAction"
-                            android:text="CONTINUE"
-                            android:theme="@style/Button.Primary" />
-
                     </LinearLayout>
 
                 </LinearLayout>
@@ -538,16 +501,6 @@
                                 android:text="No"/>
 
                         </LinearLayout>
-
-                        <Button
-                            android:id="@+id/bt_continue_date"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:minWidth="0dp"
-                            android:onClick="clickAction"
-                            android:text="CONTINUE"
-                            android:theme="@style/Button.Primary" />
 
                     </LinearLayout>
 
@@ -649,15 +602,20 @@
                         </LinearLayout>
 
                         <Button
-                            android:id="@+id/bt_add_event"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/btn_submit"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:minWidth="0dp"
-                            android:onClick="clickAction"
-                            android:text="Submit"
-                            android:textAllCaps="true"
-                            android:theme="@style/Button.Primary" />
+                            android:layout_marginTop="@dimen/spacing_middle"
+                            android:layout_marginBottom="@dimen/spacing_middle"
+                            android:background="@drawable/btn_rounded_primary"
+                            android:text="@string/submit"
+                            android:textAllCaps="false"
+                            android:textColor="@android:color/white"
+                            android:textAlignment="center"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            style="@style/Widget.MaterialComponents.Button"/>
+
 
 
                     </LinearLayout>
