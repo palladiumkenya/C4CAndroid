@@ -6,15 +6,6 @@
     android:background="@android:color/white"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:fitsSystemWindows="false"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:contentInsetStartWithNavigation="0dp"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -96,10 +87,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/spacing_xlarge"
                         android:gravity="center_vertical"
-                        android:onClick="clickLabel"
                         android:paddingLeft="@dimen/spacing_small"
                         android:paddingRight="@dimen/spacing_small"
-                        android:text="About You"
+                        android:text="@string/about_you"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="@color/grey_90" />
 
@@ -128,7 +118,7 @@
                                         android:layout_height="wrap_content"
                                         style="@style/EditText.Flat.Grey"
                                         android:inputType="number"
-                                        android:hint="ID Number"/>
+                                        android:hint="@string/id_number"/>
                                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -142,7 +132,7 @@
                                         android:layout_height="wrap_content"
                                         style="@style/EditText.Flat.Grey"
                                         android:inputType="date"
-                                        android:hint="Date of Birth"/>
+                                        android:hint="@string/date_of_birth"/>
                                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -152,15 +142,6 @@
 
                         </androidx.cardview.widget.CardView>
 
-                        <Button
-                            android:id="@+id/bt_continue_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:minWidth="0dp"
-                            android:onClick="clickAction"
-                            android:text="CONTINUE"
-                            android:theme="@style/Button.Primary" />
 
                     </LinearLayout>
 
@@ -219,10 +200,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/spacing_xlarge"
                         android:gravity="center_vertical"
-                        android:onClick="clickLabel"
                         android:paddingLeft="@dimen/spacing_small"
                         android:paddingRight="@dimen/spacing_small"
-                        android:text="Affiliation and Facility details"
+                        android:text="@string/affiliation_and_facility_details"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="@color/grey_90" />
 
@@ -251,7 +231,7 @@
                                         android:layout_height="wrap_content"
                                         style="@style/EditText.Flat.Grey"
                                         android:inputType="number"
-                                        android:hint="Affiliations"/>
+                                        android:hint="@string/affiliations"/>
                                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -265,7 +245,7 @@
                                         android:layout_height="wrap_content"
                                         style="@style/EditText.Flat.Grey"
                                         android:inputType="text"
-                                        android:hint="Enter your facility"/>
+                                        android:hint="@string/enter_your_facility"/>
                                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -278,7 +258,7 @@
                                         android:layout_height="wrap_content"
                                         style="@style/EditText.Flat.Grey"
                                         android:inputType="date"
-                                        android:hint="Enter the department attached to"/>
+                                        android:hint="@string/enter_the_department_attached_to"/>
 
 
                                 </com.google.android.material.textfield.TextInputLayout>
@@ -295,16 +275,6 @@
 
 
                         </androidx.cardview.widget.CardView>
-
-                        <Button
-                            android:id="@+id/bt_continue_description"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:minWidth="0dp"
-                            android:onClick="clickAction"
-                            android:text="CONTINUE"
-                            android:theme="@style/Button.Primary" />
 
                     </LinearLayout>
 
@@ -366,7 +336,7 @@
                         android:onClick="clickLabel"
                         android:paddingLeft="@dimen/spacing_small"
                         android:paddingRight="@dimen/spacing_small"
-                        android:text="Hepatitis B Vaccinations"
+                        android:text="@string/hepatitis_b_vaccinations"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="@color/grey_90" />
 
@@ -390,7 +360,7 @@
                                     android:id="@+id/hbv_txt"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Have you been vaccinated against Hepatitis B?"
+                                    android:text="@string/have_you_been_vaccinated_against_hepatitis_b"
                                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"/>
 
 
@@ -423,14 +393,14 @@
                                         android:layout_height="wrap_content"
                                         style="@style/EditText.Flat.Grey"
                                         android:inputType="date"
-                                        android:hint="Date of first dose"/>
+                                        android:hint="@string/date_of_first_dose"/>
                                 </com.google.android.material.textfield.TextInputLayout>
 
                                 <com.google.android.material.textview.MaterialTextView
                                     android:id="@+id/hbv_txt2"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Do you have a second dose?"
+                                    android:text="@string/do_you_have_a_second_dose"
                                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"/>
 
 
@@ -463,14 +433,14 @@
                                         android:layout_height="wrap_content"
                                         style="@style/EditText.Flat.Grey"
                                         android:inputType="date"
-                                        android:hint="Date of second dose"/>
+                                        android:hint="@string/date_of_second_dose"/>
                                 </com.google.android.material.textfield.TextInputLayout>
 
                                 <com.google.android.material.textview.MaterialTextView
                                     android:id="@+id/hbv_txt3"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Do you have the third dose?"
+                                    android:text="@string/do_you_have_the_third_dose"
                                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"/>
 
 
@@ -503,7 +473,7 @@
                                         android:layout_height="wrap_content"
                                         style="@style/EditText.Flat.Grey"
                                         android:inputType="date"
-                                        android:hint="Date of third dose"/>
+                                        android:hint="@string/date_of_third_dose"/>
                                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -515,14 +485,21 @@
                         </androidx.cardview.widget.CardView>
 
                         <Button
-                            android:id="@+id/bt_continue_time"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/btn_submit"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:minWidth="0dp"
-                            android:onClick="clickAction"
-                            android:text="SUBMIT"
-                            android:theme="@style/Button.Primary" />
+                            android:layout_marginTop="@dimen/spacing_middle"
+                            android:layout_marginBottom="@dimen/spacing_middle"
+                            android:background="@drawable/btn_rounded_primary"
+                            android:text="@string/submit"
+                            android:textAllCaps="false"
+                            android:textColor="@android:color/white"
+                            android:textAlignment="center"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            style="@style/Widget.MaterialComponents.Button"/>
+
+
 
                     </LinearLayout>
 

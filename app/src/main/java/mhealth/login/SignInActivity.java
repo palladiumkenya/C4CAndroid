@@ -230,6 +230,8 @@ public class SignInActivity extends AppCompatActivity {
 
 
         Log.e("SENDING PAYLOAD", payload.toString());
+        Log.e("SENDING TO", Stash.getString(Constants.END_POINT)+ Constants.LOGIN);
+
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
                 Stash.getString(Constants.END_POINT)+ Constants.LOGIN, payload, new Response.Listener<JSONObject>() {

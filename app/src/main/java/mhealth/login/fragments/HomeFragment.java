@@ -15,6 +15,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -94,47 +95,61 @@ public class HomeFragment extends Fragment {
         loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
 
 
-
+        if (loggedInUser.getProfile_complete() == 0){
+            //NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.nav_complete_profile);
+        }
 
         exposuresLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.nav_exposures);
+                //Navigation.findNavController(v).navigate(R.id.nav_exposures);
+                NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.nav_exposures);
+
             }
         });
 
         immunizationLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.nav_immunizations);
+               // Navigation.findNavController(v).navigate(R.id.nav_immunizations);
+                NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.nav_immunizations);
+
             }
         });
 
         broadcastsLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.nav_broadcasts);
+                //Navigation.findNavController(v).navigate(R.id.nav_broadcasts);
+                NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.nav_broadcasts);
+
             }
         });
 
         resourceCenterLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.nav_resources);
+                //Navigation.findNavController(v).navigate(R.id.nav_resources);
+                NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.nav_resources);
+
             }
         });
 
         checkinLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.nav_check_in);
+                //Navigation.findNavController(v).navigate(R.id.nav_check_in);
+                NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.nav_check_in);
+
             }
         });
 
         feedbackLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.nav_feedback);
+                //Navigation.findNavController(v).navigate(R.id.nav_feedback);
+                NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.nav_feedback);
+
             }
         });
 

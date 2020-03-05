@@ -9,8 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.fxn.stash.Stash;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import mhealth.login.R;
@@ -18,12 +20,15 @@ import mhealth.login.dependencies.Constants;
 import mhealth.login.models.User;
 
 
-public class IncomingBroadcastFragment extends Fragment {
+public class BroadcastHistoryFragment extends Fragment {
     private Unbinder unbinder;
     private View root;
     private Context context;
 
     private User loggedInUser;
+
+    @BindView(R.id.shimmer_my_container)
+    ShimmerFrameLayout shimmer_my_container;
 
     @Override
     public void onAttach(Context ctx) {
@@ -43,7 +48,7 @@ public class IncomingBroadcastFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        root =  inflater.inflate(R.layout.fragment_incoming_broadcast, container, false);
+        root =  inflater.inflate(R.layout.fragment_broadcast_history, container, false);
         unbinder = ButterKnife.bind(this, root);
 
         loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
@@ -57,5 +62,19 @@ public class IncomingBroadcastFragment extends Fragment {
         super.onDestroyView();
         unbinder.unbind();
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        shimmer_my_container.startShimmerAnimation();
+    }
+
+    @Override
+    public void onPause() {
+        shimmer_my_container.stopShimmerAnimation();
+        super.onPause();
+    }
+
+
 
 }

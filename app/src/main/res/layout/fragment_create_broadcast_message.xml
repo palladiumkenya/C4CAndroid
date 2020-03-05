@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:fitsSystemWindows="false"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:contentInsetStartWithNavigation="0dp"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,8 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:orientation="vertical"
-            android:padding="@dimen/spacing_large">
+            android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -37,7 +27,7 @@
                     android:layout_height="wrap_content"
                     style="@style/EditText.Flat.Grey"
                     android:inputType="text"
-                    android:hint="Title of broadcast"/>
+                    android:hint="@string/title_of_broadcast"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <View
@@ -74,8 +64,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/et_post"
@@ -83,9 +72,10 @@
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:gravity="top"
-                android:hint="Type in your message..."
+                android:lines="4"
+                android:hint="@string/type_in_your_message"
                 android:padding="@dimen/spacing_large"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
 
         </LinearLayout>
 
@@ -96,18 +86,23 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/bt_submit"
+            <Button
+                android:id="@+id/btn_submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingLeft="@dimen/spacing_large"
-                android:paddingRight="@dimen/spacing_large"
-                android:layout_margin="15dp"
-                android:text="SUBMIT"
-                android:textColor="@color/amber_50"
-                android:textSize="20sp"
+                android:layout_marginTop="@dimen/spacing_middle"
+                android:layout_marginBottom="@dimen/spacing_middle"
+                android:background="@drawable/btn_rounded_primary"
+                android:text="@string/submit"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textAlignment="center"
+                android:textSize="22sp"
+                android:textStyle="bold"
                 style="@style/Widget.MaterialComponents.Button"/>
+
+
+
         </LinearLayout>
 
     </LinearLayout>
@@ -115,4 +110,4 @@
 
 
 
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>

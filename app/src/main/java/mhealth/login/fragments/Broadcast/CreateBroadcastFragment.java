@@ -18,7 +18,7 @@ import mhealth.login.dependencies.Constants;
 import mhealth.login.models.User;
 
 
-public class BroadcastMessageFragment extends Fragment {
+public class CreateBroadcastFragment extends Fragment {
     private Unbinder unbinder;
     private View root;
     private Context context;
@@ -43,7 +43,7 @@ public class BroadcastMessageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        root =  inflater.inflate(R.layout.fragment_broadcast_message, container, false);
+        root =  inflater.inflate(R.layout.fragment_create_broadcast_message, container, false);
         unbinder = ButterKnife.bind(this, root);
 
         loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);

@@ -9,8 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.fxn.stash.Stash;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import mhealth.login.R;
@@ -24,6 +27,15 @@ public class CheckinFragment extends Fragment {
     private Context context;
 
     private User loggedInUser;
+
+
+    @BindView(R.id.fab_checkin)
+    FloatingActionButton fab_checkin;
+
+    @BindView(R.id.shimmer_my_container)
+    ShimmerFrameLayout shimmer_my_container;
+
+
 
     @Override
     public void onAttach(Context ctx) {
@@ -48,6 +60,13 @@ public class CheckinFragment extends Fragment {
 
         loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
 
+        fab_checkin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
 
         return root;
     }
@@ -57,5 +76,18 @@ public class CheckinFragment extends Fragment {
         super.onDestroyView();
         unbinder.unbind();
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        shimmer_my_container.startShimmerAnimation();
+    }
+
+    @Override
+    public void onPause() {
+        shimmer_my_container.stopShimmerAnimation();
+        super.onPause();
+    }
+
 
 }

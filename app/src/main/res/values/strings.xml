@@ -190,6 +190,25 @@
     <string name="exposure_information">Exposure information</string>
     <string name="you_have_not_reported_any_exposures_yet">You have not reported any exposures, yet</string>
     <string name="please_fill_accordingly">Please fill accordingly</string>
+    <string name="id_number">ID Number</string>
+    <string name="date_of_birth">Date of Birth</string>
+    <string name="date_of_third_dose">Date of third dose</string>
+    <string name="do_you_have_the_third_dose">Do you have the third dose?</string>
+    <string name="date_of_second_dose">Date of second dose</string>
+    <string name="do_you_have_a_second_dose">Do you have a second dose?</string>
+    <string name="date_of_first_dose">Date of first dose</string>
+    <string name="have_you_been_vaccinated_against_hepatitis_b">Have you been vaccinated against Hepatitis B?</string>
+    <string name="hepatitis_b_vaccinations">Hepatitis B Vaccinations</string>
+    <string name="enter_the_department_attached_to">Enter the department attached to</string>
+    <string name="enter_your_facility">Enter your facility</string>
+    <string name="affiliations">Affiliations</string>
+    <string name="affiliation_and_facility_details">Affiliation and Facility details</string>
+    <string name="about_you">About You</string>
+    <string name="there_are_no_broadcast_messages_sent_yet">There are no broadcast messages sent yet</string>
+    <string name="nothing_to_show_here_yet">Nothing to show here, yet</string>
+    <string name="title_of_broadcast">Title of broadcast</string>
+    <string name="type_in_your_message">Type in your message...</string>
+    <string name="write_something">Write something ...</string>
 
 
 </resources>
