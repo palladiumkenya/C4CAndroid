@@ -269,7 +269,7 @@
                     android:clickable="true"
                     android:text="@string/sign_in"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                    android:textColor="@color/green_300"
+                    android:textColor="@color/colorPrimary"
                     android:textStyle="bold"
                     android:onClick="gotoSignIn"
                     android:focusable="true" />

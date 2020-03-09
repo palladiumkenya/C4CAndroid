@@ -123,18 +123,27 @@
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal">
 
-                                    <com.google.android.material.radiobutton.MaterialRadioButton
-                                        android:layout_width="wrap_content"
+                                    <RadioGroup
+                                        android:id="@+id/radioGroup_influenza1"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginHorizontal="20dp"
-                                        android:padding="10dp"
-                                        android:text="Yes"/>
-                                    <com.google.android.material.radiobutton.MaterialRadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginHorizontal="20dp"
-                                        android:padding="10dp"
-                                        android:text="No"/>
+                                        android:orientation="horizontal">
+                                        <RadioButton
+                                            android:id="@+id/yes"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:layout_height="wrap_content"
+                                            android:padding="10dp"
+                                            android:text="Yes"/>
+
+                                        <RadioButton
+                                            android:id="@+id/no"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"                    android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:padding="10dp"
+                                            android:text="No" />
+                                    </RadioGroup>
 
                                 </LinearLayout>
 
@@ -151,18 +160,27 @@
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal">
 
-                                    <com.google.android.material.radiobutton.MaterialRadioButton
-                                        android:layout_width="wrap_content"
+                                    <RadioGroup
+                                        android:id="@+id/radioGroup_influenza2"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginHorizontal="20dp"
-                                        android:padding="10dp"
-                                        android:text="Yes"/>
-                                    <com.google.android.material.radiobutton.MaterialRadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginHorizontal="20dp"
-                                        android:padding="10dp"
-                                        android:text="No"/>
+                                        android:orientation="horizontal">
+                                        <RadioButton
+                                            android:id="@+id/yes_dose2"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:layout_height="wrap_content"
+                                            android:padding="10dp"
+                                            android:text="Yes"/>
+
+                                        <RadioButton
+                                            android:id="@+id/no_dose2"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"                    android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:padding="10dp"
+                                            android:text="No" />
+                                    </RadioGroup>
 
                                 </LinearLayout>
 
@@ -180,18 +198,27 @@
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal">
 
-                                    <com.google.android.material.radiobutton.MaterialRadioButton
-                                        android:layout_width="wrap_content"
+                                    <RadioGroup
+                                        android:id="@+id/radioGroup_influenza3"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginHorizontal="20dp"
-                                        android:padding="10dp"
-                                        android:text="Yes"/>
-                                    <com.google.android.material.radiobutton.MaterialRadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginHorizontal="20dp"
-                                        android:padding="10dp"
-                                        android:text="No"/>
+                                        android:orientation="horizontal">
+                                        <RadioButton
+                                            android:id="@+id/yes_pregnant"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:layout_height="wrap_content"
+                                            android:padding="10dp"
+                                            android:text="Yes"/>
+
+                                        <RadioButton
+                                            android:id="@+id/no_pregnant"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"                    android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:padding="10dp"
+                                            android:text="No" />
+                                    </RadioGroup>
 
                                 </LinearLayout>
 
@@ -288,18 +315,27 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
-                            <com.google.android.material.radiobutton.MaterialRadioButton
-                                android:layout_width="wrap_content"
+                            <RadioGroup
+                                android:id="@+id/radioGroup_measles"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="20dp"
-                                android:padding="10dp"
-                                android:text="Yes"/>
-                            <com.google.android.material.radiobutton.MaterialRadioButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="20dp"
-                                android:padding="10dp"
-                                android:text="No"/>
+                                android:orientation="horizontal">
+                                <RadioButton
+                                    android:id="@+id/yes_measles"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:padding="10dp"
+                                    android:text="Yes"/>
+
+                                <RadioButton
+                                    android:id="@+id/no_measles"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:padding="10dp"
+                                    android:text="No" />
+                            </RadioGroup>
 
                         </LinearLayout>
 
@@ -388,18 +424,27 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
-                            <com.google.android.material.radiobutton.MaterialRadioButton
-                                android:layout_width="wrap_content"
+                            <RadioGroup
+                                android:id="@+id/radioGroup_meninq"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="20dp"
-                                android:padding="10dp"
-                                android:text="Yes"/>
-                            <com.google.android.material.radiobutton.MaterialRadioButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="20dp"
-                                android:padding="10dp"
-                                android:text="No"/>
+                                android:orientation="horizontal">
+                                <RadioButton
+                                    android:id="@+id/yes_meninq"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:padding="10dp"
+                                    android:text="Yes"/>
+
+                                <RadioButton
+                                    android:id="@+id/no_meninq"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:padding="10dp"
+                                    android:text="No" />
+                            </RadioGroup>
 
                         </LinearLayout>
 
@@ -487,18 +532,27 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
-                            <com.google.android.material.radiobutton.MaterialRadioButton
-                                android:layout_width="wrap_content"
+                            <RadioGroup
+                                android:id="@+id/radioGroup_tdap"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="20dp"
-                                android:padding="10dp"
-                                android:text="Yes"/>
-                            <com.google.android.material.radiobutton.MaterialRadioButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="20dp"
-                                android:padding="10dp"
-                                android:text="No"/>
+                                android:orientation="horizontal">
+                                <RadioButton
+                                    android:id="@+id/yes_tdap"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:padding="10dp"
+                                    android:text="Yes"/>
+
+                                <RadioButton
+                                    android:id="@+id/no_tdap"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:padding="10dp"
+                                    android:text="No" />
+                            </RadioGroup>
 
                         </LinearLayout>
 
@@ -586,18 +640,27 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
-                            <com.google.android.material.radiobutton.MaterialRadioButton
-                                android:layout_width="wrap_content"
+                            <RadioGroup
+                                android:id="@+id/radioGroup_varicella"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="20dp"
-                                android:padding="10dp"
-                                android:text="Yes"/>
-                            <com.google.android.material.radiobutton.MaterialRadioButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="20dp"
-                                android:padding="10dp"
-                                android:text="No"/>
+                                android:orientation="horizontal">
+                                <RadioButton
+                                    android:id="@+id/yes_varicella"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:padding="10dp"
+                                    android:text="Yes"/>
+
+                                <RadioButton
+                                    android:id="@+id/no_varicella"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:padding="10dp"
+                                    android:text="No" />
+                            </RadioGroup>
 
                         </LinearLayout>
 

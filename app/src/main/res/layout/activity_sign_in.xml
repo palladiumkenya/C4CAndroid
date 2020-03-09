@@ -210,7 +210,7 @@
                     android:onClick="gotoSignUp"
                     android:text="@string/sign_up"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                    android:textColor="@color/green_300"
+                    android:textColor="@color/colorPrimary"
                     android:textStyle="bold" />
 
             </LinearLayout>
