@@ -42,10 +42,10 @@
                     android:padding="@dimen/spacing_xmedium">
 
 
-                    <com.mikhaellopez.circularimageview.CircularImageView
+                    <ImageView
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/logo" />
+                        app:srcCompat="@drawable/ic_logo" />
 
                     <View
                         android:layout_width="0dp"
