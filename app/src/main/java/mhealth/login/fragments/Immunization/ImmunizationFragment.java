@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
@@ -41,6 +42,9 @@ public class ImmunizationFragment extends Fragment {
     @BindView(R.id.view_pager)
     ViewPager view_pager;
 
+    @BindView(R.id.fab_new_immunization)
+    FloatingActionButton fab_new_immunization;
+
     @Override
     public void onAttach(Context ctx) {
         super.onAttach(ctx);
@@ -64,6 +68,12 @@ public class ImmunizationFragment extends Fragment {
         setupViewPager(view_pager);
         tab_layout.setupWithViewPager(view_pager);
 
+        fab_new_immunization.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(ImmunizationFragment.this).navigate(R.id.nav_new_immunization);
+            }
+        });
 
 
         return root;
