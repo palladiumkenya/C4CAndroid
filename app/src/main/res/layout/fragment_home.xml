@@ -45,7 +45,7 @@
                     <ImageView
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        app:srcCompat="@drawable/ic_logo" />
+                        app:srcCompat="@drawable/c4c_new" />
 
                     <View
                         android:layout_width="0dp"

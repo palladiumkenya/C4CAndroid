@@ -11,7 +11,7 @@
         android:id="@+id/logo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srcCompat="@drawable/ic_logo"
+        android:src="@drawable/c4c_new"
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
         android:layout_alignParentBottom="true"
