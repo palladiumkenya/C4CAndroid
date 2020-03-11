@@ -71,5 +71,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:20.1.0'
     implementation 'com.google.firebase:firebase-database:19.2.1'
 
+    //searcheabel spinner
+    implementation 'com.toptoche.searchablespinner:searchablespinnerlibrary:1.3.1'
+
+
 
 }

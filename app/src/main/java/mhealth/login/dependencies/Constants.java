@@ -15,5 +15,12 @@ public class Constants {
     public static String LOGIN = "auth/login";
 
 
+    /*resources*/
+    public static String FACILITIES = "facilities";
+    public static String FACILITY_DEPARTMENTS = "facility_departments/";
+    public static String CADRES = "cadres";
+
+
+
 
 }

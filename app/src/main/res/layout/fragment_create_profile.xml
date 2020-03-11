@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/white"
+    android:id="@+id/fragment_create_profile"
     android:orientation="vertical">
 
 
@@ -222,39 +223,24 @@
                                 android:layout_height="match_parent"
                                 android:orientation="vertical">
 
-                                <com.google.android.material.textfield.TextInputLayout
+
+                                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                                    android:id="@+id/facilitySpinner"
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-                                    <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/facility"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        style="@style/EditText.Flat.Grey"
-                                        android:inputType="text"
-                                        android:hint="@string/enter_your_facility"/>
-                                </com.google.android.material.textfield.TextInputLayout>
+                                    android:layout_height="wrap_content" />
 
 
-                                <com.google.android.material.textfield.TextInputLayout
+                                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                                    android:id="@+id/facilityDepartment"
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-                                    <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/facility_department"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        style="@style/EditText.Flat.Grey"
-                                        android:inputType="date"
-                                        android:hint="@string/enter_the_department_attached_to"/>
+                                    android:layout_height="@dimen/spacing_xxlarge"
+                                    android:drawSelectorOnTop="true" />
 
-
-                                </com.google.android.material.textfield.TextInputLayout>
-
-                                <Spinner
+                                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                                     android:id="@+id/cadre"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/spacing_xxlarge"
-                                    android:drawSelectorOnTop="true"
-                                    android:entries="@array/cadre" />
+                                    android:drawSelectorOnTop="true" />
 
 
                             </LinearLayout>
@@ -333,55 +319,60 @@
                         android:layout_marginBottom="@dimen/spacing_large"
                         android:orientation="vertical">
 
-                        <androidx.cardview.widget.CardView
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/hbv_txt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/have_you_been_vaccinated_against_hepatitis_b"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"/>
+
+                            <RadioGroup
+                                android:id="@+id/doseOneRadioGroup"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <RadioButton
+                                    android:id="@+id/dose_one_yes"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:padding="10dp"
+                                    android:text="@string/dose2_yes"/>
+
+                                <RadioButton
+                                    android:id="@+id/dose_one_no"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:padding="10dp"
+                                    android:text="@string/dose2_no" />
+                            </RadioGroup>
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/dose1_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    style="@style/EditText.Flat.Grey"
+                                    android:inputType="date"
+                                    android:hint="@string/date_of_first_dose"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
 
                             <LinearLayout
+                                android:id="@+id/layoutDose2"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:orientation="vertical">
-
-                                <com.google.android.material.textview.MaterialTextView
-                                    android:id="@+id/hbv_txt"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/have_you_been_vaccinated_against_hepatitis_b"
-                                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"/>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-
-                                    <com.google.android.material.radiobutton.MaterialRadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginHorizontal="20dp"
-                                        android:padding="10dp"
-                                        android:text="Yes"/>
-                                    <com.google.android.material.radiobutton.MaterialRadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginHorizontal="20dp"
-                                        android:padding="10dp"
-                                        android:text="No"/>
-
-                                </LinearLayout>
-
-                                <com.google.android.material.textfield.TextInputLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-                                    <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/dose1_date"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        style="@style/EditText.Flat.Grey"
-                                        android:inputType="date"
-                                        android:hint="@string/date_of_first_dose"/>
-                                </com.google.android.material.textfield.TextInputLayout>
-
                                 <com.google.android.material.textview.MaterialTextView
                                     android:id="@+id/hbv_txt2"
                                     android:layout_width="match_parent"
@@ -390,25 +381,27 @@
                                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"/>
 
 
-                                <LinearLayout
+                                <RadioGroup
+                                    android:id="@+id/doseTwoRadioGroup"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal">
-
-                                    <com.google.android.material.radiobutton.MaterialRadioButton
-                                        android:layout_width="wrap_content"
+                                    <RadioButton
+                                        android:id="@+id/dose_two_yes"
+                                        android:layout_width="0dp"
+                                        android:layout_weight="1"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginHorizontal="20dp"
                                         android:padding="10dp"
-                                        android:text="Yes"/>
-                                    <com.google.android.material.radiobutton.MaterialRadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginHorizontal="20dp"
-                                        android:padding="10dp"
-                                        android:text="No"/>
+                                        android:text="@string/dose2_yes"/>
 
-                                </LinearLayout>
+                                    <RadioButton
+                                        android:id="@+id/dose_two_no"
+                                        android:layout_width="0dp"
+                                        android:layout_weight="1"                    android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:padding="10dp"
+                                        android:text="@string/dose2_no" />
+                                </RadioGroup>
 
                                 <com.google.android.material.textfield.TextInputLayout
                                     android:layout_width="match_parent"
@@ -422,6 +415,15 @@
                                         android:hint="@string/date_of_second_dose"/>
                                 </com.google.android.material.textfield.TextInputLayout>
 
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/layoutDose3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
                                 <com.google.android.material.textview.MaterialTextView
                                     android:id="@+id/hbv_txt3"
                                     android:layout_width="match_parent"
@@ -430,25 +432,28 @@
                                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"/>
 
 
-                                <LinearLayout
+                                <RadioGroup
+                                    android:id="@+id/doseThreeRadioGroup"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal">
-
-                                    <com.google.android.material.radiobutton.MaterialRadioButton
-                                        android:layout_width="wrap_content"
+                                    <RadioButton
+                                        android:id="@+id/dose_three_yes"
+                                        android:layout_width="0dp"
+                                        android:layout_weight="1"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginHorizontal="20dp"
                                         android:padding="10dp"
-                                        android:text="Yes"/>
-                                    <com.google.android.material.radiobutton.MaterialRadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginHorizontal="20dp"
-                                        android:padding="10dp"
-                                        android:text="No"/>
+                                        android:text="@string/dose2_yes"/>
 
-                                </LinearLayout>
+                                    <RadioButton
+                                        android:id="@+id/dose_three_no"
+                                        android:layout_width="0dp"
+                                        android:layout_weight="1"                    android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:padding="10dp"
+                                        android:text="@string/dose2_no" />
+                                </RadioGroup>
+
 
                                 <com.google.android.material.textfield.TextInputLayout
                                     android:layout_width="match_parent"
@@ -463,12 +468,10 @@
                                 </com.google.android.material.textfield.TextInputLayout>
 
 
-
-
                             </LinearLayout>
 
+                        </LinearLayout>
 
-                        </androidx.cardview.widget.CardView>
 
                         <Button
                             android:id="@+id/btn_submit"
