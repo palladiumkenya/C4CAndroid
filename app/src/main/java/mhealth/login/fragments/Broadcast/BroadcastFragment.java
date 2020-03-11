@@ -68,6 +68,11 @@ public class BroadcastFragment extends Fragment {
 
         loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
 
+        if (loggedInUser.getProfile_complete() == 0){
+            NavHostFragment.findNavController(BroadcastFragment.this).navigate(R.id.nav_complete_profile);
+        }
+
+
         setupViewPager(view_pager);
         tab_layout.setupWithViewPager(view_pager);
 

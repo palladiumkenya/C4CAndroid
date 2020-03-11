@@ -4,17 +4,20 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.fxn.stash.Stash;
+import com.google.firebase.database.core.Repo;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import mhealth.login.R;
 import mhealth.login.dependencies.Constants;
+import mhealth.login.fragments.HomeFragment;
 import mhealth.login.models.User;
 
 
@@ -48,6 +51,10 @@ public class ReportExposuresFragment extends Fragment {
         unbinder = ButterKnife.bind(this, root);
 
         loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+
+        if (loggedInUser.getProfile_complete() == 0){
+            NavHostFragment.findNavController(ReportExposuresFragment.this).navigate(R.id.nav_complete_profile);
+        }
 
 
 

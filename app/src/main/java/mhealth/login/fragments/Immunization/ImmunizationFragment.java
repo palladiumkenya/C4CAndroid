@@ -25,6 +25,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import mhealth.login.R;
 import mhealth.login.dependencies.Constants;
+import mhealth.login.fragments.HomeFragment;
 import mhealth.login.models.User;
 
 
@@ -64,6 +65,10 @@ public class ImmunizationFragment extends Fragment {
         unbinder = ButterKnife.bind(this, root);
 
         loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+
+        if (loggedInUser.getProfile_complete() == 0){
+            NavHostFragment.findNavController(ImmunizationFragment.this).navigate(R.id.nav_complete_profile);
+        }
 
         setupViewPager(view_pager);
         tab_layout.setupWithViewPager(view_pager);

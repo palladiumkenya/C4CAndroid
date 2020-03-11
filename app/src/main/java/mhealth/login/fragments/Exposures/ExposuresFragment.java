@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import mhealth.login.R;
 import mhealth.login.dependencies.Constants;
+import mhealth.login.fragments.HomeFragment;
 import mhealth.login.models.User;
 
 
@@ -59,6 +61,10 @@ public class ExposuresFragment extends Fragment {
         unbinder = ButterKnife.bind(this, root);
 
         loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+
+        if (loggedInUser.getProfile_complete() == 0){
+            NavHostFragment.findNavController(ExposuresFragment.this).navigate(R.id.nav_complete_profile);
+        }
 
         fab_add_exposure.setOnClickListener(new View.OnClickListener() {
             @Override
