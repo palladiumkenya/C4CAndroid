@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
@@ -26,6 +27,7 @@ import mhealth.login.dependencies.Constants;
 import mhealth.login.fragments.Broadcast.ApprovalFragment;
 import mhealth.login.fragments.Broadcast.BroadcastFragment;
 import mhealth.login.fragments.Broadcast.BroadcastHistoryFragment;
+import mhealth.login.fragments.Immunization.NewImmunizationFragment;
 import mhealth.login.models.User;
 
 
@@ -65,6 +67,10 @@ public class ReasourcesFragments extends Fragment {
         unbinder = ButterKnife.bind(this, root);
 
         loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+
+        if (loggedInUser.getProfile_complete() == 0){
+            NavHostFragment.findNavController(ReasourcesFragments.this).navigate(R.id.nav_complete_profile);
+        }
 
 
         setupViewPager(view_pager);
