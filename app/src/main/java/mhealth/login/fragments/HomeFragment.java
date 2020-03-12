@@ -96,7 +96,7 @@ public class HomeFragment extends Fragment {
 
 
         if (loggedInUser.getProfile_complete() == 0){
-            //NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.nav_complete_profile);
+            NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.nav_complete_profile);
         }
 
         exposuresLayout.setOnClickListener(new View.OnClickListener() {

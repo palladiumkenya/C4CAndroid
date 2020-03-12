@@ -176,7 +176,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         JSONObject payload  = new JSONObject();
         try {
-            payload.put("role_id", 3); //shipper or customer
+            payload.put("role_id", 3); //health care worker
             payload.put("first_name", first_name);
             payload.put("surname", sur_name);
             payload.put("gender", gender);

@@ -13,12 +13,16 @@ public class Constants {
     /*auth*/
     public static String REGISTER = "auth/signup";
     public static String LOGIN = "auth/login";
+    public static String COMPLETE_PROFILE = "auth/complete_profile";
+
 
 
     /*resources*/
     public static String FACILITIES = "facilities";
     public static String FACILITY_DEPARTMENTS = "facility_departments/";
     public static String CADRES = "cadres";
+
+
 
 
 

@@ -124,17 +124,15 @@
 
 
 
-                                <com.google.android.material.textfield.TextInputLayout
+                                <TextView
+                                    android:id="@+id/tv_dob"
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-                                    <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/dob"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        style="@style/EditText.Flat.Grey"
-                                        android:inputType="date"
-                                        android:hint="@string/date_of_birth"/>
-                                </com.google.android.material.textfield.TextInputLayout>
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/date_of_birth"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                    android:layout_marginTop="@dimen/spacing_large"
+                                    android:layout_marginBottom="@dimen/spacing_large"/>
+
 
 
 
@@ -354,17 +352,13 @@
                             </RadioGroup>
 
 
-                            <com.google.android.material.textfield.TextInputLayout
+                            <TextView
+                                android:id="@+id/dose1_date"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/dose1_date"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    style="@style/EditText.Flat.Grey"
-                                    android:inputType="date"
-                                    android:hint="@string/date_of_first_dose"/>
-                            </com.google.android.material.textfield.TextInputLayout>
+                                android:layout_height="wrap_content"
+                                android:text="@string/date_of_first_dose"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                android:layout_margin="@dimen/spacing_large"/>
 
 
 
@@ -403,17 +397,13 @@
                                         android:text="@string/dose2_no" />
                                 </RadioGroup>
 
-                                <com.google.android.material.textfield.TextInputLayout
+                                <TextView
+                                    android:id="@+id/dose2_date"
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-                                    <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/dose2_date"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        style="@style/EditText.Flat.Grey"
-                                        android:inputType="date"
-                                        android:hint="@string/date_of_second_dose"/>
-                                </com.google.android.material.textfield.TextInputLayout>
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/date_of_second_dose"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                    android:layout_margin="@dimen/spacing_large"/>
 
 
                             </LinearLayout>
@@ -448,27 +438,42 @@
                                     <RadioButton
                                         android:id="@+id/dose_three_no"
                                         android:layout_width="0dp"
-                                        android:layout_weight="1"                    android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:layout_height="wrap_content"
                                         android:layout_gravity="center"
                                         android:padding="10dp"
                                         android:text="@string/dose2_no" />
                                 </RadioGroup>
 
 
-                                <com.google.android.material.textfield.TextInputLayout
+                                <TextView
+                                    android:id="@+id/dose3_date"
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-                                    <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/dose3_date"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        style="@style/EditText.Flat.Grey"
-                                        android:inputType="date"
-                                        android:hint="@string/date_of_third_dose"/>
-                                </com.google.android.material.textfield.TextInputLayout>
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/date_of_third_dose"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                    android:layout_margin="@dimen/spacing_large"/>
 
 
                             </LinearLayout>
+
+                        </LinearLayout>
+
+
+
+                        <LinearLayout
+                            android:id="@+id/lyt_progress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_medium"
+                            android:visibility="gone"
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
+
+                            <mhealth.login.widgets.ViewLoadingDotsBounce
+                                android:layout_width="50dp"
+                                android:layout_height="40dp"
+                                android:background="@color/colorAccent" />
 
                         </LinearLayout>
 
