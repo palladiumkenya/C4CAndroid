@@ -6,6 +6,8 @@ public class Constants {
     public static String LOGGED_IN_USER = "LOGGED_IN_USER";
     public static String END_POINT = "END_POINT";
 
+    public static String PLACES_API_KEY = "AIzaSyBlSCHUHi9XIDiePNWUqReopqLk1X0AilU";
+
 
     /*API Variables*/
     public static String API_VERSION = "c4c_api_v0";
@@ -21,6 +23,13 @@ public class Constants {
     public static String FACILITIES = "facilities";
     public static String FACILITY_DEPARTMENTS = "facility_departments/";
     public static String CADRES = "cadres";
+
+    /*checkins*/
+    public static String CHECKIN_HISTORY = "check_in/history";
+
+
+    public static String FEEDBACK = "feedback";
+
 
 
 

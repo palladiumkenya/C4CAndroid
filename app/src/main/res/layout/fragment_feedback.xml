@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_feedback"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -69,6 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/grey_5"
+            android:visibility="gone"
             android:orientation="horizontal">
 
             <ImageButton
@@ -119,13 +121,30 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.google.android.material.checkbox.MaterialCheckBox
+            <CheckBox
+                android:id="@+id/anonymous"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:layout_marginHorizontal="20dp"
                 android:padding="10dp"
                 android:text="@string/anonymous_feedback" />
+
+            <LinearLayout
+                android:id="@+id/lyt_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_medium"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <mhealth.login.widgets.ViewLoadingDotsBounce
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:background="@color/colorAccent" />
+
+            </LinearLayout>
 
             <Button
                 android:id="@+id/btn_submit"

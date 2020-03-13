@@ -57,14 +57,15 @@
 
     <string-array name="type_feedback">
         <item>What type of feedback is it?</item>
-        <item>Positive</item>
-        <item>Negative</item>
-        <item>Informational</item>
+        <item>COMPLIMENT</item>
+        <item>COMPLAINT</item>
+        <item>SUGGESTION</item>
 
     </string-array>
 
     <string-array name="category">
         <item>What category is it in?</item>
+        <item>General</item>
         <item>Supplies</item>
         <item>Hospital Condition</item>
 
