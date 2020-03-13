@@ -177,7 +177,7 @@
     <string name="email_required">E-Mail is required</string>
     <string name="must_match">Both passwords must match</string>
     <string name="welcome_to_c4c">Welcome to C4C</string>
-    <string name="caring_for_the_carer_log_in_to_continue">Caring for the carer. Log in to continue</string>
+    <string name="caring_for_the_carer_log_in_to_continue">Care for the carer. Log in to continue</string>
     <string name="enter_your_phone_number_to_reset_your_password">Enter your phone number to reset your password</string>
     <string name="no_other_time">NO, OTHER TIME</string>
     <string name="todo">TODO</string>

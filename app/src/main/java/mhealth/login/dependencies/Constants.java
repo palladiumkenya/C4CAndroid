@@ -30,6 +30,10 @@ public class Constants {
 
     public static String FEEDBACK = "feedback";
 
+    /*exposures*/
+    public static String GET_EXPOSURES = "exposures";
+    public static String POST_EXPOSURES = "exposures/new";
+
 
 
 
