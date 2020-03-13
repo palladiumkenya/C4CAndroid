@@ -218,6 +218,8 @@
     <string name="dose2_yes">Yes</string>
     <string name="dose2_no">No</string>
     <string name="immunization_date2">Date of Second immunization</string>
+    <string name="update_profile">Update Profile</string>
+    <string name="old_password">Old Password</string>
 
 
 </resources>
