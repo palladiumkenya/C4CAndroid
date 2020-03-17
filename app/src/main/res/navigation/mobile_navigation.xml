@@ -84,6 +84,10 @@
         android:name="mhealth.login.fragments.Immunization.NewImmunizationFragment"
         android:label="New Immunization"
         tools:layout="@layout/fragment_new_immunization" />
+    <fragment
+        android:id="@+id/nav_update_profile"
+        android:name="mhealth.login.fragments.UpdateProfileFragment"
+        android:label="Update Profile" />
 
 
 </navigation>

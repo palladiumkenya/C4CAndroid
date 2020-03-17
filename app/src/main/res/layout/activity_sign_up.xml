@@ -121,7 +121,6 @@
                         android:hint="@string/first_name"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
-
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"

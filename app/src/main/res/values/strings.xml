@@ -229,6 +229,8 @@
     <string name="was_pep_initiated">Was PEP initiated?</string>
     <string name="patient_s_hiv_status">Patient\'s HIV status?</string>
     <string name="patient_s_hbv_status">Patient\'s HBV status</string>
+    <string name="update_profile">Update Profile</string>
+    <string name="old_password">Old Password</string>
 
 
 </resources>
