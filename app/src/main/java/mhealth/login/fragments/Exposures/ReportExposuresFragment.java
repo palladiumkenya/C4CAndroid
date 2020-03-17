@@ -9,16 +9,44 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.fxn.stash.Stash;
-import com.google.firebase.database.core.Repo;
+import com.google.android.material.snackbar.Snackbar;
+import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import mhealth.login.R;
+import mhealth.login.dependencies.AppController;
 import mhealth.login.dependencies.Constants;
-import mhealth.login.fragments.HomeFragment;
+import mhealth.login.dependencies.VolleyErrors;
+import mhealth.login.dialogs.InfoMessage;
+import mhealth.login.models.Device;
+import mhealth.login.models.Facility;
 import mhealth.login.models.User;
+
+import static mhealth.login.dependencies.AppController.TAG;
 
 
 public class ReportExposuresFragment extends Fragment {
@@ -27,6 +55,48 @@ public class ReportExposuresFragment extends Fragment {
     private Context context;
 
     private User loggedInUser;
+
+    private int deviceID = 0;
+
+    private int pepInitiated = 0;
+    private String patientHIV = "Not Specified";
+    private String patientHBV = "Not Specified";
+
+
+    ArrayList<String> devicesList;
+    ArrayList<Device> devices;
+
+
+
+    @BindView(R.id.exposure_device)
+    SearchableSpinner exposureDeviceSpinner;
+
+    @BindView(R.id.previous_exposure)
+    Spinner previousExposureSpinner;
+
+    @BindView(R.id.pep)
+    Spinner pepSpinner;
+
+    @BindView(R.id.patient_hiv)
+    Spinner patientHIVSpinner;
+
+    @BindView(R.id.patient_hbv)
+    Spinner patientHBVSpinner;
+
+    @BindView(R.id.previous_exposures)
+    EditText previous_exposureTV;
+
+    @BindView(R.id.date_et)
+    EditText date_et;
+
+    @BindView(R.id.linearPEP)
+    LinearLayout linearPEP;
+
+    @BindView(R.id.linearHIV)
+    LinearLayout linearHIV;
+
+    @BindView(R.id.linearHBV)
+    LinearLayout linearHBV;
 
     @Override
     public void onAttach(Context ctx) {
@@ -56,6 +126,47 @@ public class ReportExposuresFragment extends Fragment {
             NavHostFragment.findNavController(ReportExposuresFragment.this).navigate(R.id.nav_complete_profile);
         }
 
+        exposureDeviceSpinner.setTitle("Select Device");
+        exposureDeviceSpinner.setPositiveButton("OK");
+
+
+        previousExposureSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String previousExposed = previousExposureSpinner.getSelectedItem().toString();
+
+                if (previousExposed.equals("Yes")){
+                    previous_exposureTV.setVisibility(View.VISIBLE);
+                    linearPEP.setVisibility(View.VISIBLE);
+                    linearHIV.setVisibility(View.VISIBLE);
+                    linearHBV.setVisibility(View.VISIBLE);
+
+                }else if (previousExposed.equals("No")){
+                    previous_exposureTV.setVisibility(View.GONE);
+                    linearPEP.setVisibility(View.GONE);
+                    linearHIV.setVisibility(View.GONE);
+                    linearHBV.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        date_et.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+
+        getDevices();
+
+
 
 
         return root;
@@ -65,6 +176,138 @@ public class ReportExposuresFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    private void getDevices() {
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
+                Stash.getString(Constants.END_POINT)+Constants.DEVICES, null, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+//                Log.d(TAG, response.toString());
+
+                try {
+
+                    boolean  status = response.has("success") && response.getBoolean("success");
+                    String  message = response.has("message") ? response.getString("message") : "" ;
+                    String  errors = response.has("errors") ? response.getString("errors") : "" ;
+
+
+                    if (status)
+                    {
+//                        Stash.clear(Constants.DISTRICTS_ARRAYLIST);
+//                        Stash.clear(Constants.DISTRICTS_LIST);
+
+                        devices = new ArrayList<Device>();
+                        devicesList = new ArrayList<String>();
+
+                        devices.clear();
+                        devicesList.clear();
+
+                        JSONArray jsonArray = response.getJSONArray("data");
+
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+
+                            int id = jsonObject.has("id") ? jsonObject.getInt("id") : 0;
+                            int facility_id = jsonObject.has("facility_id") ? jsonObject.getInt("facility_id") : 0;
+                            String name = jsonObject.has("name") ? jsonObject.getString("name") : "";
+                            int safety_designed = jsonObject.has("safety_designed") ? jsonObject.getInt("safety_designed") : 0;
+                            String created_at = jsonObject.has("created_at") ? jsonObject.getString("created_at") : "";
+
+                            Device newDevice = new Device(id,facility_id,name,safety_designed, created_at);
+
+                            devices.add(newDevice);
+                            devicesList.add(newDevice.getName());
+                        }
+
+                        devices.add(new Device(0,0,"--select device--",0,"--select--"));
+                        devicesList.add("--select device--");
+
+
+//                        Stash.put(Constants.DISTRICTS_ARRAYLIST, facilities);
+//                        Stash.put(Constants.DISTRICTS_LIST, facilitiesList);
+
+                        ArrayAdapter<String> aa=new ArrayAdapter<String>(context,
+                                android.R.layout.simple_spinner_dropdown_item,
+                                devicesList){
+                            @Override
+                            public int getCount() {
+                                return super.getCount(); // you dont display last item. It is used as hint.
+                            }
+                        };
+
+                        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                        exposureDeviceSpinner.setAdapter(aa);
+                        exposureDeviceSpinner.setSelection(aa.getCount()-1);
+
+                        deviceID = devices.get(aa.getCount()-1).getId();
+
+                        exposureDeviceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                                deviceID = devices.get(position).getId();
+//                                Toast.makeText(context,facilityID+"", Toast.LENGTH_LONG).show();
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
+
+                    } else {
+                        InfoMessage bottomSheetFragment = InfoMessage.newInstance(message,errors, context);
+                        bottomSheetFragment.show(getChildFragmentManager(), bottomSheetFragment.getTag());
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+
+                    Snackbar.make(root.findViewById(R.id.fragment_report_exposure), Objects.requireNonNull(e.getMessage()), Snackbar.LENGTH_LONG).show();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                VolleyLog.e(TAG, "Error: " + error.getMessage());
+                Snackbar snackbar = Snackbar.make(root.findViewById(R.id.fragment_report_exposure), VolleyErrors.getVolleyErrorMessages(error, getContext()), Snackbar.LENGTH_LONG);
+                snackbar.setAction("Retry", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        snackbar.dismiss();
+                        getDevices();
+                    }
+                }).show();
+
+
+            }
+        })
+        {
+
+            /**
+             * Passing some request headers
+             */
+            @Override
+            public Map<String, String> getHeaders() {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Authorization", loggedInUser.getToken_type()+" "+loggedInUser.getAccess_token());
+                headers.put("Content-Type", "application/json");
+                headers.put("Accept", "application/json");
+                return headers;
+            }
+        };
+
+
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        AppController.getInstance().addToRequestQueue(jsonObjReq);
     }
 
 }

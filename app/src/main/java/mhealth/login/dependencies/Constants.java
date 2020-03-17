@@ -23,6 +23,8 @@ public class Constants {
     public static String FACILITIES = "facilities";
     public static String FACILITY_DEPARTMENTS = "facility_departments/";
     public static String CADRES = "cadres";
+    public static String DEVICES = "devices";
+
 
     /*checkins*/
     public static String CHECKIN_HISTORY = "check_in/history";

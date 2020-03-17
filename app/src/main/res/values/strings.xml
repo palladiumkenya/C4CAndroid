@@ -72,7 +72,11 @@
     </string-array>
 
     <string-array name="exposure_occurrence">
-        <item>Where did exposure occur?</item>
+        <item>Lab</item>
+        <item>Ward</item>
+        <item>Theatre</item>
+        <item>Pharmacy</item>
+        <item>Corridors</item>
 
     </string-array>
 
@@ -82,30 +86,28 @@
     </string-array>
 
     <string-array name="previous_exposure">
-        <item>Have you ever been exposed?</item>
         <item>Yes</item>
         <item>No</item>
 
     </string-array>
 
     <string-array name="pep">
-        <item>Was PEP initiated?</item>
         <item>Yes</item>
         <item>No</item>
 
     </string-array>
 
     <string-array name="patient_hiv">
-        <item>What is the patients HIV status?</item>
-        <item>Positive</item>
-        <item>Negative</item>
+        <item>POSITIVE</item>
+        <item>NEGATIVE</item>
+        <item>Not Specified</item>
 
     </string-array>
 
     <string-array name="patient_hpv">
-        <item>What is the patients HPV status?</item>
-        <item>Positive</item>
-        <item>Negative</item>
+        <item>POSITIVE</item>
+        <item>NEGATIVE</item>
+        <item>Not Specified</item>
 
     </string-array>
 
@@ -192,7 +194,7 @@
     <string name="exposure_type">Exposure type</string>
     <string name="what_was_the_type_of_exposure">What was the type of Exposure</string>
     <string name="provide_more_information_about_exposure">Provide more information about exposure....</string>
-    <string name="exposure_information">Exposure information</string>
+    <string name="exposure_history">Exposure history</string>
     <string name="you_have_not_reported_any_exposures_yet">You have not reported any exposures, yet</string>
     <string name="please_fill_accordingly">Please fill accordingly</string>
     <string name="id_number">ID Number</string>
@@ -218,6 +220,15 @@
     <string name="dose2_yes">Yes</string>
     <string name="dose2_no">No</string>
     <string name="immunization_date2">Date of Second immunization</string>
+    <string name="date_of_exposure">Date of exposure</string>
+    <string name="exposure_details">Exposure Details</string>
+    <string name="what_device_was_used">What device was used?</string>
+    <string name="where_did_the_exposure_occur">Where did the exposure occur?</string>
+    <string name="have_you_ever_been_exposed">Have you ever been exposed before?</string>
+    <string name="how_many_previous_exposures">How many previous exposures?</string>
+    <string name="was_pep_initiated">Was PEP initiated?</string>
+    <string name="patient_s_hiv_status">Patient\'s HIV status?</string>
+    <string name="patient_s_hbv_status">Patient\'s HBV status</string>
 
 
 </resources>
