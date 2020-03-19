@@ -71,9 +71,9 @@ public class CheckinAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             String mapUrl = "http://maps.google.com/maps/api/staticmap?center="
                     + obj.getLat()+","+obj.getLng()
-                    + "&markers=color:red%7Clabel:C%7C"
+                    + "&markers=color:red%7label:C%7C|" +obj.getLat()+","+obj.getLng()
 //                    + "&markers=color:red%7Clabel:C%7C" + myVehicle.getPick_address() + "&"
-                    + "&zoom=15&size=600x300&key=" + Constants.PLACES_API_KEY;
+                    + "&zoom=16&size=600x300&key=" + Constants.PLACES_API_KEY;
 
 
             Glide.with(context)

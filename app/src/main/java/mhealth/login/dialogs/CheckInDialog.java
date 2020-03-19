@@ -10,10 +10,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -31,6 +34,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import mhealth.login.R;
 import mhealth.login.dependencies.Constants;
+import mhealth.login.fragments.CheckinFragment;
 
 
 public class CheckInDialog extends BottomSheetDialogFragment {
@@ -48,6 +52,13 @@ public class CheckInDialog extends BottomSheetDialogFragment {
 
     @BindView(R.id.title)
     TextView titleTextView;
+
+    @BindView(R.id.checkin)
+    Button checkIn;
+
+    @BindView(R.id.cancel_checkin)
+    Button cancelCheckin;
+
 
     public CheckInDialog() {
         // Required empty public constructor
@@ -73,6 +84,7 @@ public class CheckInDialog extends BottomSheetDialogFragment {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(context);
 
+
     }
 
     @Override
@@ -90,11 +102,7 @@ public class CheckInDialog extends BottomSheetDialogFragment {
                         if (location != null) {
                             // Logic to handle location object
                             Log.e("Location: ", location.getLatitude()+" : "+location.getLongitude());
-                            String mapUrl = "https://maps.googleapis.com/maps/api/staticmap?center="
-//                            String mapUrl = "http://maps.google.com/maps/api/staticmap?center="
-                                    + location.getLatitude()+","+location.getLongitude()
-                                    + "&zoom=15&size=600x300&key=" + Constants.PLACES_API_KEY;
-
+                            String mapUrl = "https://maps.googleapis.com/maps/api/staticmap?center="+ location.getLatitude()+","+location.getLongitude()+ "&zoom=16&size=600x300&markers=color:red%7label:C%7C|"+location.getLatitude()+","+location.getLongitude()+"&key=" + Constants.PLACES_API_KEY;
 
                             Log.e("map url: ", mapUrl);
 
@@ -112,11 +120,31 @@ public class CheckInDialog extends BottomSheetDialogFragment {
 
 
 
+
                         }else {
                             Log.e("Location: ", "location is null");
                         }
                     }
                 });
+
+        cancelCheckin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                NavHostFragment.findNavController(CheckInDialog.this).navigate(R.id.nav_check_in);
+
+
+            }
+        });
+
+        checkIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(context, "Check In confirmed!", Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
 
 

@@ -1,5 +1,6 @@
 package mhealth.login.fragments.Exposures;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -11,9 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -29,7 +32,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -68,6 +73,7 @@ public class ReportExposuresFragment extends Fragment {
 
 
 
+
     @BindView(R.id.exposure_device)
     SearchableSpinner exposureDeviceSpinner;
 
@@ -87,7 +93,7 @@ public class ReportExposuresFragment extends Fragment {
     EditText previous_exposureTV;
 
     @BindView(R.id.date_et)
-    EditText date_et;
+    TextView date_et;
 
     @BindView(R.id.linearPEP)
     LinearLayout linearPEP;
@@ -159,6 +165,8 @@ public class ReportExposuresFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+               getExposureDate();
+
             }
         });
 
@@ -170,6 +178,31 @@ public class ReportExposuresFragment extends Fragment {
 
 
         return root;
+    }
+
+    private void getExposureDate(){
+        Calendar cur_calender = Calendar.getInstance();
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(context,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(Calendar.YEAR, year);
+                        calendar.set(Calendar.MONTH, month);
+                        calendar.set(Calendar.DAY_OF_MONTH, day);
+                        long date_ship_millis = calendar.getTimeInMillis();
+                        SimpleDateFormat newFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+
+
+                    }
+                }, cur_calender.get(Calendar.YEAR),
+                cur_calender.get(Calendar.MONTH),
+                cur_calender.get(Calendar.DAY_OF_MONTH));
+
+        datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+        datePickerDialog.show();
     }
 
     @Override

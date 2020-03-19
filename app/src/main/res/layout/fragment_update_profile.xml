@@ -195,10 +195,6 @@
                                 android:hint="@string/first_name"/>
                         </com.google.android.material.textfield.TextInputLayout>
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@color/grey_5" />
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -214,11 +210,6 @@
                                 android:hint="@string/surname"/>
                         </com.google.android.material.textfield.TextInputLayout>
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@color/grey_5" />
-
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -233,12 +224,6 @@
                                 android:inputType="textEmailAddress"
                                 android:hint="@string/e_mail"/>
                         </com.google.android.material.textfield.TextInputLayout>
-
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@color/grey_5" />
 
 
                         <LinearLayout
@@ -390,11 +375,6 @@
                                 android:hint="@string/old_password"/>
                         </com.google.android.material.textfield.TextInputLayout>
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@color/grey_5" />
-
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -409,11 +389,6 @@
                                 android:inputType="textPassword"
                                 android:hint="@string/password"/>
                         </com.google.android.material.textfield.TextInputLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@color/grey_5" />
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="match_parent"

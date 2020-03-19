@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:padding="@dimen/default_delete_button_size"
     app:behavior_hideable="true"
-    app:behavior_peekHeight="-56dp"
+    app:behavior_peekHeight="-70dp"
     app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
 
     <LinearLayout
@@ -28,6 +28,7 @@
             android:textColor="#444"
             android:textSize="18sp"
             android:textStyle="bold" />
+        
     </LinearLayout>
 
 
@@ -36,6 +37,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="centerCrop" />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/cancel_checkin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/places_cancel"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/checkin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/check_in"/>
+
+
+    </LinearLayout>
 
 
 </LinearLayout>
