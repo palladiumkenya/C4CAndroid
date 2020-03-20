@@ -22,7 +22,7 @@
             android:id="@+id/title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/default_horizontal_spacing"
+            android:layout_marginBottom="15dp"
             android:layout_weight="3"
             android:text="@string/check_in"
             android:textColor="#444"
@@ -36,11 +36,13 @@
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        android:elevation="5dp"/>
     
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:orientation="horizontal">
 
         <Button
@@ -55,6 +57,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@color/white_greyish"
             android:text="@string/check_in"/>
 
 

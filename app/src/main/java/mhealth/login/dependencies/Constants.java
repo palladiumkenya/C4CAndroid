@@ -28,6 +28,7 @@ public class Constants {
 
     /*checkins*/
     public static String CHECKIN_HISTORY = "check_in/history";
+    public static String CHECKIN = "check_in";
 
 
     public static String FEEDBACK = "feedback";

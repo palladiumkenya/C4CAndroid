@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,23 +19,43 @@ import android.widget.Toast;
 
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.fxn.stash.Stash;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import mhealth.login.R;
+import mhealth.login.dependencies.AppController;
 import mhealth.login.dependencies.Constants;
+import mhealth.login.dependencies.VolleyErrors;
 import mhealth.login.fragments.CheckinFragment;
+import mhealth.login.fragments.CreateProfileFragment;
+import mhealth.login.models.User;
+
+import static mhealth.login.dependencies.AppController.TAG;
 
 
 public class CheckInDialog extends BottomSheetDialogFragment {
@@ -42,6 +63,7 @@ public class CheckInDialog extends BottomSheetDialogFragment {
 
     private Context context;
     private Unbinder unbinder;
+    private User loggedInUser;
 
     private FusedLocationProviderClient fusedLocationClient;
 
@@ -58,6 +80,11 @@ public class CheckInDialog extends BottomSheetDialogFragment {
 
     @BindView(R.id.cancel_checkin)
     Button cancelCheckin;
+
+    Location location; // location
+    double lat; // latitude
+    double lng; // longitude
+
 
 
     public CheckInDialog() {
@@ -94,6 +121,8 @@ public class CheckInDialog extends BottomSheetDialogFragment {
         View view = inflater.inflate(R.layout.info_check_in, container, false);
         unbinder = ButterKnife.bind(this, view);
 
+        loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+
         fusedLocationClient.getLastLocation()
                 .addOnSuccessListener((Activity) context, new OnSuccessListener<Location>() {
                     @Override
@@ -102,13 +131,15 @@ public class CheckInDialog extends BottomSheetDialogFragment {
                         if (location != null) {
                             // Logic to handle location object
                             Log.e("Location: ", location.getLatitude()+" : "+location.getLongitude());
-                            String mapUrl = "https://maps.googleapis.com/maps/api/staticmap?center="+ location.getLatitude()+","+location.getLongitude()+ "&zoom=16&size=600x300&markers=color:red%7label:C%7C|"+location.getLatitude()+","+location.getLongitude()+"&key=" + Constants.PLACES_API_KEY;
+
+                            String mapUrl = "https://maps.googleapis.com/maps/api/staticmap?center="+ location.getLatitude()+","+location.getLongitude()+ "&zoom=16&size=600x300&sensor=true&markers=color:red%7label:C%7C|"+location.getLatitude()+","+location.getLongitude()+"&key=" + Constants.PLACES_API_KEY;
 
                             Log.e("map url: ", mapUrl);
 
                             Picasso.get()
                                     .load(mapUrl)
                                     .into(image);
+
 
 
 
@@ -142,6 +173,7 @@ public class CheckInDialog extends BottomSheetDialogFragment {
             public void onClick(View v) {
 
                 Toast.makeText(context, "Check In confirmed!", Toast.LENGTH_SHORT).show();
+                sendCheckin();
 
             }
         });
@@ -150,6 +182,89 @@ public class CheckInDialog extends BottomSheetDialogFragment {
 
         return view;
     }
+
+    private void sendCheckin(){
+
+
+        JSONObject payload  = new JSONObject();
+        try {
+            payload.put("lat", lat);
+            payload.put("lng", lng);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
+                Stash.getString(Constants.END_POINT)+Constants.CHECKIN, payload, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.e(TAG, response.toString());
+
+
+
+                try {
+                    boolean  status = response.has("success") && response.getBoolean("success");
+                    String  message = response.has("message") ? response.getString("message") : "" ;
+                    String  errors = response.has("errors") ? response.getString("errors") : "" ;
+
+                    if (status){
+                        InfoMessage bottomSheetFragment = InfoMessage.newInstance("Success!",message, context);
+                        bottomSheetFragment.show(getChildFragmentManager(), bottomSheetFragment.getTag());
+
+
+                        Stash.put(Constants.LOGGED_IN_USER, loggedInUser);
+                        NavHostFragment.findNavController(CheckInDialog.this).navigate(R.id.nav_check_in);
+
+                    }else {
+                        InfoMessage bottomSheetFragment = InfoMessage.newInstance(message,errors,context);
+                        bottomSheetFragment.show(getChildFragmentManager(), bottomSheetFragment.getTag());
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(context,
+                            "Error: " + e.getMessage(),
+                            Toast.LENGTH_LONG).show();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+
+            }
+        }){
+
+            /**
+             * Passing some request headers
+             */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Authorization", loggedInUser.getToken_type()+" "+loggedInUser.getAccess_token());
+                headers.put("Content-Type", "application/json");
+                headers.put("Accept", "application/json");
+                return headers;
+            }
+        };
+
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        AppController.getInstance().addToRequestQueue(jsonObjReq);
+
+
+    }
+
 
     @Override
     public void onDetach() {
