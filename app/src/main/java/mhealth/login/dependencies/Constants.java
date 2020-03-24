@@ -35,7 +35,7 @@ public class Constants {
 
     /*exposures*/
     public static String GET_EXPOSURES = "exposures";
-    public static String POST_EXPOSURES = "exposures/new";
+    public static String REPORT_EXPOSURE = "exposures/new";
 
 
 

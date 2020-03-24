@@ -91,11 +91,12 @@ public class ExposuresAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         if (holder instanceof OriginalViewHolder) {
             OriginalViewHolder view = (OriginalViewHolder) holder;
 
+            String pepInitiated = obj.getPep_initiated() == 0 ? "NO" : "YES";
             view.type.setText(obj.getType());
             view.location.setText(obj.getLocation());
             view.date.setText(obj.getDate());
             view.previous_exposure.setText("Previous Exposures: "+obj.getPrevious_exposures());
-            view.pep_initiated.setText("Pep Initiated: "+obj.getPep_initiated());
+            view.pep_initiated.setText("Pep Initiated: "+pepInitiated);
             view.patient_hbv.setText("Patient HBV: "+obj.getPatient_hbv_status());
             view.patient_hiv.setText("Patient HIV: "+obj.getPatient_hiv_status());
             view.device_used.setText("Device Used: "+obj.getDevice_name());

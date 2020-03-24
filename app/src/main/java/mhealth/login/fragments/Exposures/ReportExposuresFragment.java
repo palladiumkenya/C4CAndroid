@@ -7,17 +7,22 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -35,6 +40,7 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -47,6 +53,7 @@ import mhealth.login.dependencies.AppController;
 import mhealth.login.dependencies.Constants;
 import mhealth.login.dependencies.VolleyErrors;
 import mhealth.login.dialogs.InfoMessage;
+import mhealth.login.fragments.CreateProfileFragment;
 import mhealth.login.models.Device;
 import mhealth.login.models.Facility;
 import mhealth.login.models.User;
@@ -64,8 +71,10 @@ public class ReportExposuresFragment extends Fragment {
     private int deviceID = 0;
 
     private int pepInitiated = 0;
+    private int previousExposures = 0;
     private String patientHIV = "Not Specified";
     private String patientHBV = "Not Specified";
+    private String DATE_OF_EXPOSURE = "";
 
 
     ArrayList<String> devicesList;
@@ -80,7 +89,7 @@ public class ReportExposuresFragment extends Fragment {
     @BindView(R.id.previous_exposure)
     Spinner previousExposureSpinner;
 
-    @BindView(R.id.pep)
+    @BindView(R.id.pepSpinner)
     Spinner pepSpinner;
 
     @BindView(R.id.patient_hiv)
@@ -89,8 +98,20 @@ public class ReportExposuresFragment extends Fragment {
     @BindView(R.id.patient_hbv)
     Spinner patientHBVSpinner;
 
+    @BindView(R.id.exposure_location)
+    Spinner exposure_location;
+
+    @BindView(R.id.typeET)
+    EditText typeET;
+
     @BindView(R.id.previous_exposures)
     EditText previous_exposureTV;
+
+    @BindView(R.id.device_purposeET)
+    EditText device_purposeET;
+
+    @BindView(R.id.info_exposure)
+    EditText info_exposure;
 
     @BindView(R.id.date_et)
     TextView date_et;
@@ -103,6 +124,12 @@ public class ReportExposuresFragment extends Fragment {
 
     @BindView(R.id.linearHBV)
     LinearLayout linearHBV;
+
+    @BindView(R.id.btn_submit)
+    Button btn_submit;
+
+    @BindView(R.id.lyt_progress)
+    LinearLayout lyt_progress;
 
     @Override
     public void onAttach(Context ctx) {
@@ -149,6 +176,7 @@ public class ReportExposuresFragment extends Fragment {
 
                 }else if (previousExposed.equals("No")){
                     previous_exposureTV.setVisibility(View.GONE);
+                    previous_exposureTV.getText().clear();
                     linearPEP.setVisibility(View.GONE);
                     linearHIV.setVisibility(View.GONE);
                     linearHBV.setVisibility(View.GONE);
@@ -161,24 +189,76 @@ public class ReportExposuresFragment extends Fragment {
             }
         });
 
-        date_et.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-               getExposureDate();
+        pepSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String previousExposed = pepSpinner.getSelectedItem().toString();
+
+                if (previousExposed.equals("Yes")){
+                    pepInitiated = 1;
+
+                }else if (previousExposed.equals("No")){
+                   pepInitiated = 0;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        patientHIVSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                patientHIV = patientHIVSpinner.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        patientHBVSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                patientHBV = patientHBVSpinner.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
 
 
+        date_et.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               getExposureDate();
+            }
+        });
+
+
+
+        btn_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkNulls()){
+                    lyt_progress.setVisibility(View.GONE);
+                    doReport();
+                }
+            }
+        });
 
         getDevices();
 
-
-
-
         return root;
     }
+
+
 
     private void getExposureDate(){
         Calendar cur_calender = Calendar.getInstance();
@@ -194,8 +274,8 @@ public class ReportExposuresFragment extends Fragment {
                         long date_ship_millis = calendar.getTimeInMillis();
                         SimpleDateFormat newFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-
-
+                        DATE_OF_EXPOSURE = newFormat.format(new Date(date_ship_millis));
+                        date_et.setText("Date of exposure: "+newFormat.format(new Date(date_ship_millis)));
                     }
                 }, cur_calender.get(Calendar.YEAR),
                 cur_calender.get(Calendar.MONTH),
@@ -210,6 +290,50 @@ public class ReportExposuresFragment extends Fragment {
         super.onDestroyView();
         unbinder.unbind();
     }
+
+    private boolean checkNulls() {
+
+        boolean valid = true;
+
+
+        if(TextUtils.isEmpty(typeET.getText().toString()))
+        {
+            Snackbar.make(root.findViewById(R.id.fragment_report_exposure), "Please provide type of exposure", Snackbar.LENGTH_LONG).show();
+            valid = false;
+            return valid;
+        }
+
+        if(DATE_OF_EXPOSURE.equals(""))
+        {
+            Snackbar.make(root.findViewById(R.id.fragment_report_exposure), "Please select date of exposure", Snackbar.LENGTH_LONG).show();
+            valid = false;
+            return valid;
+        }
+
+        if(deviceID == 0)
+        {
+            Snackbar.make(root.findViewById(R.id.fragment_report_exposure), "Please select the device used", Snackbar.LENGTH_LONG).show();
+            valid = false;
+            return valid;
+        }
+
+        if(TextUtils.isEmpty(info_exposure.getText().toString()))
+        {
+            Snackbar.make(root.findViewById(R.id.fragment_report_exposure), "Please provide some more information on the exposure", Snackbar.LENGTH_LONG).show();
+            valid = false;
+            return valid;
+        }
+
+        if(TextUtils.isEmpty(device_purposeET.getText().toString()))
+        {
+            Snackbar.make(root.findViewById(R.id.fragment_report_exposure), "Please provide the purpose of the device used", Snackbar.LENGTH_LONG).show();
+            valid = false;
+            return valid;
+        }
+
+        return valid;
+    }
+
 
     private void getDevices() {
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
@@ -341,6 +465,94 @@ public class ReportExposuresFragment extends Fragment {
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         AppController.getInstance().addToRequestQueue(jsonObjReq);
+    }
+
+    private void doReport() {
+        JSONObject payload  = new JSONObject();
+        try {
+            payload.put("device_id", deviceID);
+            payload.put("type", typeET.getText().toString());
+            payload.put("location", exposure_location.getSelectedItem().toString());
+            payload.put("date", DATE_OF_EXPOSURE);
+            payload.put("description", info_exposure.getText().toString());
+            payload.put("previous_exposures", previousExposureSpinner.getSelectedItem().toString().equals("No") ? previousExposures : previous_exposureTV.getText().toString());
+            payload.put("patient_hiv_status", patientHIV);
+            payload.put("patient_hbv_status", patientHBV);
+            payload.put("device_purpose", device_purposeET.getText().toString());
+            payload.put("pep_initiated", pepInitiated);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
+                Stash.getString(Constants.END_POINT)+Constants.REPORT_EXPOSURE, payload, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.e(TAG, response.toString());
+
+
+                lyt_progress.setVisibility(View.GONE);
+
+                try {
+                    boolean  status = response.has("success") && response.getBoolean("success");
+                    String  message = response.has("message") ? response.getString("message") : "" ;
+                    String  errors = response.has("errors") ? response.getString("errors") : "" ;
+
+                    if (status){
+                        InfoMessage bottomSheetFragment = InfoMessage.newInstance("Success!",message, context);
+                        bottomSheetFragment.show(getChildFragmentManager(), bottomSheetFragment.getTag());
+
+                        NavHostFragment.findNavController(ReportExposuresFragment.this).navigate(R.id.nav_exposures);
+
+                    }else {
+                        InfoMessage bottomSheetFragment = InfoMessage.newInstance(message,errors,context);
+                        bottomSheetFragment.show(getChildFragmentManager(), bottomSheetFragment.getTag());
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(context,
+                            "Error: " + e.getMessage(),
+                            Toast.LENGTH_LONG).show();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                lyt_progress.setVisibility(View.GONE);
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                Snackbar.make(root.findViewById(R.id.fragment_report_exposure), VolleyErrors.getVolleyErrorMessages(error, context), Snackbar.LENGTH_LONG).show();
+
+            }
+        }){
+
+            /**
+             * Passing some request headers
+             */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Authorization", loggedInUser.getToken_type()+" "+loggedInUser.getAccess_token());
+                headers.put("Content-Type", "application/json");
+                headers.put("Accept", "application/json");
+                return headers;
+            }
+        };
+
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        AppController.getInstance().addToRequestQueue(jsonObjReq);
+
+
+
     }
 
 }

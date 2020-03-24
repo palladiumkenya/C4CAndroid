@@ -120,12 +120,12 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent">
                                     <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/id_no"
+                                        android:id="@+id/typeET"
+                                        style="@style/EditText.Flat.Grey"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        style="@style/EditText.Flat.Grey"
-                                        android:inputType="text"
-                                        android:hint="Type of exposure. Prick, spill, etc"/>
+                                        android:hint="Type of exposure. Prick, spill, etc"
+                                        android:inputType="text" />
                                 </com.google.android.material.textfield.TextInputLayout>
 
 <!--                                <LinearLayout-->
@@ -175,7 +175,7 @@
 
 
                                 <Spinner
-                                    android:id="@+id/exposure_occurrence"
+                                    android:id="@+id/exposure_location"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/spacing_xxlarge"
                                     android:drawSelectorOnTop="true"
@@ -195,6 +195,20 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/spacing_xxlarge"
                                     android:drawSelectorOnTop="true" />
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/device_purposeET"
+                                        style="@style/EditText.Flat.Grey"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="@string/what_was_the_purpose_of_the_device"
+                                        android:inputType="text" />
+                                </com.google.android.material.textfield.TextInputLayout>
+
+
 
                                 <EditText
                                     android:id="@+id/info_exposure"
@@ -341,7 +355,7 @@
                                         android:textColor="@color/grey_90" />
 
                                     <Spinner
-                                        android:id="@+id/pep"
+                                        android:id="@+id/pepSpinner"
                                         android:layout_width="0dp"
                                         android:layout_weight="1"
                                         android:layout_height="@dimen/spacing_xxlarge"
@@ -428,6 +442,21 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/lyt_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_medium"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <mhealth.login.widgets.ViewLoadingDotsBounce
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:background="@color/colorAccent" />
+
+            </LinearLayout>
 
             <Button
                 android:id="@+id/btn_submit"
@@ -444,21 +473,6 @@
                 android:textStyle="bold"
                 style="@style/Widget.MaterialComponents.Button"/>
 
-
-            <!--bottom line-->
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="@dimen/spacing_xlarge"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:gravity="center_horizontal"-->
-<!--                android:orientation="vertical">-->
-
-<!--                <View-->
-<!--                    android:layout_width="2dp"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:background="@color/grey_10" />-->
-
-<!--            </LinearLayout>-->
 
         </LinearLayout>
 

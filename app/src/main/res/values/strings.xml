@@ -92,22 +92,22 @@
     </string-array>
 
     <string-array name="pep">
-        <item>Yes</item>
         <item>No</item>
+        <item>Yes</item>
 
     </string-array>
 
     <string-array name="patient_hiv">
+        <item>Not Specified</item>
         <item>POSITIVE</item>
         <item>NEGATIVE</item>
-        <item>Not Specified</item>
 
     </string-array>
 
     <string-array name="patient_hpv">
+        <item>Not Specified</item>
         <item>POSITIVE</item>
         <item>NEGATIVE</item>
-        <item>Not Specified</item>
 
     </string-array>
 
@@ -231,6 +231,7 @@
     <string name="patient_s_hbv_status">Patient\'s HBV status</string>
     <string name="update_profile">Update Profile</string>
     <string name="old_password">Old Password</string>
+    <string name="what_was_the_purpose_of_the_device">What was the purpose of the device?</string>
 
 
 </resources>
