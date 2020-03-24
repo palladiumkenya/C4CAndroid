@@ -24,10 +24,6 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import mhealth.login.R;
 import mhealth.login.dependencies.Constants;
-import mhealth.login.fragments.Broadcast.ApprovalFragment;
-import mhealth.login.fragments.Broadcast.BroadcastFragment;
-import mhealth.login.fragments.Broadcast.BroadcastHistoryFragment;
-import mhealth.login.fragments.Immunization.NewImmunizationFragment;
 import mhealth.login.models.User;
 
 
@@ -86,9 +82,9 @@ public class ReasourcesFragments extends Fragment {
 
 
         Adapter adapter = new Adapter(getChildFragmentManager());
-        adapter.addFragment(new GuidelinesTabFragment(), "Guidelines");
+        adapter.addFragment(new CMESTabFragment(), "CMEs");
         adapter.addFragment(new ProtocolsTabFragment(), "Protocols");
-        adapter.addFragment(new JobAidesTabFragment(), "Job Aides");
+//        adapter.addFragment(new JobAidesTabFragment(), "Job Aides");
         viewPager.setAdapter(adapter);
     }
 

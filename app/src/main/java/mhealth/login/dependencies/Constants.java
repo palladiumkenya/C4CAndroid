@@ -38,6 +38,11 @@ public class Constants {
     public static String REPORT_EXPOSURE = "exposures/new";
 
 
+    //resources
+    public static String CMES = "resources/cmes";
+    public static String HCW_PROTOCOLS = "resources/hcw/protocols";
+
+
 
 
 

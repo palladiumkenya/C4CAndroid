@@ -88,6 +88,10 @@
         android:id="@+id/nav_update_profile"
         android:name="mhealth.login.fragments.UpdateProfileFragment"
         android:label="Update Profile" />
+    <fragment
+        android:id="@+id/nac_resource_details"
+        android:name="mhealth.login.fragments.Reasources.ResourceDetailsFragment"
+        android:label="Details" />
 
 
 </navigation>

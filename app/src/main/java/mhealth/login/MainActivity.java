@@ -213,7 +213,11 @@ public class MainActivity extends AppCompatActivity {
         // Firebase sign out
         mAuth.signOut();
         //shared prefs sign out
+
+        String endPoint = Stash.getString(Constants.END_POINT);
         Stash.clearAll();
+
+        Stash.put(Constants.END_POINT, endPoint);
 
         Intent intent = new Intent(MainActivity.this, SignInActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
