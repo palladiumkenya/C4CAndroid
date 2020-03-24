@@ -51,7 +51,8 @@
                     android:layout_weight="2"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"                    android:text="CME title here CME title here" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                    android:text="CME title here CME title here" />
                 <TextView
                     android:id="@+id/date"
                     android:layout_width="0dp"

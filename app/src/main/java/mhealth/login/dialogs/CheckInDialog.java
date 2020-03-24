@@ -82,8 +82,8 @@ public class CheckInDialog extends BottomSheetDialogFragment {
     Button cancelCheckin;
 
     Location location; // location
-    double lat; // latitude
-    double lng; // longitude
+    String lat = ""; // latitude
+    String lng = ""; // longitude
 
 
 
@@ -132,6 +132,12 @@ public class CheckInDialog extends BottomSheetDialogFragment {
                             // Logic to handle location object
                             Log.e("Location: ", location.getLatitude()+" : "+location.getLongitude());
 
+                            lat = String.valueOf(location.getLatitude());
+                            lng = String.valueOf(location.getLongitude());
+
+                            checkIn.setVisibility(View.VISIBLE);
+                            cancelCheckin.setVisibility(View.VISIBLE);
+
                             String mapUrl = "https://maps.googleapis.com/maps/api/staticmap?center="+ location.getLatitude()+","+location.getLongitude()+ "&zoom=16&size=600x300&sensor=true&markers=color:red%7label:C%7C|"+location.getLatitude()+","+location.getLongitude()+"&key=" + Constants.PLACES_API_KEY;
 
                             Log.e("map url: ", mapUrl);
@@ -141,19 +147,10 @@ public class CheckInDialog extends BottomSheetDialogFragment {
                                     .into(image);
 
 
-
-
-//                            Glide.with(context)
-//                                    .load(mapUrl)
-//                                    .fitCenter()
-////                                    .placeholder(R.drawable.img_wizard_1)
-//                                    .into(image);
-
-
-
-
                         }else {
                             Log.e("Location: ", "location is null");
+                            checkIn.setVisibility(View.GONE);
+                            cancelCheckin.setVisibility(View.GONE);
                         }
                     }
                 });
@@ -161,10 +158,7 @@ public class CheckInDialog extends BottomSheetDialogFragment {
         cancelCheckin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 NavHostFragment.findNavController(CheckInDialog.this).navigate(R.id.nav_check_in);
-
-
             }
         });
 
@@ -172,7 +166,6 @@ public class CheckInDialog extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(context, "Check In confirmed!", Toast.LENGTH_SHORT).show();
                 sendCheckin();
 
             }
@@ -204,6 +197,7 @@ public class CheckInDialog extends BottomSheetDialogFragment {
             public void onResponse(JSONObject response) {
                 Log.e(TAG, response.toString());
 
+                Toast.makeText(context, "Check In confirmed!", Toast.LENGTH_SHORT).show();
 
 
                 try {
@@ -215,8 +209,6 @@ public class CheckInDialog extends BottomSheetDialogFragment {
                         InfoMessage bottomSheetFragment = InfoMessage.newInstance("Success!",message, context);
                         bottomSheetFragment.show(getChildFragmentManager(), bottomSheetFragment.getTag());
 
-
-                        Stash.put(Constants.LOGGED_IN_USER, loggedInUser);
                         NavHostFragment.findNavController(CheckInDialog.this).navigate(R.id.nav_check_in);
 
                     }else {

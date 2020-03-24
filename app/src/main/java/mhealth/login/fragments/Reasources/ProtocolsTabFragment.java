@@ -126,11 +126,11 @@ public class ProtocolsTabFragment extends Fragment {
         mAdapter.setOnItemClickListener(new ResourcesAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Resource clickedItem = resourceArrayList.get(position);
-//                Intent i = new Intent(context, ClickedActivity.class);
-//                i.putExtra("vehicle", (Serializable) clickedItem);
-//                startActivity(i);
+                Resource resource = resourceArrayList.get(position);
 
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("resource", resource);
+                NavHostFragment.findNavController(ProtocolsTabFragment.this).navigate(R.id.nac_resource_details, bundle);
             }
         });
 
