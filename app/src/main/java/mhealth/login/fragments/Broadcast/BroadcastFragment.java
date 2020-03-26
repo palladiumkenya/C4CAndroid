@@ -104,8 +104,8 @@ public class BroadcastFragment extends Fragment {
 
 
         Adapter adapter = new Adapter(getChildFragmentManager());
-        adapter.addFragment(new BroadcastHistoryFragment(), "Broadcast History");
-        adapter.addFragment(new ApprovalFragment(), "BroadCast Approval");
+        adapter.addFragment(new BroadcastHistoryFragment(), "Sent Broadcasts");
+        adapter.addFragment(new ApprovalFragment(), "Pending Approval");
         viewPager.setAdapter(adapter);
     }
 

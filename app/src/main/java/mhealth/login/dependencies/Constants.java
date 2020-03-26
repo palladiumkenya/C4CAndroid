@@ -42,6 +42,11 @@ public class Constants {
     public static String CMES = "resources/cmes";
     public static String HCW_PROTOCOLS = "resources/hcw/protocols";
 
+    //broadcasts
+    public static String APPROVED_BROADCASTS = "broadcasts/mobile/approved";
+    public static String PENDING_BROADCASTS = "broadcasts/mobile/pending";
+
+
 
 
 

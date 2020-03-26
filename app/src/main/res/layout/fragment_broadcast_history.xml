@@ -3,10 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/frag_broadcasts"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:shimmer="http://schemas.android.com/tools"
     android:orientation="vertical"
-    tools:context=".fragments.CheckinFragment">
+    tools:context=".fragments.Broadcast.BroadcastHistoryFragment">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinator_lyt"
@@ -34,7 +35,7 @@
             </com.facebook.shimmer.ShimmerFrameLayout>
 
             <LinearLayout
-                android:id="@+id/no_exposures"
+                android:id="@+id/no_broadcasts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -50,7 +51,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/there_are_no_broadcast_messages_sent_yet"
+                    android:text="@string/nothing_to_show_here_yet"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                     android:textColor="@color/grey_60" />
 
@@ -62,6 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scrollbars="vertical"
+                android:layout_marginTop="@dimen/spacing_large"
                 android:visibility="gone"
                 android:scrollingCache="true" />
 
