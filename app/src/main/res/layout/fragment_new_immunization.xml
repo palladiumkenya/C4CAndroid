@@ -12,6 +12,14 @@
         android:orientation="vertical"
         android:layout_margin="@dimen/spacing_large">
 
+        <TextView
+            android:id="@+id/immunization_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/immunization_text"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:clickable="true"/>
+
         <Spinner
             android:id="@+id/disease"
             android:layout_width="match_parent"
@@ -19,17 +27,13 @@
             android:drawSelectorOnTop="true"
             android:entries="@array/disease"/>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <TextView
+            android:id="@+id/immunization_date1"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/spacing_xxlarge">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/dose1"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/spacing_xxlarge"
-                style="@style/EditText.Flat.Grey"
-                android:inputType="date"
-                android:hint="@string/immunization_date1"/>
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content"
+            android:text="@string/immunization_date1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:clickable="true"/>
 
         <View
             android:layout_width="0dp"
@@ -65,17 +69,13 @@
                 android:text="@string/dose2_no" />
         </RadioGroup>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <TextView
+            android:id="@+id/immunization_date2"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/spacing_xxlarge">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/dose2"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/spacing_xxlarge"
-                style="@style/EditText.Flat.Grey"
-                android:inputType="date"
-                android:hint="@string/immunization_date2"/>
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content"
+            android:text="@string/immunization_date2"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:clickable="true"/>
 
         <Button
             android:id="@+id/submit_immunization"

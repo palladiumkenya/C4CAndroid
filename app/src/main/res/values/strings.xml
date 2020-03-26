@@ -129,7 +129,12 @@
     </string-array>
 
     <string-array name="disease">
-        <item>Select the disease you are immunized against</item>
+        <item>....</item>
+        <item>Varicella</item>
+        <item>Influenza</item>
+        <item>TDAP</item>
+        <item>Measles</item>
+        <item>Meningococcal</item>
     </string-array>
 
 
@@ -232,6 +237,7 @@
     <string name="update_profile">Update Profile</string>
     <string name="old_password">Old Password</string>
     <string name="what_was_the_purpose_of_the_device">What was the purpose of the device?</string>
+    <string name="immunization_text">Select the disease you are immunized against</string>
 
 
 </resources>

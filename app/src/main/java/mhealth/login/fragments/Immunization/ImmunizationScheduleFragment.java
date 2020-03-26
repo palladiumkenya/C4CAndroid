@@ -9,8 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.fxn.stash.Stash;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import mhealth.login.R;
@@ -24,6 +26,9 @@ public class ImmunizationScheduleFragment extends Fragment {
     private Context context;
 
     private User loggedInUser;
+
+    @BindView(R.id.shimmer_my_container)
+    ShimmerFrameLayout shimmer_my_container;
 
     @Override
     public void onAttach(Context ctx) {
@@ -53,6 +58,19 @@ public class ImmunizationScheduleFragment extends Fragment {
 
 
         return root;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        shimmer_my_container.startShimmerAnimation();
+    }
+
+    @Override
+    public void onPause() {
+        shimmer_my_container.stopShimmerAnimation();
+        super.onPause();
     }
 
     @Override
