@@ -51,6 +51,7 @@ public class SentBroadcastsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         public OriginalViewHolder(View v) {
             super(v);
             audience = (TextView) v.findViewById(R.id.audience);
+            cadre = (TextView) v.findViewById(R.id.cadre);
             created_date = (TextView) v.findViewById(R.id.created_date);
             approved_date = (TextView) v.findViewById(R.id.approved_date);
             created_by = (TextView) v.findViewById(R.id.created_by);
@@ -78,6 +79,7 @@ public class SentBroadcastsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             OriginalViewHolder view = (OriginalViewHolder) holder;
 
             view.audience.setText("Recipients: "+obj.getAudience());
+            view.cadre.setText(obj.getCadre());
             view.created_date.setText("On "+obj.getCreated_at());
             view.approved_date.setText("Approved on: "+obj.getUpdated_at());
             view.created_by.setText("Created by: "+obj.getCreated_by());
