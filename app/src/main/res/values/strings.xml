@@ -239,6 +239,10 @@
     <string name="what_was_the_purpose_of_the_device">What was the purpose of the device?</string>
     <string name="immunization_text">Select the disease you are immunized against</string>
     <string name="message">Message</string>
+    <string name="select_cadre_cadres_to_send_to">Select cadre/cadres to send to</string>
+    <string name="approve">APPROVE</string>
+    <string name="cancel">CANCEL</string>
+    <string name="approving">Approving</string>
 
 
 </resources>

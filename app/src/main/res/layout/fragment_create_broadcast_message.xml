@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/frag_create_broadcast"
     android:orientation="vertical">
 
 
@@ -18,40 +19,26 @@
             android:gravity="center_vertical"
             android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/id_no"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/EditText.Flat.Grey"
-                    android:inputType="text"
-                    android:hint="@string/title_of_broadcast"/>
-            </com.google.android.material.textfield.TextInputLayout>
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="5dp" />
-
-            <Spinner
-                android:id="@+id/type_broadcast"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/spacing_xxlarge"
-                android:drawSelectorOnTop="true"
-                android:entries="@array/type_broadcast"/>
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="5dp" />
 
 
-            <Spinner
-                android:id="@+id/target_group"
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/select_cadre_cadres_to_send_to"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/grey_80" />
+
+            <mhealth.login.dependencies.MultiSelectSpinner
+                android:id="@+id/cadre_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/spacing_xxlarge"
-                android:drawSelectorOnTop="true"
-                android:entries="@array/category"/>
+                android:drawSelectorOnTop="true"/>
 
             <View
                 android:layout_width="0dp"
@@ -67,7 +54,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/et_post"
+                android:id="@+id/et_message"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
@@ -79,6 +66,22 @@
 
         </LinearLayout>
 
+
+        <LinearLayout
+            android:id="@+id/lyt_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_medium"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <mhealth.login.widgets.ViewLoadingDotsBounce
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:background="@color/colorAccent" />
+
+        </LinearLayout>
 
 
         <LinearLayout

@@ -81,5 +81,9 @@ dependencies {
     //picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
 
+    //multispinner
+//    implementation 'com.github.pratikbutani:MultiSelectSpinner:-SNAPSHOT'
+
+
 
 }

@@ -1,19 +1,25 @@
 package mhealth.login.fragments.Broadcast;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -51,6 +57,9 @@ public class ApprovalFragment extends Fragment {
     private Unbinder unbinder;
     private View root;
     private Context context;
+    public ProgressDialog mProgressDialog;
+
+
 
     private User loggedInUser;
 
@@ -130,6 +139,7 @@ public class ApprovalFragment extends Fragment {
             @Override
             public void onItemClick(int position) {
                 BroadCast broadCast = broadCastArrayList.get(position);
+                showConfirmDialog(broadCast);
 //
 //                Bundle bundle = new Bundle();
 //                bundle.putSerializable("broadcast", broadCast);
@@ -159,6 +169,97 @@ public class ApprovalFragment extends Fragment {
     }
 
 
+    private void showConfirmDialog(BroadCast broadCast) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Confirm broadcast message to "+broadCast.getCadre()+"?");
+        builder.setMessage(broadCast.getMessage());
+        builder.setPositiveButton(R.string.approve, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                showProgressDialog();
+                confirmBroadcast(broadCast);
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, null);
+        builder.show();
+    }
+
+
+    private void confirmBroadcast(BroadCast broadCast) {
+        JSONObject payload  = new JSONObject();
+        try {
+            payload.put("broadcast_id", broadCast.getId());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+//        Log.e("Payload:",payload.toString());
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
+                Stash.getString(Constants.END_POINT)+Constants.APPROVE_BROADCAST, payload, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.e(TAG, response.toString());
+
+                hideProgressDialog();
+
+                try {
+                    boolean  status = response.has("success") && response.getBoolean("success");
+                    String  message = response.has("message") ? response.getString("message") : "" ;
+                    String  errors = response.has("errors") ? response.getString("errors") : "" ;
+
+                    if (status){
+                        InfoMessage bottomSheetFragment = InfoMessage.newInstance("Success!",message, context);
+                        bottomSheetFragment.show(getChildFragmentManager(), bottomSheetFragment.getTag());
+                        firstLoad();
+
+                    }else {
+                        InfoMessage bottomSheetFragment = InfoMessage.newInstance(message,errors,context);
+                        bottomSheetFragment.show(getChildFragmentManager(), bottomSheetFragment.getTag());
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(context,
+                            "Error: " + e.getMessage(),
+                            Toast.LENGTH_LONG).show();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                hideProgressDialog();
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                Snackbar.make(root.findViewById(R.id.frag_broadcasts), VolleyErrors.getVolleyErrorMessages(error, context), Snackbar.LENGTH_LONG).show();
+
+            }
+        }){
+
+            /**
+             * Passing some request headers
+             */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Authorization", loggedInUser.getToken_type()+" "+loggedInUser.getAccess_token());
+                headers.put("Content-Type", "application/json");
+                headers.put("Accept", "application/json");
+                return headers;
+            }
+        };
+
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        AppController.getInstance().addToRequestQueue(jsonObjReq);
+
+    }
 
     private void firstLoad() {
 
@@ -363,6 +464,26 @@ public class ApprovalFragment extends Fragment {
 
         AppController.getInstance().addToRequestQueue(jsonObjReq);
     }
+
+
+    public void showProgressDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(context);
+            mProgressDialog.setMessage(getString(R.string.approving));
+            mProgressDialog.setIndeterminate(true);
+            mProgressDialog.setCancelable(false);
+        }
+
+        mProgressDialog.show();
+    }
+
+    public void hideProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
+    }
+
+
 
 
 

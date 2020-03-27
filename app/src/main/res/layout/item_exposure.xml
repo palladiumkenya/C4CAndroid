@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
         android:background="@android:color/white"
         android:gravity="center_vertical"
         android:minHeight="?attr/actionBarSize"
@@ -23,14 +23,12 @@
             android:id="@+id/date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:text="Jan 21st 2000"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/grey_80" />
 
-        <View
-            android:layout_width="@dimen/spacing_large"
-            android:layout_height="wrap_content" />
+
 
 
         <TextView
@@ -39,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Needle Prick"
+            android:layout_marginEnd="@dimen/spacing_middle"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/grey_80" />
 

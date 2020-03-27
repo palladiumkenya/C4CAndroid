@@ -45,6 +45,8 @@ public class Constants {
     //broadcasts
     public static String APPROVED_BROADCASTS = "broadcasts/mobile/approved";
     public static String PENDING_BROADCASTS = "broadcasts/mobile/pending";
+    public static String CREATE_BROADCAST = "broadcasts/mobile/create";
+    public static String APPROVE_BROADCAST = "broadcasts/mobile/approve";
 
 
 
