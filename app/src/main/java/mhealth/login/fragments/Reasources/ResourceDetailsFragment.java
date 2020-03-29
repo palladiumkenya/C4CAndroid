@@ -2,6 +2,8 @@ package mhealth.login.fragments.Reasources;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -105,7 +107,20 @@ public class ResourceDetailsFragment extends Fragment {
         if (resource != null){
             title.setText(resource.getTitle());
             date.setText("Posted on: "+resource.getCreated_at());
-            text.setText(resource.getBody());
+            //text.setText(resource.getBody());
+
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                text.setText(Html.fromHtml(resource.getBody(),Html.FROM_HTML_MODE_LEGACY));
+            } else {
+                text.setText(Html.fromHtml(resource.getBody()));
+            }
+
+            // text has links specified by putting <a> tags in the string
+            // resource.  By default these links will appear but not
+            // respond to user input.  To make them active, you need to
+            // call setMovementMethod() on the TextView object.
+            text.setMovementMethod(LinkMovementMethod.getInstance());
+
 
             Glide.with(context)
                     .load(resource.getFile())

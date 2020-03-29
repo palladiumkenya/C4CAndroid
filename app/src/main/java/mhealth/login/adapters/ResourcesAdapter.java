@@ -1,6 +1,7 @@
 package mhealth.login.adapters;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,8 +70,12 @@ public class ResourcesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             OriginalViewHolder view = (OriginalViewHolder) holder;
             view.title.setText(obj.getTitle());
             view.date.setText(obj.getCreated_at());
-            view.snippet.setText(obj.getBody().substring(0, Math.min(obj.getBody().length(), 100)));
 
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                view.snippet.setText(Html.fromHtml(obj.getBody().substring(0, Math.min(obj.getBody().length(), 100)),Html.FROM_HTML_MODE_LEGACY));
+            } else {
+                view.snippet.setText(Html.fromHtml(obj.getBody().substring(0, Math.min(obj.getBody().length(), 100))));
+            }
 
 
             if (obj.getFile() == null){
