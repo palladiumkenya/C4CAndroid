@@ -4,14 +4,19 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -69,6 +74,24 @@ public class UpdateProfileFragment extends Fragment {
 
 
 
+    @BindView(R.id.card_name)
+    TextView card_name;
+
+    @BindView(R.id.card_phone)
+    TextView card_phone;
+
+    @BindView(R.id.first_name)
+    EditText first_name;
+
+    @BindView(R.id.sur_name)
+    EditText sur_name;
+
+    @BindView(R.id.email)
+    EditText email;
+
+    @BindView(R.id.phone_number)
+    EditText phone_number;
+
     @BindView(R.id.facilitySpinner)
     SearchableSpinner facilitySpinner;
 
@@ -77,6 +100,20 @@ public class UpdateProfileFragment extends Fragment {
 
     @BindView(R.id.cadre)
     SearchableSpinner cadreSpinner;
+
+    @BindView(R.id.old_password)
+    EditText old_password;
+
+    @BindView(R.id.input_password)
+    EditText input_password;
+
+    @BindView(R.id.input_confirm_password)
+    EditText input_confirm_password;
+
+    @BindView(R.id.btn_update_profile)
+    Button btn_update_profile;
+
+
 
 
     @Override
@@ -102,6 +139,10 @@ public class UpdateProfileFragment extends Fragment {
 
         loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
 
+        if (loggedInUser.getProfile_complete() == 0){
+            NavHostFragment.findNavController(UpdateProfileFragment.this).navigate(R.id.nav_complete_profile);
+        }
+
         facilitySpinner.setTitle("Select Facility");
         facilitySpinner.setPositiveButton("OK");
 
@@ -110,6 +151,19 @@ public class UpdateProfileFragment extends Fragment {
 
         cadreSpinner.setTitle("Select Cadre");
         cadreSpinner.setPositiveButton("OK");
+
+        getFacilities();
+        getCadres();
+
+        btn_update_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(context, "Your profile ha been updated successfully", Toast.LENGTH_SHORT).show();
+                NavHostFragment.findNavController(UpdateProfileFragment.this).navigate(R.id.nav_home);
+            }
+        });
+
 
         return root;
     }
