@@ -19,3 +19,34 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+
+-keepattributes Signature
+-keepattributes *Annotation*
+# Add this global rule
+-keepattributes Signature
+
+-keep class android.support.** { *; }
+-keep class com.ontbee.** { *; }
+-keep class com.bumptech.glide.** { *; }
+-keep class com.squareup.picasso.** { *; }
+
+-ignorewarnings
+
+-keep class * {
+    public private *;
+}
+
+-assumenosideeffects class android.util.Log {
+    public static *** d(...);
+    public static *** v(...);
+    public static *** e(...);
+}
+
+# This rule will properly ProGuard all the model classes in
+# the package com.yourcompany.models. Modify to fit the structure
+# of your app.
+-keepclassmembers class mhealth.login.models.** {
+  *;
+}
+
