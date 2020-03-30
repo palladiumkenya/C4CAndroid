@@ -49,6 +49,9 @@ public class Constants {
     public static String APPROVE_BROADCAST = "broadcasts/mobile/approve";
 
     public static String IMMUNIZATIONS = "immunizations";
+    public static String NEW_IMMUNIZATIONS = "immunizations/new";
+
+    public static String DISEASES = "diseases";
 
 
 

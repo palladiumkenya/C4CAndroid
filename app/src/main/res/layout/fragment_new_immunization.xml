@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/frag_new_immunization"
     android:orientation="vertical"
     tools:context=".fragments.Immunization.NewImmunizationFragment">
 
@@ -17,23 +18,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/immunization_text"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:clickable="true"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-        <Spinner
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
             android:id="@+id/disease"
             android:layout_width="match_parent"
             android:layout_height="@dimen/spacing_xxlarge"
-            android:drawSelectorOnTop="true"
-            android:entries="@array/disease"/>
+            android:drawSelectorOnTop="true" />
 
         <TextView
             android:id="@+id/immunization_date1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/immunization_date1"
+            android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:clickable="true"/>
+            android:clickable="true"
+            android:focusable="true"/>
 
         <View
             android:layout_width="0dp"
@@ -47,12 +48,12 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"/>
 
         <RadioGroup
-            android:id="@+id/radioGroup"
+            android:id="@+id/secondDoseRadioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <RadioButton
-                android:id="@+id/yes"
+                android:id="@+id/secondYes"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -60,12 +61,13 @@
                 android:text="@string/dose2_yes"/>
 
             <RadioButton
-                android:id="@+id/no"
+                android:id="@+id/secondNo"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:padding="10dp"
+                android:checked="true"
                 android:text="@string/dose2_no" />
         </RadioGroup>
 
@@ -74,8 +76,70 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/immunization_date2"
+            android:textStyle="bold"
+            android:visibility="gone"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:clickable="true"/>
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/dose3_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/do_you_have_a_third_dose"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"/>
+
+        <RadioGroup
+            android:id="@+id/thirdDoseRadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/thirdYes"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/dose2_yes"/>
+
+            <RadioButton
+                android:id="@+id/thirdNo"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:checked="true"
+                android:text="@string/dose2_no" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/immunization_date3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/immunization_date3"
+            android:textStyle="bold"
+            android:visibility="gone"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <LinearLayout
+            android:id="@+id/lyt_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_medium"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <mhealth.login.widgets.ViewLoadingDotsBounce
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:background="@color/colorAccent" />
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/submit_immunization"

@@ -244,6 +244,8 @@
     <string name="cancel">CANCEL</string>
     <string name="approving">Approving</string>
     <string name="immunization_doses">Immunization Doses</string>
+    <string name="immunization_date3">Date of third immunization</string>
+    <string name="do_you_have_a_third_dose">Do you have a third dose?</string>
 
 
 </resources>
