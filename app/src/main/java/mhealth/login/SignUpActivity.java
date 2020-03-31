@@ -181,7 +181,7 @@ public class SignUpActivity extends AppCompatActivity {
             payload.put("surname", sur_name);
             payload.put("gender", gender);
             payload.put("email", email);
-            payload.put("msisdn", phone_no);
+            payload.put("msisdn", "254"+phone_no);
             payload.put("password", input_password);
             payload.put("password_confirmation", input_confirm_password);
         } catch (JSONException e) {
