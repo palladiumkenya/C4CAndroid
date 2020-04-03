@@ -16,6 +16,7 @@ public class Constants {
     public static String REGISTER = "auth/signup";
     public static String LOGIN = "auth/login";
     public static String COMPLETE_PROFILE = "auth/complete_profile";
+    public static String GET_PROFILE = "auth/user";
 
 
 

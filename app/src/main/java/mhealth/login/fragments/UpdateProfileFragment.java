@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +14,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -101,9 +100,6 @@ public class UpdateProfileFragment extends Fragment {
     @BindView(R.id.cadre)
     SearchableSpinner cadreSpinner;
 
-    @BindView(R.id.old_password)
-    EditText old_password;
-
     @BindView(R.id.input_password)
     EditText input_password;
 
@@ -143,6 +139,16 @@ public class UpdateProfileFragment extends Fragment {
             NavHostFragment.findNavController(UpdateProfileFragment.this).navigate(R.id.nav_complete_profile);
         }
 
+
+        if (loggedInUser != null){
+            card_name.setText(loggedInUser.getFirst_name()+" "+loggedInUser.getSurname());
+            card_phone.setText("+"+loggedInUser.getMsisdn());
+            first_name.setText(loggedInUser.getFirst_name());
+            sur_name.setText(loggedInUser.getSurname());
+            email.setText(loggedInUser.getEmail());
+            phone_number.setText(loggedInUser.getMsisdn());
+        }
+
         facilitySpinner.setTitle("Select Facility");
         facilitySpinner.setPositiveButton("OK");
 
@@ -159,7 +165,7 @@ public class UpdateProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(context, "Your profile ha been updated successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Your profile has been updated successfully", Toast.LENGTH_SHORT).show();
                 NavHostFragment.findNavController(UpdateProfileFragment.this).navigate(R.id.nav_home);
             }
         });
@@ -579,6 +585,152 @@ public class UpdateProfileFragment extends Fragment {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         AppController.getInstance().addToRequestQueue(jsonObjReq);
     }
+
+    private void getProfile(){
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
+                Stash.getString(Constants.END_POINT)+Constants.GET_PROFILE, null, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+//                Log.d(TAG, response.toString());
+
+                try {
+
+                    boolean  status = response.has("success") && response.getBoolean("success");
+                    String  message = response.has("message") ? response.getString("message") : "" ;
+                    String  errors = response.has("errors") ? response.getString("errors") : "" ;
+
+
+                    if (status)
+                    {
+
+
+
+                        JSONArray jsonArray = response.getJSONArray("data");
+
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject user = (JSONObject) jsonArray.get(i);
+
+                            int id = user.has("id") ? user.getInt("id") : 0;
+                            String first_name = user.has("first_name") ? user.getString("mfl_code") : "";
+                            String surname = user.has("surname") ? user.getString("surname") : "";
+                            String phone = user.has("phone") ?user.getString("phone") : "";
+                            String email = user.has("email") ? user.getString("email") : "";
+
+                            Facility newUser = new Facility(id,first_name,surname,phone,email);
+
+
+                        }
+
+
+
+//                        Stash.put(Constants.DISTRICTS_ARRAYLIST, facilities);
+//                        Stash.put(Constants.DISTRICTS_LIST, facilitiesList);
+
+                        ArrayAdapter<String> aa=new ArrayAdapter<String>(context,
+                                android.R.layout.simple_spinner_dropdown_item,
+                                facilitiesList){
+                            @Override
+                            public int getCount() {
+                                return super.getCount(); // you dont display last item. It is used as hint.
+                            }
+                        };
+
+
+
+
+                    } else {
+                        InfoMessage bottomSheetFragment = InfoMessage.newInstance(message,errors, context);
+                        bottomSheetFragment.show(getChildFragmentManager(), bottomSheetFragment.getTag());
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+
+                    Snackbar.make(root.findViewById(R.id.fragment_create_profile), e.getMessage(), Snackbar.LENGTH_LONG).show();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                VolleyLog.e(TAG, "Error: " + error.getMessage());
+                Snackbar snackbar = Snackbar.make(root.findViewById(R.id.fragment_create_profile), VolleyErrors.getVolleyErrorMessages(error, getContext()), Snackbar.LENGTH_LONG);
+                snackbar.setAction("Retry", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        snackbar.dismiss();
+                        getProfile();
+                    }
+                }).show();
+
+
+            }
+        })
+        {
+
+            /**
+             * Passing some request headers
+             */
+            @Override
+            public Map<String, String> getHeaders() {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Authorization", loggedInUser.getToken_type()+" "+loggedInUser.getAccess_token());
+                headers.put("Content-Type", "application/json");
+                headers.put("Accept", "application/json");
+                return headers;
+            }
+        };
+
+
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        AppController.getInstance().addToRequestQueue(jsonObjReq);
+
+    }
+
+//    private boolean checkNulls() {
+//
+//        boolean valid = true;
+//
+//        if(TextUtils.isEmpty(first_name.getText().toString()))
+//        {
+//            Snackbar.make(root.findViewById(R.id.nav_update_profile), "Please provide your first name", Snackbar.LENGTH_LONG).show();
+//            valid = false;
+//            return valid;
+//        }
+//
+//        if(TextUtils.isEmpty(sur_name.getText().toString()))
+//        {
+//            Snackbar.make(root.findViewById(R.id.nav_update_profile), "Please provide your surname", Snackbar.LENGTH_LONG).show();
+//            valid = false;
+//            return valid;
+//        }
+//
+//        if(TextUtils.isEmpty(email.getText().toString()))
+//        {
+//            Snackbar.make(root.findViewById(R.id.nav_update_profile), "Please provide your email", Snackbar.LENGTH_LONG).show();
+//            valid = false;
+//            return valid;
+//        }
+//
+//        if(TextUtils.isEmpty(phone_number.getText().toString()))
+//        {
+//            Snackbar.make(root.findViewById(R.id.nav_update_profile), "Please provide your phone number", Snackbar.LENGTH_LONG).show();
+//            valid = false;
+//            return valid;
+//        }
+//
+//
+//
+//
+//        return valid;
+//    }
 
 
 
