@@ -111,7 +111,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="@dimen/spacing_large"
-                    android:paddingRight="@dimen/spacing_large">
+                    android:paddingRight="@dimen/spacing_large"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/first_name"
                         android:layout_width="match_parent"
@@ -129,7 +130,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="@dimen/spacing_large"
-                    android:paddingRight="@dimen/spacing_large">
+                    android:paddingRight="@dimen/spacing_large"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/sur_name"
                         android:layout_width="match_parent"
@@ -148,7 +150,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="@dimen/spacing_large"
-                    android:paddingRight="@dimen/spacing_large">
+                    android:paddingRight="@dimen/spacing_large"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/email"
                         android:layout_width="match_parent"
@@ -185,7 +188,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp">
+                        android:layout_marginBottom="8dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/phone_number"
                             android:layout_width="match_parent"
@@ -218,7 +222,8 @@
                     android:layout_height="wrap_content"
                     app:passwordToggleEnabled="true"
                     android:paddingLeft="@dimen/spacing_large"
-                    android:paddingRight="@dimen/spacing_large">
+                    android:paddingRight="@dimen/spacing_large"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/input_password"
                         android:layout_width="match_parent"
@@ -233,7 +238,8 @@
                     android:layout_height="wrap_content"
                     app:passwordToggleEnabled="true"
                     android:paddingLeft="@dimen/spacing_large"
-                    android:paddingRight="@dimen/spacing_large">
+                    android:paddingRight="@dimen/spacing_large"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/input_confirm_password"
                         android:layout_width="match_parent"
@@ -300,9 +306,9 @@
                 android:background="@drawable/btn_rounded_primary"
                 android:textSize="20sp"
                 android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginBottom="@dimen/spacing_middle"
                 android:textColor="@color/amber_50"
-                style="@style/Widget.MaterialComponents.Button"
-                android:onClick="gotoSignIn"/>
+                style="@style/Widget.MaterialComponents.Button" />
 
         </LinearLayout>
 

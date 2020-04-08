@@ -179,8 +179,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:endIconMode="clear_text"
-                            android:paddingLeft="@dimen/spacing_large"
-                            android:paddingRight="@dimen/spacing_large">
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/first_name"
                                 android:layout_width="match_parent"
@@ -194,8 +193,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:endIconMode="clear_text"
-                            android:paddingLeft="@dimen/spacing_large"
-                            android:paddingRight="@dimen/spacing_large">
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/sur_name"
                                 android:layout_width="match_parent"
@@ -209,8 +207,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:endIconMode="clear_text"
-                            android:paddingLeft="@dimen/spacing_large"
-                            android:paddingRight="@dimen/spacing_large">
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/email"
                                 android:layout_width="match_parent"
@@ -225,8 +222,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:endIconMode="clear_text"
-                            android:paddingLeft="@dimen/spacing_large"
-                            android:paddingRight="@dimen/spacing_large">
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/phone_number"
                                 android:layout_width="match_parent"
