@@ -721,13 +721,6 @@ public class CreateProfileFragment extends Fragment {
         boolean valid = true;
 
 
-        if(TextUtils.isEmpty(id_no.getText().toString()))
-        {
-            id_no.setError("ID number is required");
-            valid = false;
-            return valid;
-        }
-
         if(DOB.equals(""))
         {
             tv_dob.setText("Date of birth is required. Click to set");

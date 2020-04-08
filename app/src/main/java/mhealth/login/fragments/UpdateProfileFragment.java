@@ -1,11 +1,15 @@
 package mhealth.login.fragments;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +17,16 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.L;
+import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -32,14 +40,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import mhealth.login.MainActivity;
 import mhealth.login.R;
+import mhealth.login.SignInActivity;
 import mhealth.login.dependencies.AppController;
 import mhealth.login.dependencies.Constants;
 import mhealth.login.dependencies.VolleyErrors;
@@ -47,6 +59,7 @@ import mhealth.login.dialogs.InfoMessage;
 import mhealth.login.models.Cadre;
 import mhealth.login.models.Facility;
 import mhealth.login.models.FacilityDepartment;
+import mhealth.login.models.Hcw;
 import mhealth.login.models.User;
 
 import static mhealth.login.dependencies.AppController.TAG;
@@ -113,6 +126,8 @@ public class UpdateProfileFragment extends Fragment {
     @BindView(R.id.btn_update_profile)
     Button btn_update_profile;
 
+    @BindView(R.id.lyt_progress)
+    LinearLayout lyt_progress;
 
 
 
@@ -143,6 +158,16 @@ public class UpdateProfileFragment extends Fragment {
             NavHostFragment.findNavController(UpdateProfileFragment.this).navigate(R.id.nav_complete_profile);
         }
 
+
+        card_name.setText(loggedInUser.getFirst_name()+" "+loggedInUser.getSurname());
+        card_phone.setText(loggedInUser.getMsisdn());
+
+        first_name.setText(loggedInUser.getFirst_name());
+        sur_name.setText(loggedInUser.getSurname());
+        email.setText(loggedInUser.getEmail());
+        phone_number.setText(loggedInUser.getMsisdn());
+
+
         facilitySpinner.setTitle("Select Facility");
         facilitySpinner.setPositiveButton("OK");
 
@@ -152,15 +177,17 @@ public class UpdateProfileFragment extends Fragment {
         cadreSpinner.setTitle("Select Cadre");
         cadreSpinner.setPositiveButton("OK");
 
-        getFacilities();
-        getCadres();
+        getProfile();
 
         btn_update_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(context, "Your profile ha been updated successfully", Toast.LENGTH_SHORT).show();
-                NavHostFragment.findNavController(UpdateProfileFragment.this).navigate(R.id.nav_home);
+                if (checkNulls()){
+                    lyt_progress.setVisibility(View.VISIBLE);
+                    updateProfile(facilityID,facilityDepartmentID,cadreID,first_name.getText().toString(),sur_name.getText().toString(),
+                            email.getText().toString(),phone_number.getText().toString());
+                }
             }
         });
 
@@ -173,7 +200,6 @@ public class UpdateProfileFragment extends Fragment {
         super.onDestroyView();
         unbinder.unbind();
     }
-
 
     private void getFacilities() {
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
@@ -218,9 +244,19 @@ public class UpdateProfileFragment extends Fragment {
                             facilitiesList.add(newFacility.getName());
                         }
 
-                        facilities.add(new Facility(0,"--select facility--","--select facility--","--select--","--select--"));
-                        facilitiesList.add("--select facility--");
+//                        facilities.add(new Facility(0,"--select facility--","--select facility--","--select--","--select--"));
+//                        facilitiesList.add("--select facility--");
 
+
+                        Hcw hcw = (Hcw) Stash.getObject(Constants.HCW, Hcw.class);
+
+                        Log.e("HCW:", hcw.getDob()+" "+hcw.getId_number()+" "+hcw.getFacility_id());
+
+                        int pos =facilities.indexOf(new Facility(hcw.getFacility_id(),"","","",""));
+                        if (pos == -1)
+                            pos=0;
+
+                        Log.e("POS ", ""+pos);
 
 //                        Stash.put(Constants.DISTRICTS_ARRAYLIST, facilities);
 //                        Stash.put(Constants.DISTRICTS_LIST, facilitiesList);
@@ -237,9 +273,11 @@ public class UpdateProfileFragment extends Fragment {
                         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
                         facilitySpinner.setAdapter(aa);
-                        facilitySpinner.setSelection(aa.getCount()-1);
+                        facilitySpinner.setSelection(pos);
+//                        facilitySpinner.setSelection(aa.getCount()-1);
 
-                        facilityID = facilities.get(aa.getCount()-1).getId();
+                        facilityID = facilities.get(pos).getId();
+//                        facilityID = facilities.get(aa.getCount()-1).getId();
 
                         facilitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
@@ -357,8 +395,16 @@ public class UpdateProfileFragment extends Fragment {
                             facilityDepartmentsList.add(newFacilityDept.getDepartment_name());
                         }
 
-                        facilityDepartments.add(new FacilityDepartment(0,0,"--select department--"));
-                        facilityDepartmentsList.add("--select department--");
+//                        facilityDepartments.add(new FacilityDepartment(0,0,"--select department--"));
+//                        facilityDepartmentsList.add("--select department--");
+
+                        Hcw hcw = (Hcw) Stash.getObject(Constants.HCW, Hcw.class);
+
+                        Log.e("HCW:", hcw.getDob()+" "+hcw.getId_number()+" "+hcw.getFacility_id());
+
+                        int pos =facilityDepartments.indexOf(new FacilityDepartment(hcw.getFacility_department_id(),0,""));
+                        if (pos == -1)
+                            pos=0;
 
 
 //                        Stash.put(Constants.DISTRICTS_ARRAYLIST, facilities);
@@ -376,9 +422,12 @@ public class UpdateProfileFragment extends Fragment {
                         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
                         facilityDepartmentSpinner.setAdapter(aa);
-                        facilityDepartmentSpinner.setSelection(aa.getCount()-1);
+                        facilityDepartmentSpinner.setSelection(pos);
+//                        facilityDepartmentSpinner.setSelection(aa.getCount()-1);
 
-                        facilityDepartmentID = facilityDepartments.get(aa.getCount()-1).getId();
+                        facilityDepartmentID = facilityDepartments.get(pos).getId();
+                        Log.e("facilityDepartmentID: ", facilityDepartmentID+"");
+//                        facilityDepartmentID = facilityDepartments.get(aa.getCount()-1).getId();
 
                         facilityDepartmentSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
@@ -489,12 +538,15 @@ public class UpdateProfileFragment extends Fragment {
                             cadreList.add(cadre1.getName());
                         }
 
-                        cadres.add(new Cadre(0,"--select cadre--"));
-                        cadreList.add("--select cadre--");
+//                        cadres.add(new Cadre(0,"--select cadre--"));
+//                        cadreList.add("--select cadre--");
+                        Hcw hcw = (Hcw) Stash.getObject(Constants.HCW, Hcw.class);
 
 
-//                        Stash.put(Constants.DISTRICTS_ARRAYLIST, facilities);
-//                        Stash.put(Constants.DISTRICTS_LIST, facilitiesList);
+                        int pos =cadres.indexOf(new Cadre(hcw.getCadre_id(),""));
+                        if (pos == -1)
+                            pos=0;
+
 
                         ArrayAdapter<String> aa=new ArrayAdapter<String>(context,
                                 android.R.layout.simple_spinner_dropdown_item,
@@ -508,9 +560,11 @@ public class UpdateProfileFragment extends Fragment {
                         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
                         cadreSpinner.setAdapter(aa);
-                        cadreSpinner.setSelection(aa.getCount()-1);
+                        cadreSpinner.setSelection(pos);
+//                        cadreSpinner.setSelection(aa.getCount()-1);
 
-                        cadreID = cadres.get(aa.getCount()-1).getId();
+                        cadreID = cadres.get(pos).getId();
+//                        cadreID = cadres.get(aa.getCount()-1).getId();
 
                         cadreSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
@@ -579,6 +633,272 @@ public class UpdateProfileFragment extends Fragment {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         AppController.getInstance().addToRequestQueue(jsonObjReq);
     }
+
+    private void getProfile(){
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
+                Stash.getString(Constants.END_POINT)+ Constants.GET_PROFILE, null, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+//                Log.e(TAG, response.toString());
+
+
+                try {
+                    boolean  status = response.has("success") && response.getBoolean("success");
+                    String  message = response.has("message") ? response.getString("message") : "" ;
+                    String  errors = response.has("errors") ? response.getString("errors") : "" ;
+
+                    if (status){
+
+                        JSONObject data = response.getJSONObject("data");
+
+                        JSONObject hcw = data.getJSONObject("hcw");
+
+                        int id = hcw.has("id") ? hcw.getInt("id") : 0;
+                        int facility_id = hcw.has("facility_id") ? hcw.getInt("facility_id") : 0;
+                        int facility_department_id = hcw.has("facility_department_id") ? hcw.getInt("facility_department_id") : 0;
+                        int cadre_id = hcw.has("cadre_id") ? hcw.getInt("cadre_id") : 0;
+                        String dob = hcw.has("dob") ? hcw.getString("dob") : "";
+                        String id_number = hcw.has("id_number") ? hcw.getString("id_number") : "";
+
+                        Hcw hcw1 = new Hcw(id,facility_id,facility_department_id,cadre_id,dob,id_number);
+
+                        Stash.put(Constants.HCW, hcw1);
+
+                        facilityID = facility_id;
+
+                        getFacilities();
+                        getCadres();
+
+                    }else {
+                        InfoMessage bottomSheetFragment = InfoMessage.newInstance(message,errors, context);
+                        bottomSheetFragment.show(getChildFragmentManager(), bottomSheetFragment.getTag());
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Snackbar.make(root.findViewById(R.id.update_profile), Objects.requireNonNull(e.getMessage()), Snackbar.LENGTH_LONG).show();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+
+                VolleyLog.e(TAG, "Error: " + error.getMessage());
+                Snackbar.make(root.findViewById(R.id.update_profile), VolleyErrors.getVolleyErrorMessages(error, context), Snackbar.LENGTH_LONG).show();
+
+                NetworkResponse response = error.networkResponse;
+                if(response != null && response.data != null){
+                    String body;
+                    //get status code here
+                    String statusCode = String.valueOf(error.networkResponse.statusCode);
+                    //get response body and parse with appropriate encoding
+                    if(error.networkResponse.data!=null) {
+                        try {
+                            body = new String(error.networkResponse.data, StandardCharsets.UTF_8);
+
+                            JSONObject json = new JSONObject(body);
+                            Log.e("error response : ", json.toString());
+
+                            String message = json.has("message") ? json.getString("message") : "";
+                            String errors = json.has("errors") ? json.getString("errors") : "";
+
+                            InfoMessage bottomSheetFragment = InfoMessage.newInstance(message,errors,context);
+                            bottomSheetFragment.show(getChildFragmentManager(), bottomSheetFragment.getTag());
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }
+            }
+        })
+        {
+
+            /**
+             * Passing some request headers
+             */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Authorization", loggedInUser.getToken_type()+" "+loggedInUser.getAccess_token());
+                headers.put("Content-Type", "application/json");
+                headers.put("Accept", "application/json");
+                return headers;
+            }
+        };
+
+
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        AppController.getInstance().addToRequestQueue(jsonObjReq);
+    }
+
+    private boolean checkNulls() {
+
+        boolean valid = true;
+
+
+        if(TextUtils.isEmpty(first_name.getText().toString()))
+        {
+            first_name.setError("First name is required");
+            valid = false;
+            return valid;
+        }
+
+        if(TextUtils.isEmpty(sur_name.getText().toString()))
+        {
+            sur_name.setError("Surname is required");
+            valid = false;
+            return valid;
+        }
+
+        if(TextUtils.isEmpty(phone_number.getText().toString()))
+        {
+            phone_number.setError("Phone number is required");
+            valid = false;
+            return valid;
+        }
+
+        if(facilityID == 0)
+        {
+            Snackbar.make(root.findViewById(R.id.update_profile), "Please select a facility", Snackbar.LENGTH_LONG).show();
+            valid = false;
+            return valid;
+        }
+
+        if(facilityDepartmentID == 0)
+        {
+            Snackbar.make(root.findViewById(R.id.update_profile), "Please select a department", Snackbar.LENGTH_LONG).show();
+            valid = false;
+            return valid;
+        }
+
+        if(cadreID == 0)
+        {
+            Snackbar.make(root.findViewById(R.id.update_profile), "Please select a cadre", Snackbar.LENGTH_LONG).show();
+            valid = false;
+            return valid;
+        }
+
+        return valid;
+    }
+
+    private void updateProfile(int facilityID, int facilityDepartmentID, int cadreID, String first_name,
+                                 String surname, String email, String phone_no) {
+
+        JSONObject payload  = new JSONObject();
+        try {
+            payload.put("facility_id", facilityID);
+            payload.put("facility_department_id", facilityDepartmentID);
+            payload.put("cadre_id", cadreID);
+            payload.put("first_name", first_name);
+            payload.put("surname", surname);
+            payload.put("email", email);
+            payload.put("msisdn", phone_no);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
+                Stash.getString(Constants.END_POINT)+Constants.UPDATE_PROFILE, payload, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.e(TAG, response.toString());
+
+
+                lyt_progress.setVisibility(View.GONE);
+
+                try {
+                    boolean  status = response.has("success") && response.getBoolean("success");
+                    String  message = response.has("message") ? response.getString("message") : "" ;
+                    String  errors = response.has("errors") ? response.getString("errors") : "" ;
+
+                    if (status){
+
+                        //update HCW stash object
+                        Hcw hcw = (Hcw) Stash.getObject(Constants.HCW, Hcw.class);
+                        hcw.setFacility_id(facilityID);
+                        hcw.setFacility_department_id(facilityDepartmentID);
+                        hcw.setCadre_id(cadreID);
+                        Stash.put(Constants.HCW, hcw);
+
+
+                        //updatge lofgged in user
+                        loggedInUser.setFirst_name(first_name);
+                        loggedInUser.setSurname(surname);
+                        loggedInUser.setEmail(email);
+                        loggedInUser.setMsisdn(phone_no);
+                        Stash.put(Constants.LOGGED_IN_USER, loggedInUser);
+
+                        NavHostFragment.findNavController(UpdateProfileFragment.this).navigate(R.id.nav_home);
+
+                        Toast.makeText(context,message, Toast.LENGTH_LONG).show();
+
+//                        InfoMessage bottomSheetFragment = InfoMessage.newInstance("Success!",message, context);
+//                        bottomSheetFragment.show(getChildFragmentManager(), bottomSheetFragment.getTag());
+
+
+                    }else {
+                        InfoMessage bottomSheetFragment = InfoMessage.newInstance(message,errors,context);
+                        bottomSheetFragment.show(getChildFragmentManager(), bottomSheetFragment.getTag());
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(context,
+                            "Error: " + e.getMessage(),
+                            Toast.LENGTH_LONG).show();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                lyt_progress.setVisibility(View.GONE);
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                Snackbar.make(root.findViewById(R.id.update_profile), VolleyErrors.getVolleyErrorMessages(error, context), Snackbar.LENGTH_LONG).show();
+
+            }
+        }){
+
+            /**
+             * Passing some request headers
+             */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Authorization", loggedInUser.getToken_type()+" "+loggedInUser.getAccess_token());
+                headers.put("Content-Type", "application/json");
+                headers.put("Accept", "application/json");
+                return headers;
+            }
+        };
+
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        AppController.getInstance().addToRequestQueue(jsonObjReq);
+
+
+
+    }
+
+
 
 
 

@@ -246,6 +246,9 @@
     <string name="immunization_doses">Immunization Doses</string>
     <string name="immunization_date3">Date of third immunization</string>
     <string name="do_you_have_a_third_dose">Do you have a third dose?</string>
+    <string name="if_you_have_been_exposed_please_report_this_incidence_directly_to_nascop">If you have been exposed, please report this incidence directly to NASCOP.</string>
+    <string name="this_action_will_initiate_a_call_to_nascop_call_center">This action will initiate a call to NASCOP call center</string>
+    <string name="report">Report Now</string>
 
 
 </resources>

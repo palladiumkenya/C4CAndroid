@@ -34,4 +34,13 @@ public class FacilityDepartment {
     public void setDepartment_name(String department_name) {
         this.department_name = department_name;
     }
+
+    @Override
+    public boolean equals(Object anotherObject) {
+        if (!(anotherObject instanceof FacilityDepartment)) {
+            return false;
+        }
+        FacilityDepartment c = (FacilityDepartment) anotherObject;
+        return (this.id == c.id);
+    }
 }

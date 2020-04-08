@@ -26,4 +26,13 @@ public class Cadre {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public boolean equals(Object anotherObject) {
+        if (!(anotherObject instanceof Cadre)) {
+            return false;
+        }
+        Cadre c = (Cadre) anotherObject;
+        return (this.id == c.id);
+    }
 }

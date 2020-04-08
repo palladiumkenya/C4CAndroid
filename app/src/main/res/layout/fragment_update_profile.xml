@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/update_profile"
     android:background="@color/grey_5"
     android:fitsSystemWindows="true">
 
@@ -108,7 +109,6 @@
                                 android:id="@+id/card_name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Doctor Another"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                                 android:textColor="@color/colorPrimaryDark"
                                 app:fontFamily="sans-serif-medium" />
@@ -132,7 +132,6 @@
                                     android:id="@+id/card_phone"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="+254722000000"
                                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                                     android:textColor="@color/grey_40" />
                             </LinearLayout>
@@ -222,38 +221,20 @@
                         </com.google.android.material.textfield.TextInputLayout>
 
 
-                        <LinearLayout
+                        <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:weightSum="3">
-
-                            <com.hbb20.CountryCodePicker
-                                android:id="@+id/ccp"
-                                android:layout_width="0dp"
+                            app:endIconMode="clear_text"
+                            android:paddingLeft="@dimen/spacing_large"
+                            android:paddingRight="@dimen/spacing_large">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/phone_number"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                app:ccp_showFlag="false"
-                                android:layout_weight="1"
-                                app:ccp_autoDetectCountry="true" />
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                app:endIconMode="clear_text"
-                                android:layout_marginTop="8dp"
-                                android:layout_marginBottom="8dp">
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/phone_number"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    style="@style/EditText.Flat.Grey"
-                                    android:inputType="phone"
-                                    android:maxLength="9"
-                                    android:hint="@string/phone_number"/>
-                            </com.google.android.material.textfield.TextInputLayout>
-
-                        </LinearLayout>
+                                style="@style/EditText.Flat.Grey"
+                                android:inputType="phone"
+                                android:hint="@string/phone_number"/>
+                        </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>
 
@@ -334,6 +315,7 @@
                 android:layout_marginTop="@dimen/spacing_middle"
                 android:background="@android:color/white"
                 app:cardCornerRadius="2dp"
+                android:visibility="gone"
                 app:cardElevation="2dp"
                 app:cardUseCompatPadding="true">
 
@@ -406,6 +388,26 @@
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_large" />
+
+            <LinearLayout
+                android:id="@+id/lyt_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/spacing_medium"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <mhealth.login.widgets.ViewLoadingDotsBounce
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:background="@color/colorAccent" />
+
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
