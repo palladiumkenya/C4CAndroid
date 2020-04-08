@@ -118,7 +118,8 @@
 
                                 <com.google.android.material.textfield.TextInputLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
+                                    android:layout_height="match_parent"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                                     <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/typeET"
                                         style="@style/EditText.Flat.Grey"
@@ -198,7 +199,8 @@
 
                                 <com.google.android.material.textfield.TextInputLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
+                                    android:layout_height="match_parent"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                                     <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/device_purposeET"
                                         style="@style/EditText.Flat.Grey"
@@ -210,16 +212,23 @@
 
 
 
-                                <EditText
-                                    android:id="@+id/info_exposure"
+                                <com.google.android.material.textfield.TextInputLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:background="@color/grey_5"
-                                    android:gravity="top"
-                                    android:hint="@string/provide_more_information_about_exposure"
-                                    android:padding="@dimen/spacing_large"
-                                    android:textSize="14sp"
-                                    android:lines="3"/>
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/info_exposure"
+                                        style="@style/EditText.Flat.Grey"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="14sp"
+                                        android:lines="3"
+                                        android:hint="@string/provide_more_information_about_exposure"
+                                        android:inputType="text" />
+                                </com.google.android.material.textfield.TextInputLayout>
+
+
+
 
 
                             </LinearLayout>
@@ -324,7 +333,8 @@
 
                                 <com.google.android.material.textfield.TextInputLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
+                                    android:layout_height="match_parent"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                                     <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/previous_exposures"
                                         android:layout_width="match_parent"

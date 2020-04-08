@@ -51,6 +51,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/btn_rounded_accent"
             android:textColor="@color/white_greyish"
+            android:layout_marginEnd="@dimen/spacing_medium"
             android:text="@string/places_cancel"
             android:layout_weight="1"/>
 
@@ -59,6 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginStart="@dimen/spacing_medium"
             android:background="@drawable/btn_rounded_primary"
             android:textColor="@color/white_greyish"
             android:text="@string/check_in"/>
