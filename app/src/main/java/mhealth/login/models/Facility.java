@@ -54,4 +54,14 @@ public class Facility {
     public void setSub_county(String sub_county) {
         this.sub_county = sub_county;
     }
+
+
+    @Override
+    public boolean equals(Object anotherObject) {
+        if (!(anotherObject instanceof Facility)) {
+            return false;
+        }
+        Facility f = (Facility) anotherObject;
+        return (this.id == f.id);
+    }
 }

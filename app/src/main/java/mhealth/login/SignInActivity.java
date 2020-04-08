@@ -79,6 +79,9 @@ public class SignInActivity extends AppCompatActivity {
         toolbar.setTitle("Sign In");
         setSupportActionBar(toolbar);
 
+        Stash.put(Constants.END_POINT, "http://c4ctest.mhealthkenya.org/"); //temporary endpoint
+
+
         mAuth = FirebaseAuth.getInstance();
 
         if (Stash.getObject(Constants.LOGGED_IN_USER, User.class) == null){

@@ -94,10 +94,9 @@ public class ImmunizationFragment extends Fragment {
     // Add Fragments to Tabs
     private void setupViewPager(ViewPager viewPager) {
 
-
         Adapter adapter = new Adapter(getChildFragmentManager());
         adapter.addFragment(new ImmunizationProfileFragment(), "Immunization Profile");
-        adapter.addFragment(new ImmunizationScheduleFragment(), "Immunization Schedule");
+//        adapter.addFragment(new ImmunizationScheduleFragment(), "Immunization Schedule");
         viewPager.setAdapter(adapter);
     }
 

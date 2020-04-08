@@ -3,6 +3,7 @@ package mhealth.login.dependencies;
 public class Constants {
 
     /*Stash Variables*/
+    public static String HCW = "health_care_worker";
     public static String LOGGED_IN_USER = "LOGGED_IN_USER";
     public static String END_POINT = "END_POINT";
 
@@ -16,6 +17,8 @@ public class Constants {
     public static String REGISTER = "auth/signup";
     public static String LOGIN = "auth/login";
     public static String COMPLETE_PROFILE = "auth/complete_profile";
+    public static String GET_PROFILE = "auth/user";
+    public static String UPDATE_PROFILE = "auth/update_profile";
 
 
 
@@ -52,6 +55,7 @@ public class Constants {
     public static String NEW_IMMUNIZATIONS = "immunizations/new";
 
     public static String DISEASES = "diseases";
+    public static String NASCOP_CONTACT = "0800724848";
 
 
 

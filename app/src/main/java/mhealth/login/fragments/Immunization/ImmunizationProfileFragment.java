@@ -153,7 +153,8 @@ public class ImmunizationProfileFragment extends Fragment {
 
                     immunizationArrayList.clear();
 
-                    recyclerView.setVisibility(View.VISIBLE);
+                    if (recyclerView!=null)
+                        recyclerView.setVisibility(View.VISIBLE);
 
                     if (shimmer_my_container!=null){
                         shimmer_my_container.stopShimmerAnimation();
