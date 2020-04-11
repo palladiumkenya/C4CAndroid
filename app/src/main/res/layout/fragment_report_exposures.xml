@@ -121,111 +121,209 @@
                                     android:layout_height="match_parent"
                                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                                     <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/typeET"
+                                        android:id="@+id/exposure_date"
                                         style="@style/EditText.Flat.Grey"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:hint="Type of exposure. Prick, spill, etc"
-                                        android:inputType="text" />
+                                        android:hint="@string/date_of_exposure"
+                                        android:inputType="text"
+                                        android:focusable="false"
+                                        android:focusableInTouchMode="false"
+                                        android:clickable="true"/>
                                 </com.google.android.material.textfield.TextInputLayout>
 
-<!--                                <LinearLayout-->
-<!--                                    android:layout_width="match_parent"-->
-<!--                                    android:layout_height="wrap_content"-->
-<!--                                    android:orientation="horizontal">-->
-<!--                                    <Button-->
-<!--                                        android:id="@+id/spn_from_date"-->
-<!--                                        android:layout_width="0dp"-->
-<!--                                        style="@style/Button.Accent.Borderless"-->
-<!--                                        android:layout_height="wrap_content"-->
-<!--                                        android:layout_weight="1"-->
-<!--                                        android:textAlignment="textStart"-->
-<!--                                        android:drawableLeft="@drawable/ic_calendar"-->
-<!--                                        android:text="@string/date_of_exposure"-->
-<!--                                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"-->
-<!--                                        android:textColor="@color/grey_80" />-->
 
-<!--                                    <TextView-->
-<!--                                        android:id="@+id/tv_exposure_date"-->
-<!--                                        android:layout_width="0dp"-->
-<!--                                        android:layout_weight="1"-->
-<!--                                        android:layout_height="@dimen/spacing_xlarge"-->
-<!--                                        android:gravity="center_vertical"-->
-<!--                                        android:paddingLeft="@dimen/spacing_small"-->
-<!--                                        android:paddingRight="@dimen/spacing_small"-->
-<!--                                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"-->
-<!--                                        android:textColor="@color/grey_90" />-->
-
-
-<!--                                </LinearLayout>-->
-                               <TextView
-                                   android:id="@+id/date_et"
-                                   android:layout_width="match_parent"
-                                   android:layout_height="wrap_content"
-                                   android:padding="8dp"
-                                   android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                   android:text="@string/date_of_exposure"/>
-
-
-                                <TextView
+                                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                                    android:id="@+id/pep_initiated"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                    android:textColor="@color/grey_90"
-                                    android:text="@string/where_did_the_exposure_occur"/>
+                                    android:hint="@string/pep_initiated"
+                                    android:textColorHint="@color/places_ui_default_text"
+                                    app:met_floatingLabel="normal" />
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/pep_date"
+                                        style="@style/EditText.Flat.Grey"
+                                        android:visibility="gone"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="@string/date_of_pep_inititation"
+                                        android:inputType="text"
+                                        android:focusable="false"
+                                        android:focusableInTouchMode="false"
+                                        android:clickable="true"/>
+                                </com.google.android.material.textfield.TextInputLayout>
 
 
-                                <Spinner
+                                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
                                     android:id="@+id/exposure_location"
                                     android:layout_width="match_parent"
-                                    android:layout_height="@dimen/spacing_xxlarge"
-                                    android:drawSelectorOnTop="true"
-                                    android:entries="@array/exposure_occurrence"/>
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/where_did_the_exposure_occur"
+                                    android:textColorHint="@color/places_ui_default_text"
+                                    app:met_floatingLabel="normal" />
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/otherLocationET"
+                                        style="@style/EditText.Flat.Grey"
+                                        android:visibility="gone"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="@string/specify_other"
+                                        android:inputType="text" />
+                                </com.google.android.material.textfield.TextInputLayout>
 
 
-                                <TextView
+
+                                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                                    android:id="@+id/exposure_type"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                    android:textColor="@color/grey_90"
-                                    android:text="@string/what_device_was_used"/>
+                                    android:hint="@string/type_of_exposure"
+                                    android:textColorHint="@color/places_ui_default_text"
+                                    app:met_floatingLabel="normal" />
 
-
-                                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-                                    android:id="@+id/exposure_device"
+                                <LinearLayout
+                                    android:id="@+id/layoutSharp"
                                     android:layout_width="match_parent"
-                                    android:layout_height="@dimen/spacing_xxlarge"
-                                    android:drawSelectorOnTop="true" />
+                                    android:layout_height="wrap_content"
+                                    android:visibility="gone"
+                                    android:orientation="vertical">
 
-                                <com.google.android.material.textfield.TextInputLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                                    <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/device_purposeET"
-                                        style="@style/EditText.Flat.Grey"
+                                    <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                                        android:id="@+id/device_used"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:hint="@string/what_was_the_purpose_of_the_device"
-                                        android:inputType="text" />
-                                </com.google.android.material.textfield.TextInputLayout>
+                                        android:hint="@string/which_devices_caused"
+                                        android:textColorHint="@color/places_ui_default_text"
+                                        app:met_floatingLabel="normal" />
+
+                                    <com.google.android.material.textfield.TextInputLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                                        <com.google.android.material.textfield.TextInputEditText
+                                            android:id="@+id/otherDeviceET"
+                                            style="@style/EditText.Flat.Grey"
+                                            android:visibility="gone"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:hint="@string/specify_other"
+                                            android:inputType="text" />
+                                    </com.google.android.material.textfield.TextInputLayout>
 
 
-
-                                <com.google.android.material.textfield.TextInputLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                                    <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/info_exposure"
-                                        style="@style/EditText.Flat.Grey"
+                                    <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                                        android:id="@+id/device_purpose"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:textSize="14sp"
-                                        android:lines="3"
-                                        android:hint="@string/provide_more_information_about_exposure"
-                                        android:inputType="text" />
-                                </com.google.android.material.textfield.TextInputLayout>
+                                        android:hint="@string/for_what_purpose_was_the_sharp_item_originally_used"
+                                        android:textColorHint="@color/places_ui_default_text"
+                                        app:met_floatingLabel="normal" />
+
+                                    <com.google.android.material.textfield.TextInputLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                                        <com.google.android.material.textfield.TextInputEditText
+                                            android:id="@+id/otherPurposeET"
+                                            style="@style/EditText.Flat.Grey"
+                                            android:visibility="gone"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:hint="@string/specify_other"
+                                            android:inputType="text" />
+                                    </com.google.android.material.textfield.TextInputLayout>
+
+                                    <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                                        android:id="@+id/exposure_how"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="@string/how_did_the_injury_exposure_occur"
+                                        android:textColorHint="@color/places_ui_default_text"
+                                        app:met_floatingLabel="normal" />
+
+                                    <com.google.android.material.textfield.TextInputLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                                        <com.google.android.material.textfield.TextInputEditText
+                                            android:id="@+id/otherHowET"
+                                            style="@style/EditText.Flat.Grey"
+                                            android:visibility="gone"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:hint="@string/specify_other"
+                                            android:inputType="text" />
+                                    </com.google.android.material.textfield.TextInputLayout>
+
+                                    <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                                        android:id="@+id/describe_exposure"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="@string/how_would_you_describe"
+                                        android:textColorHint="@color/places_ui_default_text"
+                                        app:met_floatingLabel="normal" />
+
+
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/layoutNotSharp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:visibility="gone"
+                                    android:orientation="vertical">
+
+                                    <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                                        android:id="@+id/exposure_cause"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="@string/the_exposure_was_a_result_of"
+                                        android:textColorHint="@color/places_ui_default_text"
+                                        app:met_floatingLabel="normal" />
+
+                                    <com.google.android.material.textfield.TextInputLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                                        <com.google.android.material.textfield.TextInputEditText
+                                            android:id="@+id/otherExposureCauseET"
+                                            style="@style/EditText.Flat.Grey"
+                                            android:visibility="gone"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:hint="@string/specify_other"
+                                            android:inputType="text" />
+                                    </com.google.android.material.textfield.TextInputLayout>
+
+                                </LinearLayout>
+
+
+                                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                                    android:id="@+id/patient_hiv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/patient_s_hiv_status"
+                                    android:textColorHint="@color/places_ui_default_text"
+                                    app:met_floatingLabel="normal" />
+
+                                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                                    android:id="@+id/patient_hbv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/patient_s_hbv_status"
+                                    android:textColorHint="@color/places_ui_default_text"
+                                    app:met_floatingLabel="normal" />
 
 
 
@@ -316,6 +414,8 @@
                                 android:layout_height="match_parent"
                                 android:orientation="vertical">
 
+
+
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -323,13 +423,6 @@
                                     android:textColor="@color/grey_90"
                                     android:text="@string/have_you_ever_been_exposed"/>
 
-
-                                <Spinner
-                                    android:id="@+id/previous_exposure"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/spacing_xxlarge"
-                                    android:drawSelectorOnTop="true"
-                                    android:entries="@array/previous_exposure"/>
 
                                 <com.google.android.material.textfield.TextInputLayout
                                     android:layout_width="match_parent"
@@ -346,96 +439,14 @@
 
 
 
-                                <LinearLayout
-                                    android:id="@+id/linearPEP"
+                                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                                    android:id="@+id/pepPreviousSpinner"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_weight="2"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:layout_width="0dp"
-                                        android:layout_height="60dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center_vertical"
-                                        android:paddingLeft="@dimen/spacing_small"
-                                        android:paddingRight="@dimen/spacing_small"
-                                        android:text="@string/was_pep_initiated"
-                                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                        android:textColor="@color/grey_90" />
-
-                                    <Spinner
-                                        android:id="@+id/pepSpinner"
-                                        android:layout_width="0dp"
-                                        android:layout_weight="1"
-                                        android:layout_height="@dimen/spacing_xxlarge"
-                                        android:drawSelectorOnTop="true"
-                                        android:entries="@array/pep"/>
-
-
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:id="@+id/linearHIV"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:layout_width="0dp"
-                                        android:layout_weight="1"
-                                        android:layout_height="60dp"
-                                        android:gravity="center_vertical"
-                                        android:paddingLeft="@dimen/spacing_small"
-                                        android:paddingRight="@dimen/spacing_small"
-                                        android:text="@string/patient_s_hiv_status"
-                                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                        android:textColor="@color/grey_90" />
-
-                                    <Spinner
-                                        android:id="@+id/patient_hiv"
-                                        android:layout_width="0dp"
-                                        android:layout_weight="1"                                        android:layout_height="@dimen/spacing_xxlarge"
-                                        android:drawSelectorOnTop="true"
-                                        android:entries="@array/patient_hiv"/>
-
-
-
-
-                                </LinearLayout>
-
-
-
-                                <LinearLayout
-                                    android:id="@+id/linearHBV"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:layout_width="0dp"
-                                        android:layout_weight="1"
-                                        android:layout_height="60dp"
-                                        android:gravity="center_vertical"
-                                        android:paddingLeft="@dimen/spacing_small"
-                                        android:paddingRight="@dimen/spacing_small"
-                                        android:text="@string/patient_s_hbv_status"
-                                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                        android:textColor="@color/grey_90" />
-
-                                    <Spinner
-                                        android:id="@+id/patient_hbv"
-                                        android:layout_width="0dp"
-                                        android:layout_weight="1"
-                                        android:layout_height="@dimen/spacing_xxlarge"
-                                        android:drawSelectorOnTop="true"
-                                        android:entries="@array/patient_hpv"/>
-
-
-                                </LinearLayout>
-
+                                    android:visibility="gone"
+                                    android:hint="@string/was_pep_initiated"
+                                    android:textColorHint="@color/places_ui_default_text"
+                                    app:met_floatingLabel="normal" />
 
 
 

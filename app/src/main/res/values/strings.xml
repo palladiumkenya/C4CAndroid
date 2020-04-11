@@ -72,12 +72,81 @@
     </string-array>
 
     <string-array name="exposure_occurrence">
-        <item>Lab</item>
-        <item>Ward</item>
-        <item>Theatre</item>
-        <item>Pharmacy</item>
-        <item>Corridors</item>
+        <item>Medical Ward</item>
+        <item>Surgical Ward</item>
+        <item>Theater</item>
+        <item>Maternity</item>
+        <item>Dental Clinic</item>
+        <item>OP/MCH</item>
+        <item>Laundry</item>
+        <item>Laboratory</item>
+        <item>Other</item>
+    </string-array>
 
+    <string-array name="exposure_type">
+        <item>Needle Stick</item>
+        <item>Cuts</item>
+        <item>Splash on Mucosa</item>
+        <item>Non-Intact Skin</item>
+        <item>Bite</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="describe_injury">
+        <item>Little or no bleeding</item>
+        <item>Deep stick/cut, Profuse bleeding</item>
+    </string-array>
+
+    <string-array name="device_used">
+        <item>syringe/needle IM/SC injection</item>
+        <item>Syringe /needle blood drawing</item>
+        <item>Phlebotomy needle/vacuum set</item>
+        <item>IV catheter/canula</item>
+        <item>Needle on IV-line</item>
+        <item>Unused needle</item>
+        <item>Lancet</item>
+        <item>Suture needle</item>
+        <item>Scalpel</item>
+        <item>Capillary tube</item>
+        <item>Glass slide</item>
+        <item>Pipette tip</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="device_purpose">
+        <item>Injections</item>
+        <item>IV fluid</item>
+        <item>Blood collection</item>
+        <item>Cannulation/start IV</item>
+        <item>Connect IV-line</item>
+        <item>Place arterial/Central line</item>
+        <item>Fingerstick/heel stick</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="exposure_how">
+        <item>During procedure</item>
+        <item>Disassembling device</item>
+        <item>Recapping</item>
+        <item>Cleaning after procedure</item>
+        <item>Device left on table, floor etc</item>
+        <item>Device placed in appropriate trash bin</item>
+        <item>Device protruded from trash container</item>
+        <item>During disposal</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="exposure_describe">
+        <item>Little or no bleeding</item>
+        <item>Deep stick/cut, profuse bleeding</item>
+    </string-array>
+
+    <string-array name="exposure_cause">
+        <item>Patient contact</item>
+        <item>Leaking specimen container</item>
+        <item>Faulty apparatus</item>
+        <item>Contaminated surfaces</item>
+        <item>Other</item>
     </string-array>
 
     <string-array name="exposure_device">
@@ -98,14 +167,14 @@
     </string-array>
 
     <string-array name="patient_hiv">
-        <item>Not Specified</item>
+        <item>UNKNOWN</item>
         <item>POSITIVE</item>
         <item>NEGATIVE</item>
 
     </string-array>
 
-    <string-array name="patient_hpv">
-        <item>Not Specified</item>
+    <string-array name="patient_hbv">
+        <item>UNKNOWN</item>
         <item>POSITIVE</item>
         <item>NEGATIVE</item>
 
@@ -225,15 +294,16 @@
     <string name="dose2_yes">Yes</string>
     <string name="dose2_no">No</string>
     <string name="immunization_date2">Date of Second immunization</string>
-    <string name="date_of_exposure">Date of exposure</string>
+    <string name="date_of_exposure">Date and time of exposure</string>
     <string name="exposure_details">Exposure Details</string>
     <string name="what_device_was_used">What device was used?</string>
     <string name="where_did_the_exposure_occur">Where did the exposure occur?</string>
-    <string name="have_you_ever_been_exposed">Have you ever been exposed before?</string>
-    <string name="how_many_previous_exposures">How many previous exposures?</string>
-    <string name="was_pep_initiated">Was PEP initiated?</string>
-    <string name="patient_s_hiv_status">Patient\'s HIV status?</string>
-    <string name="patient_s_hbv_status">Patient\'s HBV status</string>
+    <string name="have_you_ever_been_exposed">How many exposures have you had for the last one year?</string>
+    <string name="how_many_previous_exposures">Exposures in last 1 year</string>
+    <string name="was_pep_initiated">Was PEP initiated for the last exposure?</string>
+    <string name="pep_initiated">Was PEP initiated?</string>
+    <string name="patient_s_hiv_status">What was the HIV status of the source patient/specimen?</string>
+    <string name="patient_s_hbv_status">What was the HBV status of the source patient/specimen?</string>
     <string name="update_profile">Update Profile</string>
     <string name="old_password">Old Password</string>
     <string name="what_was_the_purpose_of_the_device">What was the purpose of the device?</string>
@@ -249,6 +319,14 @@
     <string name="if_you_have_been_exposed_please_report_this_incidence_directly_to_nascop">If you have been exposed, please report this incidence directly to NASCOP.</string>
     <string name="this_action_will_initiate_a_call_to_nascop_call_center">This action will initiate a call to NASCOP call center</string>
     <string name="report">Report Now</string>
+    <string name="type_of_exposure">Type of exposure</string>
+    <string name="specify_other">Specify Other</string>
+    <string name="how_would_you_describe">How would you describe the injury/exposure?</string>
+    <string name="for_what_purpose_was_the_sharp_item_originally_used">For what purpose was the sharp item originally used?</string>
+    <string name="date_of_pep_inititation">Date of PEP inititation</string>
+    <string name="which_devices_caused">Which devices caused the injury?</string>
+    <string name="how_did_the_injury_exposure_occur">How did the injury/exposure occur?</string>
+    <string name="the_exposure_was_a_result_of">The exposure was a result of?</string>
 
 
 </resources>

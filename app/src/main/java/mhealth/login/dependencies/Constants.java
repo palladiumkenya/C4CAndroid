@@ -59,6 +59,27 @@ public class Constants {
 
 
 
+    public static final String[] SPINNERLISTWHERE = {"Medical Ward", "Surgical Ward", "Theater", "Maternity", "Dental Clinic", "OP/MCH", "Laundry", "Laboratory","Other"};
+    public static final String[] SPINNERLISTTYPE = {"Needle Stick", "Cuts", "Splash on Mucosa", "Non-intact Skin", "Bite", "Other"};
+    public static final String[] SPINNERLISTDEVICE = {
+            "Syringe/Needle IM/SC Injection",
+            "Syring/Needle Blood Drawing",
+            "Phlebotomy Needle/ Vacuum set",
+            "IV Catheter/Canula",
+            "Needle on IV Line",
+            "Unused Needle",
+            "Lancet",
+            "Suture Needle",
+            "Scalpel",
+            "Capillary Tube",
+            "Glass Slide",
+            "Pippete Tip",
+            "Other"
+    };
+
+
+
+
 
 
 
