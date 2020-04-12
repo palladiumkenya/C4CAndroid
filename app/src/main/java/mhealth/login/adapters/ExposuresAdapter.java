@@ -51,9 +51,6 @@ public class ExposuresAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         public TextView pep_initiated;
         public TextView patient_hiv;
         public TextView patient_hbv;
-        public TextView device_used;
-        public TextView device_purpose;
-        public TextView description;
         public ImageButton bt_expand;
         public View lyt_expand;
         public View lyt_parent;
@@ -67,9 +64,6 @@ public class ExposuresAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             pep_initiated = (TextView) v.findViewById(R.id.pep_initiated);
             patient_hiv = (TextView) v.findViewById(R.id.patient_hiv);
             patient_hbv = (TextView) v.findViewById(R.id.patient_hbv);
-            device_used = (TextView) v.findViewById(R.id.device_used);
-            device_purpose = (TextView) v.findViewById(R.id.device_purpose);
-            description = (TextView) v.findViewById(R.id.description);
             bt_expand = (ImageButton) v.findViewById(R.id.bt_expand);
             lyt_expand = (View) v.findViewById(R.id.lyt_expand);
             lyt_parent = (View) v.findViewById(R.id.lyt_parent);
@@ -91,17 +85,14 @@ public class ExposuresAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         if (holder instanceof OriginalViewHolder) {
             OriginalViewHolder view = (OriginalViewHolder) holder;
 
-            String pepInitiated = obj.getPep_initiated() == 0 ? "NO" : "YES";
-            view.type.setText(obj.getType());
-            view.location.setText(obj.getLocation());
-            view.date.setText(obj.getDate());
+            view.type.setText(obj.getExposure_type());
+            view.location.setText("Location: "+obj.getExposure_location());
+            view.date.setText(obj.getExposure_date());
             view.previous_exposure.setText("Previous Exposures: "+obj.getPrevious_exposures());
-            view.pep_initiated.setText("Pep Initiated: "+pepInitiated);
+            view.pep_initiated.setText("Previous Pep Initiated: "+obj.getPrevious_pep_initiated());
             view.patient_hbv.setText("Patient HBV: "+obj.getPatient_hbv_status());
             view.patient_hiv.setText("Patient HIV: "+obj.getPatient_hiv_status());
-            view.device_used.setText("Device Used: "+obj.getDevice_name());
-            view.device_purpose.setText("Device Purpose: "+obj.getDevice_purpose());
-            view.description.setText(obj.getDescription());
+
 //            view.lyt_parent.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View view) {
