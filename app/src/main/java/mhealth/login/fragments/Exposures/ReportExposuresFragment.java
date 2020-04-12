@@ -152,12 +152,6 @@ public class ReportExposuresFragment extends Fragment {
     @BindView(R.id.layoutNotSharp)
     LinearLayout layoutNotSharp;
 
-
-
-
-
-
-
     @BindView(R.id.btn_submit)
     Button btn_submit;
 
@@ -579,9 +573,6 @@ public class ReportExposuresFragment extends Fragment {
 
 
 
-
-
-
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -859,22 +850,27 @@ public class ReportExposuresFragment extends Fragment {
     }
 
 
+
+
     private void doReport() {
         JSONObject payload  = new JSONObject();
-//        try {
-//            payload.put("device_id", deviceID);
-//            payload.put("type", exposure_type.getSelectedItem().toString().equals("Other") ? otherTypeET.getText().toString() : exposure_type.getSelectedItem().toString());
-//            payload.put("location", exposure_location.getSelectedItem().toString());
-//            payload.put("date", DATE_OF_EXPOSURE);
-//            payload.put("description", info_exposure.getText().toString());
-//            payload.put("previous_exposures", previousExposureSpinner.getSelectedItem().toString().equals("No") ? previousExposures : previous_exposureTV.getText().toString());
-//            payload.put("patient_hiv_status", patientHIV);
-//            payload.put("patient_hbv_status", patientHBV);
-//            payload.put("device_purpose", device_purposeET.getText().toString());
-//            payload.put("pep_initiated", pepInitiated);
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            payload.put("exposure_date", DATE_OF_EXPOSURE);
+            payload.put("pep_date",DATE_OF_PEP);
+            payload.put("exposure_location", exposureLocationStr.equals("Other") ? otherLocationET.getText().toString() : exposureLocationStr);
+            payload.put("exposure_type", exposureTypeStr);
+            payload.put("device_used", deviceUsedStr.equals("Other") ? otherDeviceET.getText().toString() : deviceUsedStr);
+            payload.put("result_of", exposureCauseStr.equals("Other") ? otherExposureCauseET.getText().toString() : exposureCauseStr);
+            payload.put("device_purpose", devicePurposeStr.equals("Other") ? otherPurposeET.getText().toString() : devicePurposeStr);
+            payload.put("exposure_when", exposureHowStr.equals("Other") ? otherHowET.getText().toString() : exposureHowStr);
+            payload.put("exposure_description", describeExposureStr);
+            payload.put("patient_hiv_status", patientHIVStr);
+            payload.put("patient_hbv_status", patientHBVStr);
+            payload.put("previous_exposures", previous_exposures.getText().toString());
+            payload.put("previous_pep_initiated", pepPreviousInitiatedStr);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
 
@@ -894,8 +890,11 @@ public class ReportExposuresFragment extends Fragment {
                     String  errors = response.has("errors") ? response.getString("errors") : "" ;
 
                     if (status){
-                        InfoMessage bottomSheetFragment = InfoMessage.newInstance("Success!",message, context);
-                        bottomSheetFragment.show(getChildFragmentManager(), bottomSheetFragment.getTag());
+//                        InfoMessage bottomSheetFragment = InfoMessage.newInstance("Success!",message, context);
+//                        bottomSheetFragment.show(getChildFragmentManager(), bottomSheetFragment.getTag());
+
+                        Snackbar.make(root.findViewById(R.id.fragment_report_exposure), message, Snackbar.LENGTH_LONG).show();
+
 
                         NavHostFragment.findNavController(ReportExposuresFragment.this).navigate(R.id.nav_exposures);
 

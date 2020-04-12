@@ -289,21 +289,22 @@ public class ExposuresFragment extends Fragment {
 
 
                                 int  id = item.has("id") ? item.getInt("id") : 0;
-                                int device_id = item.has("device_id") ? item.getInt("device_id") : 0;
-                                String device_name = item.has("device") ? item.getString("device") : "";
-                                String date = item.has("date") ? item.getString("date") : "";
-                                String type = item.has("type") ? item.getString("type") : "";
-                                String location = item.has("location") ? item.getString("location") : "";
-                                String description = item.has("description") ? item.getString("description") : "";
+                                String exposure_date = item.has("exposure_date") ? item.getString("exposure_date") : "";
+                                String pep_date = item.has("pep_date") ? item.getString("pep_date") : "";
+                                String exposure_location = item.has("exposure_location") ? item.getString("exposure_location") : "";
+                                String exposure_type = item.has("exposure_type") ? item.getString("exposure_type") : "";
+                                String device_used = item.has("device_used") ? item.getString("device_used") : "";
+                                String result_of = item.has("result_of") ? item.getString("result_of") : "";
+                                String device_purpose = item.has("device_purpose") ? item.getString("device_purpose") : "";
+                                String exposure_when = item.has("exposure_when") ? item.getString("exposure_when") : "";
+                                String exposure_description = item.has("exposure_description") ? item.getString("exposure_description") : "";
                                 int previous_exposures = item.has("previous_exposures") ? item.getInt("previous_exposures") : 0;
                                 String patient_hiv_status = item.has("patient_hiv_status") ? item.getString("patient_hiv_status") : "";
                                 String patient_hbv_status = item.has("patient_hbv_status") ? item.getString("patient_hbv_status") : "";
-                                int pep_initiated = item.has("pep_initiated") ? item.getInt("pep_initiated") : 0;
-                                String device_purpose = item.has("device_purpose") ? item.getString("device_purpose") : "";
+                                String previous_pep_initiated = item.has("previous_pep_initiated") ? item.getString("previous_pep_initiated") : "";
 
-                                Exposure exposure = new Exposure(id,device_id,device_name,date,type,location,description,previous_exposures,
-                                        patient_hiv_status,patient_hbv_status,pep_initiated,device_purpose);
-
+                                Exposure exposure = new Exposure(id,exposure_date,pep_date,exposure_location,exposure_type,device_used,result_of,device_purpose,
+                                        exposure_when,exposure_description,patient_hiv_status,patient_hbv_status,previous_exposures,previous_pep_initiated);
                                 exposureArrayList.add(exposure);
                                 mAdapter.notifyDataSetChanged();
 
@@ -386,20 +387,22 @@ public class ExposuresFragment extends Fragment {
 
 
                                 int  id = item.has("id") ? item.getInt("id") : 0;
-                                int device_id = item.has("device_id") ? item.getInt("device_id") : 0;
-                                String device_name = item.has("device") ? item.getString("device") : "";
-                                String date = item.has("date") ? item.getString("date") : "";
-                                String type = item.has("type") ? item.getString("type") : "";
-                                String location = item.has("location") ? item.getString("location") : "";
-                                String description = item.has("description") ? item.getString("description") : "";
-                                int previous_exposures = item.has("previous_exposures") ? item.getInt("location") : 0;
+                                String exposure_date = item.has("exposure_date") ? item.getString("exposure_date") : "";
+                                String pep_date = item.has("pep_date") ? item.getString("pep_date") : "";
+                                String exposure_location = item.has("exposure_location") ? item.getString("exposure_location") : "";
+                                String exposure_type = item.has("exposure_type") ? item.getString("exposure_type") : "";
+                                String device_used = item.has("device_used") ? item.getString("device_used") : "";
+                                String result_of = item.has("result_of") ? item.getString("result_of") : "";
+                                String device_purpose = item.has("device_purpose") ? item.getString("device_purpose") : "";
+                                String exposure_when = item.has("exposure_when") ? item.getString("exposure_when") : "";
+                                String exposure_description = item.has("exposure_description") ? item.getString("exposure_description") : "";
+                                int previous_exposures = item.has("previous_exposures") ? item.getInt("previous_exposures") : 0;
                                 String patient_hiv_status = item.has("patient_hiv_status") ? item.getString("patient_hiv_status") : "";
                                 String patient_hbv_status = item.has("patient_hbv_status") ? item.getString("patient_hbv_status") : "";
-                                int pep_initiated = item.has("pep_initiated") ? item.getInt("pep_initiated") : 0;
-                                String device_purpose = item.has("device_purpose") ? item.getString("device_purpose") : "";
+                                String previous_pep_initiated = item.has("previous_pep_initiated") ? item.getString("previous_pep_initiated") : "";
 
-                                Exposure exposure = new Exposure(id,device_id,device_name,date,type,location,description,previous_exposures,
-                                        patient_hiv_status,patient_hbv_status,pep_initiated,device_purpose);
+                                Exposure exposure = new Exposure(id,exposure_date,pep_date,exposure_location,exposure_type,device_used,result_of,device_purpose,
+                                        exposure_when,exposure_description,patient_hiv_status,patient_hbv_status,previous_exposures,previous_pep_initiated);
 
                                 exposureArrayList.add(exposure);
                                 mAdapter.notifyDataSetChanged();
