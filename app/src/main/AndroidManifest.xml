@@ -19,9 +19,13 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ForgotPasswordActivity"></activity>
-        <activity android:name=".SignUpActivity"></activity>
-        <activity android:name=".SignInActivity" />
+        <activity android:name=".ForgotPasswordActivity">
+
+        </activity>
+        <activity android:name=".SignInActivity"
+            android:windowSoftInputMode="adjustResize">
+
+        </activity>
         <activity android:name=".Splash"
             android:screenOrientation="locked">
             <intent-filter>

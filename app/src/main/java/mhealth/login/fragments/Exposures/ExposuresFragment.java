@@ -130,6 +130,12 @@ public class ExposuresFragment extends Fragment {
         root =  inflater.inflate(R.layout.fragment_exposures, container, false);
         unbinder = ButterKnife.bind(this, root);
 
+        loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+
+        if (loggedInUser.getProfile_complete() == 0){
+            NavHostFragment.findNavController(ExposuresFragment.this).navigate(R.id.nav_complete_profile);
+        }
+
 
         fabReport.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,11 +153,6 @@ public class ExposuresFragment extends Fragment {
 
 
 
-        loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
-
-        if (loggedInUser.getProfile_complete() == 0){
-            NavHostFragment.findNavController(ExposuresFragment.this).navigate(R.id.nav_complete_profile);
-        }
 
         fab_other_exposure.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -260,7 +261,8 @@ public class ExposuresFragment extends Fragment {
                     exposureArrayList.clear();
 
                     myShouldLoadMore = true;
-                    recyclerView.setVisibility(View.VISIBLE);
+                    if (recyclerView != null)
+                        recyclerView.setVisibility(View.VISIBLE);
 
                     if (shimmer_my_container!=null){
                         shimmer_my_container.stopShimmerAnimation();
@@ -312,7 +314,8 @@ public class ExposuresFragment extends Fragment {
 
                         }else {
                             //not data found
-                            no_exposures.setVisibility(View.VISIBLE);
+                            if (no_exposures!=null)
+                                no_exposures.setVisibility(View.VISIBLE);
                         }
                     }else {
                         InfoMessage bottomSheetFragment = InfoMessage.newInstance(message,errors,context);
