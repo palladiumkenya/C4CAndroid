@@ -92,6 +92,18 @@
         android:id="@+id/nac_resource_details"
         android:name="mhealth.login.fragments.Reasources.ResourceDetailsFragment"
         android:label="Details" />
+    <fragment
+        android:id="@+id/nav_faqs"
+        android:name="mhealth.login.fragments.Reasources.FAQsFragment"
+        android:label="FAQs" />
+    <fragment
+        android:id="@+id/nascop_training"
+        android:name="mhealth.login.fragments.Reasources.NascopTrainingFragment"
+        android:label="Nascop HIV Services" />
+    <fragment
+        android:id="@+id/nav_resource_links"
+        android:name="mhealth.login.fragments.Reasources.ResourceLinksFragment"
+        android:label="Resource Links" />
 
 
 </navigation>

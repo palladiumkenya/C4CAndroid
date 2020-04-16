@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_immunization_profile"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:shimmer="http://schemas.android.com/tools">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator_lyt"
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/spacing_large"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="2dp"
+                    app:cardElevation="2dp">
+
+                    <LinearLayout
+                        android:id="@+id/header"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/spacing_xmedium">
+
+
+                        <ImageView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            app:srcCompat="@drawable/ic_resources" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/spacing_large" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_medium"
+                            android:text="@string/resource_links"
+                            android:textAllCaps="true"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                            android:textColor="@color/blue_grey_800"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_medium"
+                            android:text="@string/links_to_some_useful_resources"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                            android:textColor="@color/blue_grey_300"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/lk1"
+                        android:layout_width="match_parent"
+                        android:layout_marginBottom="10sp"
+                        android:layout_marginTop="10sp"
+                        android:textStyle="italic"
+                        android:textSize="20sp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:text="National"
+                        android:textColor="@color/blue_700"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/lk2"
+                        android:layout_width="match_parent"
+                        android:textStyle="italic"
+                        android:textSize="20sp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_marginTop="@dimen/spacing_large"
+                        android:text="Cardiovascular-guidelines"
+                        android:textColor="@color/blue_700"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/lk3"
+                        android:layout_width="match_parent"
+                        android:textStyle="italic"
+                        android:textSize="20sp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_marginTop="@dimen/spacing_large"
+                        android:text="clinical guidelines diagnosis"
+                        android:textColor="@color/blue_700"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/lk4"
+                        android:layout_width="match_parent"
+                        android:textStyle="italic"
+                        android:textSize="20sp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_marginTop="@dimen/spacing_large"
+                        android:text="Health Act No 21 of 2017"
+                        android:textColor="@color/blue_700"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/lk5"
+                        android:layout_width="match_parent"
+                        android:textStyle="italic"
+                        android:textSize="20sp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_marginTop="@dimen/spacing_large"
+                        android:text="Kenya strategy ncds 2015"
+                        android:textColor="@color/blue_700"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/lk6"
+                        android:layout_width="match_parent"
+                        android:textStyle="italic"
+                        android:textSize="20sp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_marginTop="@dimen/spacing_large"
+                        android:text="Kenya Health policy 2014"
+                        android:textColor="@color/blue_700"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/lk7"
+                        android:layout_width="match_parent"
+                        android:textStyle="italic"
+                        android:textSize="20sp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_marginTop="@dimen/spacing_large"
+                        android:text="National Cancer Screening Guidelines"
+                        android:textColor="@color/blue_700"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/lk8"
+                        android:layout_width="match_parent"
+                        android:textStyle="italic"
+                        android:textSize="20sp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:text="National Cancer Treatment Guidelines"
+                        android:textColor="@color/blue_700"
+                        android:layout_marginTop="@dimen/spacing_large"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/lk9"
+                        android:layout_width="match_parent"
+                        android:textStyle="italic"
+                        android:textSize="20sp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_marginTop="@dimen/spacing_large"
+                        android:text="National Gudelines for healthy diets"
+                        android:textColor="@color/blue_700"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/lk10"
+                        android:layout_width="match_parent"
+                        android:textStyle="italic"
+                        android:textSize="20sp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_marginTop="@dimen/spacing_large"
+                        android:text="National Palliative Care"
+                        android:textColor="@color/blue_700"
+                        android:layout_height="wrap_content" />
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
+</LinearLayout>

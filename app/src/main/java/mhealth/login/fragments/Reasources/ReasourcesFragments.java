@@ -24,6 +24,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import mhealth.login.R;
 import mhealth.login.dependencies.Constants;
+import mhealth.login.models.Hcw;
 import mhealth.login.models.User;
 
 
@@ -33,6 +34,7 @@ public class ReasourcesFragments extends Fragment {
     private Context context;
 
     private User loggedInUser;
+    private Hcw hcw;
 
     @BindView(R.id.tab_layout)
     TabLayout tab_layout;
@@ -63,6 +65,7 @@ public class ReasourcesFragments extends Fragment {
         unbinder = ButterKnife.bind(this, root);
 
         loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+        hcw = (Hcw) Stash.getObject(Constants.HCW, Hcw.class);
 
         if (loggedInUser.getProfile_complete() == 0){
             NavHostFragment.findNavController(ReasourcesFragments.this).navigate(R.id.nav_complete_profile);
@@ -82,9 +85,9 @@ public class ReasourcesFragments extends Fragment {
 
 
         Adapter adapter = new Adapter(getChildFragmentManager());
-        adapter.addFragment(new CMESTabFragment(), "CMEs");
-        adapter.addFragment(new ProtocolsTabFragment(), "Protocols");
-//        adapter.addFragment(new JobAidesTabFragment(), "Job Aides");
+        adapter.addFragment(new CMESTabFragment(), "General");
+        adapter.addFragment(new ProtocolsTabFragment(), hcw == null ? "Facility" : hcw.getFacility_name());
+        adapter.addFragment(new InfoCenterTabFragment(), "Info Center");
         viewPager.setAdapter(adapter);
     }
 
