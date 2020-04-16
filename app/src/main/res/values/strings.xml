@@ -327,6 +327,10 @@
     <string name="which_devices_caused">Which devices caused the injury?</string>
     <string name="how_did_the_injury_exposure_occur">How did the injury/exposure occur?</string>
     <string name="the_exposure_was_a_result_of">The exposure was a result of?</string>
+    <string name="m_amp_e_tools_and_training_courses"><![CDATA[M&E tools and training courses]]></string>
+    <string name="nascop_hiv_services">NASCOP HIV Services</string>
+    <string name="links_to_some_useful_resources">Links to some useful resources</string>
+    <string name="resource_links">Resource Links</string>
 
 
 </resources>

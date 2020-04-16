@@ -658,10 +658,11 @@ public class UpdateProfileFragment extends Fragment {
                         int facility_id = hcw.has("facility_id") ? hcw.getInt("facility_id") : 0;
                         int facility_department_id = hcw.has("facility_department_id") ? hcw.getInt("facility_department_id") : 0;
                         int cadre_id = hcw.has("cadre_id") ? hcw.getInt("cadre_id") : 0;
+                        String facility_name = hcw.has("facility_name") ? hcw.getString("facility_name") : "";
                         String dob = hcw.has("dob") ? hcw.getString("dob") : "";
                         String id_number = hcw.has("id_number") ? hcw.getString("id_number") : "";
 
-                        Hcw hcw1 = new Hcw(id,facility_id,facility_department_id,cadre_id,dob,id_number);
+                        Hcw hcw1 = new Hcw(id,facility_id,facility_department_id,cadre_id,facility_name,dob,id_number);
 
                         Stash.put(Constants.HCW, hcw1);
 

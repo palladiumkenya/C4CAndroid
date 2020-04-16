@@ -57,25 +57,13 @@ public class Constants {
     public static String DISEASES = "diseases";
     public static String NASCOP_CONTACT = "0800724848";
 
+    public static String ART_GUIDELINES = "https://www.nascop.or.ke/new-guidelines";
+    public static String NASCOP_WEBSITE = "https://www.nascop.or.ke";
 
 
-    public static final String[] SPINNERLISTWHERE = {"Medical Ward", "Surgical Ward", "Theater", "Maternity", "Dental Clinic", "OP/MCH", "Laundry", "Laboratory","Other"};
-    public static final String[] SPINNERLISTTYPE = {"Needle Stick", "Cuts", "Splash on Mucosa", "Non-intact Skin", "Bite", "Other"};
-    public static final String[] SPINNERLISTDEVICE = {
-            "Syringe/Needle IM/SC Injection",
-            "Syring/Needle Blood Drawing",
-            "Phlebotomy Needle/ Vacuum set",
-            "IV Catheter/Canula",
-            "Needle on IV Line",
-            "Unused Needle",
-            "Lancet",
-            "Suture Needle",
-            "Scalpel",
-            "Capillary Tube",
-            "Glass Slide",
-            "Pippete Tip",
-            "Other"
-    };
+    public static String PORTAL_LINK = "https://eportal.uonbi.ac.ke/";
+    public static String REGISTRATION_LINK = "https://docs.google.com/forms/d/e/1FAIpQLScd_ZtamUKNrQ4qN4Raf4qT-5vhdjOf4k3gYpCIsEdcnCzw3g/viewform";
+
 
 
 

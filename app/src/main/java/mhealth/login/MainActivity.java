@@ -3,6 +3,14 @@ package mhealth.login;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.bumptech.glide.Glide;
 import com.fxn.stash.Stash;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -40,11 +48,23 @@ import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
+import mhealth.login.dependencies.AppController;
 import mhealth.login.dependencies.Constants;
+import mhealth.login.dependencies.VolleyErrors;
+import mhealth.login.dialogs.InfoMessage;
 import mhealth.login.models.Creds;
+import mhealth.login.models.Hcw;
 import mhealth.login.models.User;
+
+import static mhealth.login.dependencies.AppController.TAG;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -115,6 +135,8 @@ public class MainActivity extends AppCompatActivity {
             drawer_phone.setText("+"+loggedInUser.getMsisdn());
 
         }
+
+        getProfile();
 
     }
 
@@ -224,6 +246,79 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    private void getProfile(){
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
+                Stash.getString(Constants.END_POINT)+ Constants.GET_PROFILE, null, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+//                Log.e(TAG, response.toString());
+
+
+                try {
+                    boolean  status = response.has("success") && response.getBoolean("success");
+                    String  message = response.has("message") ? response.getString("message") : "" ;
+                    String  errors = response.has("errors") ? response.getString("errors") : "" ;
+
+                    if (status){
+
+                        JSONObject data = response.getJSONObject("data");
+
+                        JSONObject hcw = data.getJSONObject("hcw");
+
+                        int id = hcw.has("id") ? hcw.getInt("id") : 0;
+                        int facility_id = hcw.has("facility_id") ? hcw.getInt("facility_id") : 0;
+                        int facility_department_id = hcw.has("facility_department_id") ? hcw.getInt("facility_department_id") : 0;
+                        int cadre_id = hcw.has("cadre_id") ? hcw.getInt("cadre_id") : 0;
+                        String facility_name = hcw.has("facility_name") ? hcw.getString("facility_name") : "";
+                        String dob = hcw.has("dob") ? hcw.getString("dob") : "";
+                        String id_number = hcw.has("id_number") ? hcw.getString("id_number") : "";
+
+                        Hcw hcw1 = new Hcw(id,facility_id,facility_department_id,cadre_id,facility_name,dob,id_number);
+
+                        Stash.put(Constants.HCW, hcw1);
+
+                    }else {
+                        Log.e("errors: ",message+"==>"+errors);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                VolleyLog.e(TAG, "Error: " + error.getMessage());
+            }
+        })
+        {
+
+            /**
+             * Passing some request headers
+             */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Authorization", loggedInUser.getToken_type()+" "+loggedInUser.getAccess_token());
+                headers.put("Content-Type", "application/json");
+                headers.put("Accept", "application/json");
+                return headers;
+            }
+        };
+
+
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        AppController.getInstance().addToRequestQueue(jsonObjReq);
+    }
+
 
 
 }
