@@ -331,6 +331,9 @@
     <string name="nascop_hiv_services">NASCOP HIV Services</string>
     <string name="links_to_some_useful_resources">Links to some useful resources</string>
     <string name="resource_links">Resource Links</string>
+    <string name="reset_pass">Reset Password</string>
+    <string name="new_pass">Enter a New Password</string>
+    <string name="reenter_new_pass">Re-enter your New Password</string>
 
 
 </resources>
