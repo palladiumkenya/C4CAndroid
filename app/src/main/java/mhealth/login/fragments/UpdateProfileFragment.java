@@ -395,8 +395,8 @@ public class UpdateProfileFragment extends Fragment {
                             facilityDepartmentsList.add(newFacilityDept.getDepartment_name());
                         }
 
-//                        facilityDepartments.add(new FacilityDepartment(0,0,"--select department--"));
-//                        facilityDepartmentsList.add("--select department--");
+                        facilityDepartments.add(new FacilityDepartment(0,0,"--select department--"));
+                        facilityDepartmentsList.add("--select department--");
 
                         Hcw hcw = (Hcw) Stash.getObject(Constants.HCW, Hcw.class);
 
