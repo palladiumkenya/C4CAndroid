@@ -333,9 +333,16 @@
     <string name="resource_links">Resource Links</string>
     <string name="reset_pass">Reset Password</string>
     <string name="new_pass">Enter a New Password</string>
-    <string name="reenter_new_pass">Re-enter your New Password</string>
+    <string name="reenter_new_pass">Password Confirmation</string>
     <string name="additional_files">Additional Files</string>
     <string name="post">Post</string>
+    <string name="continue_">CONTINUE</string>
+    <string name="please_enter_the_otp_sent_to_your_phone_and_change_your_password">Please enter the OTP sent to your phone and change your password.</string>
+    <string name="one_time_password">One Time Password</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="otp_required">OTP is required</string>
+    <string name="new_pass_re">New password is required</string>
+    <string name="bath_pass">Both passwords must match</string>
 
 
 </resources>
