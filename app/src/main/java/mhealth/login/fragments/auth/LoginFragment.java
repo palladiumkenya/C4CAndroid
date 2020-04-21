@@ -1,6 +1,5 @@
 package mhealth.login.fragments.auth;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,17 +10,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.AuthFailureError;
@@ -32,24 +27,19 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.fxn.stash.Stash;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
-import com.mikhaellopez.circularimageview.CircularImageView;
 
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import mhealth.login.ForgotPasswordActivity;
 import mhealth.login.MainActivity;
 import mhealth.login.R;
 import mhealth.login.SignInActivity;
@@ -146,8 +136,8 @@ public class LoginFragment extends Fragment {
         forgot_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, ForgotPasswordActivity.class);
-                startActivity(intent);
+                if(navigationDelegate!=null)
+                    navigationDelegate.navigateTo(SendOtpFragment.getInstance((SignInActivity) getActivity()),true, "Reset Password");
             }
         });
 

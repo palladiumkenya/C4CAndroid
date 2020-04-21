@@ -133,7 +133,6 @@
                     android:layout_marginTop="@dimen/spacing_medium"
                     android:clickable="true"
                     android:focusable="true"
-                    android:visibility="gone"
                     android:text="@string/forgot_password"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                     android:textColor="@color/blue_grey_400"

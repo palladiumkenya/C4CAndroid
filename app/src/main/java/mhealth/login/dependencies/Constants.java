@@ -19,6 +19,8 @@ public class Constants {
     public static String COMPLETE_PROFILE = "auth/complete_profile";
     public static String GET_PROFILE = "auth/user";
     public static String UPDATE_PROFILE = "auth/update_profile";
+    public static String SEND_OTP = "auth/send_reset_otp";
+    public static String RESET_PASSWORD = "auth/reset_password";
 
 
 
