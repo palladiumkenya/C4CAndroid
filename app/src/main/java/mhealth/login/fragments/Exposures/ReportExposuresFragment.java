@@ -51,6 +51,7 @@ import mhealth.login.dependencies.AppController;
 import mhealth.login.dependencies.Constants;
 import mhealth.login.dependencies.VolleyErrors;
 import mhealth.login.dialogs.InfoMessage;
+import mhealth.login.fragments.auth.LoginFragment;
 import mhealth.login.models.User;
 
 import static mhealth.login.dependencies.AppController.TAG;
@@ -873,13 +874,14 @@ public class ReportExposuresFragment extends Fragment {
         }
 
 
+        Log.e("Payload", payload.toString());
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
                 Stash.getString(Constants.END_POINT)+Constants.REPORT_EXPOSURE, payload, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
-                Log.e(TAG, response.toString());
+                Log.e("Respose:", response.toString());
 
 
                 lyt_progress.setVisibility(View.GONE);
