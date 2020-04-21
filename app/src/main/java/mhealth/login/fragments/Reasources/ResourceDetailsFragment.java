@@ -1,6 +1,8 @@
 package mhealth.login.fragments.Reasources;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -10,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
@@ -40,11 +43,13 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import mhealth.login.R;
 import mhealth.login.adapters.ResourcesAdapter;
+import mhealth.login.adapters.ResourcesFilesAdapter;
 import mhealth.login.dependencies.AppController;
 import mhealth.login.dependencies.Constants;
 import mhealth.login.dependencies.VolleyErrors;
 import mhealth.login.dialogs.InfoMessage;
 import mhealth.login.models.Resource;
+import mhealth.login.models.ResourceFile;
 import mhealth.login.models.User;
 
 import static mhealth.login.dependencies.AppController.TAG;
@@ -57,6 +62,7 @@ public class ResourceDetailsFragment extends Fragment {
     private User loggedInUser;
     private Resource resource;
 
+    private ResourcesFilesAdapter mAdapter;
 
 
 
@@ -71,6 +77,12 @@ public class ResourceDetailsFragment extends Fragment {
 
     @BindView(R.id.image)
     ImageView image;
+
+    @BindView(R.id.additional_files)
+    TextView additional_files;
+
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
 
 
 
@@ -127,6 +139,36 @@ public class ResourceDetailsFragment extends Fragment {
                     .fitCenter()
                     .placeholder(R.drawable.image_7)
                     .into(image);
+
+
+            if (resource.getResourceFiles().size() == 0){
+                additional_files.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.GONE);
+
+            }else {
+                additional_files.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.VISIBLE);
+            }
+
+            mAdapter = new ResourcesFilesAdapter(context, resource.getResourceFiles());
+            recyclerView.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.VERTICAL, false));
+            recyclerView.setHasFixedSize(true);
+
+            //set data and list adapter
+            recyclerView.setAdapter(mAdapter);
+
+            mAdapter.setOnItemClickListener(new ResourcesFilesAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(int position) {
+                    ResourceFile resourceFile = resource.getResourceFiles().get(position);
+
+                    Uri uri = Uri.parse(resourceFile.getLink());
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+                }
+            });
+
+
         }
 
 

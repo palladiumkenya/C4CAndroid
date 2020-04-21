@@ -44,6 +44,7 @@ public class Constants {
     //resources
     public static String CMES = "resources/cmes";
     public static String HCW_PROTOCOLS = "resources/hcw/protocols";
+    public static String SPECIAL_RESOURCES = "resources/special";
 
     //broadcasts
     public static String APPROVED_BROADCASTS = "broadcasts/mobile/approved";

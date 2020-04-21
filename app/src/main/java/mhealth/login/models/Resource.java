@@ -1,6 +1,7 @@
 package mhealth.login.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Resource implements Serializable {
     private int id;
@@ -8,13 +9,15 @@ public class Resource implements Serializable {
     private String body;
     private String file;
     private String created_at;
+    private ArrayList<ResourceFile> resourceFiles;
 
-    public Resource(int id, String title, String body, String file, String created_at) {
+    public Resource(int id, String title, String body, String file, String created_at, ArrayList<ResourceFile> resourceFiles) {
         this.id = id;
         this.title = title;
         this.body = body;
         this.file = file;
         this.created_at = created_at;
+        this.resourceFiles = resourceFiles;
     }
 
 
@@ -56,5 +59,13 @@ public class Resource implements Serializable {
 
     public void setCreated_at(String created_at) {
         this.created_at = created_at;
+    }
+
+    public ArrayList<ResourceFile> getResourceFiles() {
+        return resourceFiles;
+    }
+
+    public void setResourceFiles(ArrayList<ResourceFile> resourceFiles) {
+        this.resourceFiles = resourceFiles;
     }
 }
