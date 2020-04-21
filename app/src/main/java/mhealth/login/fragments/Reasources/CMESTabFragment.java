@@ -42,6 +42,7 @@ import mhealth.login.dependencies.Constants;
 import mhealth.login.dependencies.VolleyErrors;
 import mhealth.login.dialogs.InfoMessage;
 import mhealth.login.models.Resource;
+import mhealth.login.models.ResourceFile;
 import mhealth.login.models.User;
 
 import static mhealth.login.dependencies.AppController.TAG;
@@ -211,7 +212,25 @@ public class CMESTabFragment extends Fragment {
                                 String file = item.has("file") ? item.getString("file") : "";
                                 String created_at = item.has("created_at") ? item.getString("created_at") : "";
 
-                                Resource resource = new Resource(id,title,body,file,created_at);
+
+                                JSONArray jsonArray = (JSONArray) item.getJSONArray("files");
+
+                                ArrayList<ResourceFile> resourceFiles = new ArrayList<>();
+
+                                for (int j = 0; j < jsonArray.length(); j++) {
+
+                                    JSONObject files = (JSONObject) jsonArray.get(j);
+
+                                    String link = files.has("link") ? files.getString("link") : "";
+                                    String file_name = files.has("file_name") ? files.getString("file_name") : "";
+
+                                    ResourceFile resourceFile = new ResourceFile(file_name,link);
+
+                                    resourceFiles.add(resourceFile);
+                                }
+
+
+                                Resource resource = new Resource(id,title,body,file,created_at,resourceFiles);
 
                                 resourceArrayList.add(resource);
                                 mAdapter.notifyDataSetChanged();
@@ -297,7 +316,24 @@ public class CMESTabFragment extends Fragment {
                                 String file = item.has("file") ? item.getString("file") : "";
                                 String created_at = item.has("created_at") ? item.getString("created_at") : "";
 
-                                Resource resource = new Resource(id,title,body,file,created_at);
+                                JSONArray jsonArray = (JSONArray) item.getJSONArray("files");
+
+                                ArrayList<ResourceFile> resourceFiles = new ArrayList<>();
+
+                                for (int j = 0; j < jsonArray.length(); j++) {
+
+                                    JSONObject files = (JSONObject) jsonArray.get(j);
+
+                                    String link = files.has("link") ? files.getString("link") : "";
+                                    String file_name = files.has("file_name") ? files.getString("file_name") : "";
+
+                                    ResourceFile resourceFile = new ResourceFile(file_name,link);
+
+                                    resourceFiles.add(resourceFile);
+                                }
+
+
+                                Resource resource = new Resource(id,title,body,file,created_at,resourceFiles);
 
                                 resourceArrayList.add(resource);
                                 mAdapter.notifyDataSetChanged();

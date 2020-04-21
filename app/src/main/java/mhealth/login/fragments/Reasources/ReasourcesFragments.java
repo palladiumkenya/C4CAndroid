@@ -12,6 +12,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.textservice.SpellCheckerSubtype;
 
 import com.fxn.stash.Stash;
 import com.google.android.material.tabs.TabLayout;
@@ -85,6 +86,7 @@ public class ReasourcesFragments extends Fragment {
 
 
         Adapter adapter = new Adapter(getChildFragmentManager());
+        adapter.addFragment(new SpecialResourcesTabFragment(), "Covid-19");
         adapter.addFragment(new CMESTabFragment(), "General");
         adapter.addFragment(new ProtocolsTabFragment(), hcw == null ? "Facility" : hcw.getFacility_name());
         adapter.addFragment(new InfoCenterTabFragment(), "Info Center");

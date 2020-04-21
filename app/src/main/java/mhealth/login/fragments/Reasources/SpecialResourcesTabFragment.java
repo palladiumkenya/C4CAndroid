@@ -2,16 +2,15 @@ package mhealth.login.fragments.Reasources;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -40,20 +39,19 @@ import mhealth.login.dependencies.AppController;
 import mhealth.login.dependencies.Constants;
 import mhealth.login.dependencies.VolleyErrors;
 import mhealth.login.dialogs.InfoMessage;
-import mhealth.login.fragments.Immunization.NewImmunizationFragment;
 import mhealth.login.models.Resource;
 import mhealth.login.models.ResourceFile;
 import mhealth.login.models.User;
 
 import static mhealth.login.dependencies.AppController.TAG;
 
-
-public class ProtocolsTabFragment extends Fragment {
+public class SpecialResourcesTabFragment extends Fragment {
     private Unbinder unbinder;
     private View root;
     private Context context;
 
     private User loggedInUser;
+
 
     private boolean myShouldLoadMore = true;
     private String MY_NEXT_LINK = null;
@@ -61,15 +59,17 @@ public class ProtocolsTabFragment extends Fragment {
     private ResourcesAdapter mAdapter;
     private ArrayList<Resource> resourceArrayList;
 
+
+
     @BindView(R.id.shimmer_my_container)
     ShimmerFrameLayout shimmer_my_container;
 
-
-    @BindView(R.id.no_protocols)
-    LinearLayout no_protocols;
+    @BindView(R.id.no_cmes)
+    LinearLayout no_cmes;
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
+
 
     @Override
     public void onAttach(Context ctx) {
@@ -89,13 +89,13 @@ public class ProtocolsTabFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        root = inflater.inflate(R.layout.fragment_protocols_tab, container, false);
+        root =  inflater.inflate(R.layout.fragment_cmes_tab, container, false);
         unbinder = ButterKnife.bind(this, root);
 
         loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
 
         if (loggedInUser.getProfile_complete() == 0){
-            NavHostFragment.findNavController(ProtocolsTabFragment.this).navigate(R.id.nav_complete_profile);
+            NavHostFragment.findNavController(SpecialResourcesTabFragment.this).navigate(R.id.nav_complete_profile);
         }
 
 
@@ -131,10 +131,9 @@ public class ProtocolsTabFragment extends Fragment {
 
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("resource", resource);
-                NavHostFragment.findNavController(ProtocolsTabFragment.this).navigate(R.id.nac_resource_details, bundle);
+                NavHostFragment.findNavController(SpecialResourcesTabFragment.this).navigate(R.id.nac_resource_details, bundle);
             }
         });
-
 
 
 
@@ -146,6 +145,7 @@ public class ProtocolsTabFragment extends Fragment {
         super.onDestroyView();
         unbinder.unbind();
     }
+
 
     @Override
     public void onResume() {
@@ -165,7 +165,7 @@ public class ProtocolsTabFragment extends Fragment {
         myShouldLoadMore =false;
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                Stash.getString(Constants.END_POINT)+ Constants.HCW_PROTOCOLS, null, new Response.Listener<JSONObject>() {
+                Stash.getString(Constants.END_POINT)+ Constants.SPECIAL_RESOURCES, null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
@@ -176,9 +176,7 @@ public class ProtocolsTabFragment extends Fragment {
                     resourceArrayList.clear();
 
                     myShouldLoadMore = true;
-
-                    if (recyclerView !=null)
-                        recyclerView.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.VISIBLE);
 
                     if (shimmer_my_container!=null){
                         shimmer_my_container.stopShimmerAnimation();
@@ -198,7 +196,7 @@ public class ProtocolsTabFragment extends Fragment {
 
                         if (myArray.length() > 0){
 
-                            no_protocols.setVisibility(View.GONE);
+                            no_cmes.setVisibility(View.GONE);
 
 
                             for (int i = 0; i < myArray.length(); i++) {
@@ -211,6 +209,7 @@ public class ProtocolsTabFragment extends Fragment {
                                 String body = item.has("body") ? item.getString("body") : "";
                                 String file = item.has("file") ? item.getString("file") : "";
                                 String created_at = item.has("created_at") ? item.getString("created_at") : "";
+
 
                                 JSONArray jsonArray = (JSONArray) item.getJSONArray("files");
 
@@ -238,7 +237,7 @@ public class ProtocolsTabFragment extends Fragment {
 
                         }else {
                             //not data found
-                            no_protocols.setVisibility(View.VISIBLE);
+                            no_cmes.setVisibility(View.VISIBLE);
                         }
                     }else {
                         InfoMessage bottomSheetFragment = InfoMessage.newInstance(message,errors,context);
@@ -258,7 +257,7 @@ public class ProtocolsTabFragment extends Fragment {
                 myShouldLoadMore =true;
 
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
-                Snackbar.make(root.findViewById(R.id.frag_protocols), VolleyErrors.getVolleyErrorMessages(error, context), Snackbar.LENGTH_LONG).show();
+                Snackbar.make(root.findViewById(R.id.frag_cmes), VolleyErrors.getVolleyErrorMessages(error, context), Snackbar.LENGTH_LONG).show();
 
             }
         }){
@@ -358,13 +357,14 @@ public class ProtocolsTabFragment extends Fragment {
                 myShouldLoadMore =true;
 
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
-                Snackbar.make(root.findViewById(R.id.frag_protocols), VolleyErrors.getVolleyErrorMessages(error, context), Snackbar.LENGTH_LONG).show();
+                Snackbar.make(root.findViewById(R.id.frag_cmes), VolleyErrors.getVolleyErrorMessages(error, context), Snackbar.LENGTH_LONG).show();
 
             }
         });
 
         AppController.getInstance().addToRequestQueue(jsonObjReq);
     }
+
 
 
 }

@@ -334,6 +334,8 @@
     <string name="reset_pass">Reset Password</string>
     <string name="new_pass">Enter a New Password</string>
     <string name="reenter_new_pass">Re-enter your New Password</string>
+    <string name="additional_files">Additional Files</string>
+    <string name="post">Post</string>
 
 
 </resources>
