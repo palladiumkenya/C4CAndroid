@@ -157,7 +157,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/spacing_middle"
                         android:layout_marginRight="@dimen/spacing_middle"
-                        android:text="NASCOP"
+                        android:text="NASCOP WEBSITE"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="@color/grey_90" />
 
@@ -214,7 +214,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/spacing_middle"
                         android:layout_marginRight="@dimen/spacing_middle"
-                        android:text="NASCOP HIV Services"
+                        android:text="E-Learning"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="@color/grey_90" />
 

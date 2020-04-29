@@ -16,10 +16,10 @@
             android:id="@+id/nav_immunizations"
             android:icon="@drawable/ic_immunization"
             android:title="@string/immunizations" />
-        <item
-            android:id="@+id/nav_broadcasts"
-            android:icon="@drawable/ic_message"
-            android:title="@string/broadcasts" />
+<!--        <item-->
+<!--            android:id="@+id/nav_broadcasts"-->
+<!--            android:icon="@drawable/ic_message"-->
+<!--            android:title="@string/broadcasts" />-->
         <item
             android:id="@+id/nav_resources"
             android:icon="@drawable/ic_resources"
@@ -28,10 +28,10 @@
             android:id="@+id/nav_check_in"
             android:icon="@drawable/ic_check_in"
             android:title="@string/check_in" />
-        <item
-            android:id="@+id/nav_feedback"
-            android:icon="@drawable/ic_feedback"
-            android:title="@string/feedback" />
+<!--        <item-->
+<!--            android:id="@+id/nav_feedback"-->
+<!--            android:icon="@drawable/ic_feedback"-->
+<!--            android:title="@string/feedback" />-->
 <!--        <item-->
 <!--            android:id="@+id/nav_tools"-->
 <!--            android:icon="@drawable/ic_menu_manage"-->
@@ -49,17 +49,17 @@
         </menu>
     </item>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="@string/menu_share" />
+<!--    <item android:title="Communicate">-->
+<!--        <menu>-->
+<!--            <item-->
+<!--                android:id="@+id/nav_share"-->
+<!--                android:icon="@drawable/ic_menu_share"-->
+<!--                android:title="@string/menu_share" />-->
 <!--            <item-->
 <!--                android:id="@+id/nav_send"-->
 <!--                android:icon="@drawable/ic_menu_send"-->
 <!--                android:title="@string/menu_send" />-->
-        </menu>
-    </item>
+<!--        </menu>-->
+<!--    </item>-->
 
 </menu>
