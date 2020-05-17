@@ -282,7 +282,8 @@ public class ExposuresFragment extends Fragment {
 
                         if (myArray.length() > 0){
 
-                            no_exposures.setVisibility(View.GONE);
+                            if (no_exposures != null)
+                                no_exposures.setVisibility(View.GONE);
 
 
                             for (int i = 0; i < myArray.length(); i++) {

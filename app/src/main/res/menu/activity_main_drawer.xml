@@ -24,10 +24,10 @@
             android:id="@+id/nav_resources"
             android:icon="@drawable/ic_resources"
             android:title="@string/resources" />
-        <item
-            android:id="@+id/nav_check_in"
-            android:icon="@drawable/ic_check_in"
-            android:title="@string/check_in" />
+<!--        <item-->
+<!--            android:id="@+id/nav_check_in"-->
+<!--            android:icon="@drawable/ic_check_in"-->
+<!--            android:title="@string/check_in" />-->
 <!--        <item-->
 <!--            android:id="@+id/nav_feedback"-->
 <!--            android:icon="@drawable/ic_feedback"-->

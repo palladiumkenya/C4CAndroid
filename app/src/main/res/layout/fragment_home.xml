@@ -265,6 +265,7 @@
                     android:layout_margin="@dimen/spacing_medium"
                     android:layout_weight="1"
                     app:cardCornerRadius="2dp"
+                    android:visibility="gone"
                     app:cardElevation="2dp">
 
                     <LinearLayout
