@@ -84,7 +84,9 @@ public class SignInActivity extends AppCompatActivity implements NavigationHost 
         toolbar.setTitle("Sign In");
         setSupportActionBar(toolbar);
 
-        Stash.put(Constants.END_POINT, "http://c4ctest.mhealthkenya.org/api/"); //temporary endpoint
+//        Stash.put(Constants.END_POINT, "http://c4ctest.mhealthkenya.org/api/"); //temporary endpoint
+        Stash.put(Constants.END_POINT, "http://c4c_api.mhealthkenya.org/api/"); //temporary endpoint
+
 
 
         mAuth = FirebaseAuth.getInstance();

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -64,6 +65,7 @@ public class RegisterFragment extends Fragment {
     private EditText input_confirm_password;
     private Button btn_sign_up;
     private LinearLayout lyt_progress;
+    private CheckBox consent_check_box;
 
 
 
@@ -100,6 +102,7 @@ public class RegisterFragment extends Fragment {
         input_confirm_password = (EditText)root.findViewById(R.id.input_confirm_password);
         btn_sign_up = (Button) root.findViewById(R.id.sign_up);
         lyt_progress = (LinearLayout)root.findViewById(R.id.lyt_progress);
+        consent_check_box = (CheckBox) root.findViewById(R.id.consent_check_box);
 
         phone_number.addTextChangedListener(new TextWatcher() {
             @Override
@@ -126,8 +129,8 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (validateTexts()){
-                    lyt_progress.setVisibility(View.VISIBLE);
 
+                    lyt_progress.setVisibility(View.VISIBLE);
                     sendSignUpRequest(first_name.getText().toString(), sur_name.getText().toString(), email.getText().toString(),
                             phone_number.getText().toString(),gender.getSelectedItem().toString(),input_password.getText().toString(), input_confirm_password.getText().toString());
                 }
@@ -212,6 +215,7 @@ public class RegisterFragment extends Fragment {
             payload.put("surname", sur_name);
             payload.put("gender", gender);
             payload.put("email", email);
+            payload.put("consent", consent_check_box.isChecked() ? 1 : 0);
             payload.put("msisdn", "254"+phone_no);
             payload.put("password", input_password);
             payload.put("password_confirmation", input_confirm_password);

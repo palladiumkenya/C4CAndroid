@@ -40,6 +40,7 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -332,30 +333,33 @@ public class CreateProfileFragment extends Fragment {
 
                         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-                        facilitySpinner.setAdapter(aa);
-                        facilitySpinner.setSelection(aa.getCount()-1);
+                        if (facilitySpinner != null){
+                            facilitySpinner.setAdapter(aa);
+                            facilitySpinner.setSelection(aa.getCount()-1);
 
-                        facilityID = facilities.get(aa.getCount()-1).getId();
+                            facilityID = facilities.get(aa.getCount()-1).getId();
 
-                        facilitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                            facilitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                @Override
+                                public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
 
-                                facilityDepartmentSpinner.setAdapter(null);
+                                    facilityDepartmentSpinner.setAdapter(null);
 
-                                facilityID = facilities.get(position).getId();
+                                    facilityID = facilities.get(position).getId();
 
 //                                Toast.makeText(context,facilityID+"", Toast.LENGTH_LONG).show();
 
-                                if (facilityID !=0)
-                                    getDepartments(facilityID);
-                            }
+                                    if (facilityID !=0)
+                                        getDepartments(facilityID);
+                                }
 
-                            @Override
-                            public void onNothingSelected(AdapterView<?> adapterView) {
+                                @Override
+                                public void onNothingSelected(AdapterView<?> adapterView) {
 
-                            }
-                        });
+                                }
+                            });
+
+                        }
 
 
                     } else {
@@ -691,8 +695,17 @@ public class CreateProfileFragment extends Fragment {
                         SimpleDateFormat newFormat = new SimpleDateFormat("yyyy-MM-dd");
 
                         if (doseNumber == 0){
-                            DOB = newFormat.format(date_ship_millis);
-                            tv_dob.setText(newFormat.format(date_ship_millis));
+                            Calendar userAge = new GregorianCalendar(year,month,day);
+                            Calendar minAdultAge = new GregorianCalendar();
+                            minAdultAge.add(Calendar.YEAR, -18);
+                            if (minAdultAge.before(userAge)) {
+                                tv_dob.setText("Age can not be below 18");
+                                tv_dob.setTextColor(Color.RED);
+                            }else {
+                                DOB = newFormat.format(date_ship_millis);
+                                tv_dob.setText(newFormat.format(date_ship_millis));
+                            }
+
                         }else if (doseNumber == 1){
                             first_dose = newFormat.format(date_ship_millis);
                             dose1_date.setText(newFormat.format(date_ship_millis));
