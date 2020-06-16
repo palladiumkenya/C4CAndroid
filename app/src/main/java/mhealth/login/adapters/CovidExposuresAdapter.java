@@ -15,11 +15,11 @@ import java.util.List;
 import mhealth.login.R;
 import mhealth.login.dependencies.Tools;
 import mhealth.login.dependencies.ViewAnimation;
-import mhealth.login.models.CovidExposures;
+import mhealth.login.models.CovidExposure;
 
 public class CovidExposuresAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<CovidExposures> items = new ArrayList<>();
+    private List<CovidExposure> items = new ArrayList<>();
 
     private Context context;
     private OnItemClickListener onItemClickListener;
@@ -31,7 +31,7 @@ public class CovidExposuresAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         this.onItemClickListener = onItemClickListener;
     }
 
-    public CovidExposuresAdapter(Context context, List<CovidExposures> items) {
+    public CovidExposuresAdapter(Context context, List<CovidExposure> items) {
         this.items = items;
         this.context = context;
     }
@@ -43,6 +43,8 @@ public class CovidExposuresAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         public TextView ppe_list;
         public TextView ipc_train;
         public TextView pcr_test_result;
+        public TextView symptoms;
+        public TextView contact;
         public ImageButton bt_expand;
         public View lyt_expand;
         public View lyt_parent;
@@ -55,6 +57,8 @@ public class CovidExposuresAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             ppe_list = (TextView) v.findViewById(R.id.ppe_list);
             ipc_train = (TextView) v.findViewById(R.id.ipc_train);
             pcr_test_result = (TextView) v.findViewById(R.id.pcr_test_result);
+            symptoms = (TextView) v.findViewById(R.id.tv_symptoms);
+            contact = (TextView) v.findViewById(R.id.tv_contact);
             bt_expand = (ImageButton) v.findViewById(R.id.bt_expand);
             lyt_expand = (View) v.findViewById(R.id.lyt_expand);
             lyt_parent = (View) v.findViewById(R.id.lyt_parent);
@@ -72,14 +76,16 @@ public class CovidExposuresAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-        CovidExposures obj = items.get(position);
+        CovidExposure obj = items.get(position);
         if (holder instanceof CovidExposuresAdapter.OriginalViewHolder) {
             CovidExposuresAdapter.OriginalViewHolder view = (CovidExposuresAdapter.OriginalViewHolder) holder;
 
             view.date_of_contact.setText(obj.getDate_of_contact());
-            view.place_of_diagnosis.setText(obj.getPlace_of_diagnosis());
+            view.place_of_diagnosis.setText("Diagnosis: "+obj.getPlace_of_diagnosis());
+            view.symptoms.setText("Symptoms: "+obj.getSymptoms());
+            view.contact.setText("Contact: "+obj.getContact_with());
             view.ppe_list.setText("PPE List: "+obj.getPpes());
-            view.pcr_test_result.setText("PCR Test: "+obj.getSymptoms());
+            view.pcr_test_result.setText("PCR Test: "+obj.getPcr_test());
 
             if (obj.getPpe_worn().equals("1")){
                 view.ppe.setText("PPE Worn: Yes");

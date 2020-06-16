@@ -1,21 +1,12 @@
 package mhealth.login.fragments.Exposures;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -45,13 +36,11 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import mhealth.login.R;
 import mhealth.login.adapters.CovidExposuresAdapter;
-import mhealth.login.adapters.ExposuresAdapter;
 import mhealth.login.dependencies.AppController;
 import mhealth.login.dependencies.Constants;
 import mhealth.login.dependencies.VolleyErrors;
 import mhealth.login.dialogs.InfoMessage;
-import mhealth.login.models.CovidExposures;
-import mhealth.login.models.Exposure;
+import mhealth.login.models.CovidExposure;
 import mhealth.login.models.User;
 
 import static mhealth.login.dependencies.AppController.TAG;
@@ -68,7 +57,7 @@ public class CovidExposuresFragment extends Fragment {
     private String MY_NEXT_LINK = null;
 
     private CovidExposuresAdapter mAdapter;
-    private List<CovidExposures> covidExposuresArrayList;
+    private List<CovidExposure> covidExposureArrayList;
 
 
 
@@ -114,8 +103,8 @@ public class CovidExposuresFragment extends Fragment {
         }
 
 
-        covidExposuresArrayList = new ArrayList<>();
-        mAdapter = new CovidExposuresAdapter(context,covidExposuresArrayList);
+        covidExposureArrayList = new ArrayList<>();
+        mAdapter = new CovidExposuresAdapter(context, covidExposureArrayList);
 
 
         recyclerView.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.VERTICAL, false));
@@ -142,7 +131,7 @@ public class CovidExposuresFragment extends Fragment {
         mAdapter.setOnItemClickListener(new CovidExposuresAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                CovidExposures clickedItem = covidExposuresArrayList.get(position);
+                CovidExposure clickedItem = covidExposureArrayList.get(position);
 //                Intent i = new Intent(context, ClickedActivity.class);
 //                i.putExtra("vehicle", (Serializable) clickedItem);
 //                startActivity(i);
@@ -188,7 +177,7 @@ public class CovidExposuresFragment extends Fragment {
 
 //                    Log.e("resoponse", response.toString());
 
-                    covidExposuresArrayList.clear();
+                    covidExposureArrayList.clear();
 
                     myShouldLoadMore = true;
                     if (recyclerView != null)
@@ -232,9 +221,11 @@ public class CovidExposuresFragment extends Fragment {
                                 String management = item.has("management") ? item.getString("management") : "";
                                 String isolation_start_date = item.has("isolation_start_date") ? item.getString("isolation_start_date") : "";
                                 String contact_with = item.has("contact_with") ? item.getString("contact_with") : "";
+                                String place_of_diagnosis = item.has("place_of_diagnosis") ? item.getString("place_of_diagnosis") : "";
 
-                                CovidExposures covid_exposure = new CovidExposures(id,id_no,date_of_contact,ppe_worn,ppes,ipc_training,symptoms, pcr_test,management, isolation_start_date, contact_with);
-                                covidExposuresArrayList.add(covid_exposure);
+                                CovidExposure covid_exposure = new CovidExposure(id,id_no,date_of_contact,ppe_worn,ppes,ipc_training,symptoms, pcr_test,management,
+                                        isolation_start_date, contact_with,place_of_diagnosis);
+                                covidExposureArrayList.add(covid_exposure);
                                 mAdapter.notifyDataSetChanged();
 
                             }
@@ -327,10 +318,12 @@ public class CovidExposuresFragment extends Fragment {
                                 String management = item.has("management") ? item.getString("management") : "";
                                 String isolation_start_date = item.has("isolation_start_date") ? item.getString("isolation_start_date") : "";
                                 String contact_with = item.has("contact_with") ? item.getString("contact_with") : "";
+                                String place_of_diagnosis = item.has("place_of_diagnosis") ? item.getString("place_of_diagnosis") : "";
 
-                                CovidExposures covid_exposure = new CovidExposures(id,id_no,date_of_contact,ppe_worn,ppes,ipc_training,symptoms, pcr_test,management, isolation_start_date, contact_with);
+                                CovidExposure covid_exposure = new CovidExposure(id,id_no,date_of_contact,ppe_worn,ppes,ipc_training,symptoms, pcr_test,management,
+                                        isolation_start_date, contact_with,place_of_diagnosis);
 
-                                covidExposuresArrayList.add(covid_exposure);
+                                covidExposureArrayList.add(covid_exposure);
                                 mAdapter.notifyDataSetChanged();
                             }
 

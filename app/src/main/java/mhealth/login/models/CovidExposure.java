@@ -1,34 +1,36 @@
 package mhealth.login.models;
 
-public class CovidExposures {
+public class CovidExposure {
     private int id;
     private int id_no;
     private String date_of_contact;
     private String ppe_worn;
     private String ppes;
     private String ipc_training;
-    private String place_of_diagnosis;
     private String symptoms;
     private String pcr_test;
     private String management;
     private String isolation_start_date;
+    private String contact_with;
+    private String place_of_diagnosis;
 
     public boolean expanded = false;
     public boolean parent = false;
 
-    public CovidExposures(int id, int id_no, String date_of_contact, String ppe_worn, String ppes, String ipc_training, String place_of_diagnosis, String symptoms,String pcr_test,String management, String isolation_start_date) {
+    public CovidExposure(int id, int id_no, String date_of_contact, String ppe_worn, String ppes, String ipc_training, String symptoms, String pcr_test,
+                         String management, String isolation_start_date, String contact_with, String place_of_diagnosis) {
         this.id = id;
         this.id_no = id_no;
         this.date_of_contact = date_of_contact;
         this.ppe_worn = ppe_worn;
         this.ppes = ppes;
         this.ipc_training = ipc_training;
-        this.place_of_diagnosis = place_of_diagnosis;
         this.symptoms = symptoms;
         this.pcr_test = pcr_test;
         this.management = management;
         this.isolation_start_date = isolation_start_date;
-
+        this.contact_with = contact_with;
+        this.place_of_diagnosis = place_of_diagnosis;
     }
 
     public int getId() {
@@ -79,14 +81,6 @@ public class CovidExposures {
         this.ipc_training = ipc_training;
     }
 
-    public String getPlace_of_diagnosis() {
-        return place_of_diagnosis;
-    }
-
-    public void setPlace_of_diagnosis(String place_of_diagnosis) {
-        this.place_of_diagnosis = place_of_diagnosis;
-    }
-
     public String getSymptoms() {
         return symptoms;
     }
@@ -119,6 +113,14 @@ public class CovidExposures {
         this.isolation_start_date = isolation_start_date;
     }
 
+    public String getContact_with() {
+        return contact_with;
+    }
+
+    public void setContact_with(String contact_with) {
+        this.contact_with = contact_with;
+    }
+
     public boolean isExpanded() {
         return expanded;
     }
@@ -133,5 +135,13 @@ public class CovidExposures {
 
     public void setParent(boolean parent) {
         this.parent = parent;
+    }
+
+    public String getPlace_of_diagnosis() {
+        return place_of_diagnosis;
+    }
+
+    public void setPlace_of_diagnosis(String place_of_diagnosis) {
+        this.place_of_diagnosis = place_of_diagnosis;
     }
 }

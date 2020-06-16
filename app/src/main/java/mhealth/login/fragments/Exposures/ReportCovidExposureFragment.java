@@ -318,8 +318,8 @@ public class ReportCovidExposureFragment extends Fragment {
 
             @Override
             public void selectedStrings(List<String> ppeStrings) {
-                Toast.makeText(context,"Selected items: " + ppeStrings,Toast.LENGTH_LONG).show();
-                ppes = ppeStrings.toString();
+                Toast.makeText(context,"Selected items: " + ppe_spinner.getSelectedItemsAsString(),Toast.LENGTH_LONG).show();
+                ppes = ppe_spinner.getSelectedItemsAsString();
 
 
             }
@@ -401,8 +401,8 @@ public class ReportCovidExposureFragment extends Fragment {
 
             @Override
             public void selectedStrings(List<String> symptomsStrings) {
-                Toast.makeText(context,"Selected items: " + symptomsStrings,Toast.LENGTH_LONG).show();
-                symptoms = symptomsStrings.toString();
+                Toast.makeText(context,"Selected items: " + symptoms_spinner.getSelectedItemsAsString(),Toast.LENGTH_LONG).show();
+                symptoms = symptoms_spinner.getSelectedItemsAsString();
 
             }
         });
