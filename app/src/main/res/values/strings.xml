@@ -166,6 +166,15 @@
 
     </string-array>
 
+    <string-array name="contact_with">
+        <item>Patient</item>
+        <item>Colleague</item>
+        <item>Community</item>
+        <item>Home</item>
+        <item>Unknown</item>
+
+    </string-array>
+
     <string-array name="ppe_worn">
         <item>Yes</item>
         <item>No</item>

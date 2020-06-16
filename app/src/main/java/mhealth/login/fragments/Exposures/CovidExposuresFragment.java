@@ -37,17 +37,20 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import mhealth.login.R;
+import mhealth.login.adapters.CovidExposuresAdapter;
 import mhealth.login.adapters.ExposuresAdapter;
 import mhealth.login.dependencies.AppController;
 import mhealth.login.dependencies.Constants;
 import mhealth.login.dependencies.VolleyErrors;
 import mhealth.login.dialogs.InfoMessage;
+import mhealth.login.models.CovidExposures;
 import mhealth.login.models.Exposure;
 import mhealth.login.models.User;
 
@@ -64,8 +67,8 @@ public class CovidExposuresFragment extends Fragment {
     private boolean myShouldLoadMore = true;
     private String MY_NEXT_LINK = null;
 
-    private ExposuresAdapter mAdapter;
-    private ArrayList<Exposure> exposureArrayList;
+    private CovidExposuresAdapter mAdapter;
+    private List<CovidExposures> covidExposuresArrayList;
 
 
 
@@ -111,8 +114,8 @@ public class CovidExposuresFragment extends Fragment {
         }
 
 
-        exposureArrayList = new ArrayList<>();
-        mAdapter = new ExposuresAdapter(context,exposureArrayList);
+        covidExposuresArrayList = new ArrayList<>();
+        mAdapter = new CovidExposuresAdapter(context,covidExposuresArrayList);
 
 
         recyclerView.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.VERTICAL, false));
@@ -121,7 +124,7 @@ public class CovidExposuresFragment extends Fragment {
         //set data and list adapter
         recyclerView.setAdapter(mAdapter);
 
-       // firstLoad();
+        firstLoad();
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -130,16 +133,16 @@ public class CovidExposuresFragment extends Fragment {
 
                 if (!recyclerView.canScrollHorizontally(1)) {
                     if (myShouldLoadMore && !MY_NEXT_LINK.equals("null")) {
-                        //loadMore();
+                        loadMore();
                     }
                 }
             }
         });
 
-        mAdapter.setOnItemClickListener(new ExposuresAdapter.OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new CovidExposuresAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Exposure clickedItem = exposureArrayList.get(position);
+                CovidExposures clickedItem = covidExposuresArrayList.get(position);
 //                Intent i = new Intent(context, ClickedActivity.class);
 //                i.putExtra("vehicle", (Serializable) clickedItem);
 //                startActivity(i);
@@ -177,7 +180,7 @@ public class CovidExposuresFragment extends Fragment {
         myShouldLoadMore =false;
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                Stash.getString(Constants.END_POINT)+ Constants.GET_EXPOSURES, null, new Response.Listener<JSONObject>() {
+                Stash.getString(Constants.END_POINT)+ Constants.MY_COVID_EXPOSURES, null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
@@ -185,7 +188,7 @@ public class CovidExposuresFragment extends Fragment {
 
 //                    Log.e("resoponse", response.toString());
 
-                    exposureArrayList.clear();
+                    covidExposuresArrayList.clear();
 
                     myShouldLoadMore = true;
                     if (recyclerView != null)
@@ -219,23 +222,19 @@ public class CovidExposuresFragment extends Fragment {
 
 
                                 int  id = item.has("id") ? item.getInt("id") : 0;
-                                String exposure_date = item.has("exposure_date") ? item.getString("exposure_date") : "";
-                                String pep_date = item.has("pep_date") ? item.getString("pep_date") : "";
-                                String exposure_location = item.has("exposure_location") ? item.getString("exposure_location") : "";
-                                String exposure_type = item.has("exposure_type") ? item.getString("exposure_type") : "";
-                                String device_used = item.has("device_used") ? item.getString("device_used") : "";
-                                String result_of = item.has("result_of") ? item.getString("result_of") : "";
-                                String device_purpose = item.has("device_purpose") ? item.getString("device_purpose") : "";
-                                String exposure_when = item.has("exposure_when") ? item.getString("exposure_when") : "";
-                                String exposure_description = item.has("exposure_description") ? item.getString("exposure_description") : "";
-                                int previous_exposures = item.has("previous_exposures") ? item.getInt("previous_exposures") : 0;
-                                String patient_hiv_status = item.has("patient_hiv_status") ? item.getString("patient_hiv_status") : "";
-                                String patient_hbv_status = item.has("patient_hbv_status") ? item.getString("patient_hbv_status") : "";
-                                String previous_pep_initiated = item.has("previous_pep_initiated") ? item.getString("previous_pep_initiated") : "";
+                                int id_no = item.has("id_no") ? item.getInt("id_no") : 0;
+                                String date_of_contact = item.has("date_of_contact") ? item.getString("date_of_contact") : "";
+                                String ppe_worn = item.has("ppe_worn") ? item.getString("ppe_worn") : "";
+                                String ppes = item.has("ppes") ? item.getString("ppes") : "";
+                                String ipc_training = item.has("ipc_training") ? item.getString("ipc_training") : "";
+                                String symptoms = item.has("symptoms") ? item.getString("symptoms") : "";
+                                String pcr_test = item.has("pcr_test") ? item.getString("pcr_test") : "";
+                                String management = item.has("management") ? item.getString("management") : "";
+                                String isolation_start_date = item.has("isolation_start_date") ? item.getString("isolation_start_date") : "";
+                                String contact_with = item.has("contact_with") ? item.getString("contact_with") : "";
 
-                                Exposure exposure = new Exposure(id,exposure_date,pep_date,exposure_location,exposure_type,device_used,result_of,device_purpose,
-                                        exposure_when,exposure_description,patient_hiv_status,patient_hbv_status,previous_exposures,previous_pep_initiated);
-                                exposureArrayList.add(exposure);
+                                CovidExposures covid_exposure = new CovidExposures(id,id_no,date_of_contact,ppe_worn,ppes,ipc_training,symptoms, pcr_test,management, isolation_start_date, contact_with);
+                                covidExposuresArrayList.add(covid_exposure);
                                 mAdapter.notifyDataSetChanged();
 
                             }
@@ -318,24 +317,20 @@ public class CovidExposuresFragment extends Fragment {
 
 
                                 int  id = item.has("id") ? item.getInt("id") : 0;
-                                String exposure_date = item.has("exposure_date") ? item.getString("exposure_date") : "";
-                                String pep_date = item.has("pep_date") ? item.getString("pep_date") : "";
-                                String exposure_location = item.has("exposure_location") ? item.getString("exposure_location") : "";
-                                String exposure_type = item.has("exposure_type") ? item.getString("exposure_type") : "";
-                                String device_used = item.has("device_used") ? item.getString("device_used") : "";
-                                String result_of = item.has("result_of") ? item.getString("result_of") : "";
-                                String device_purpose = item.has("device_purpose") ? item.getString("device_purpose") : "";
-                                String exposure_when = item.has("exposure_when") ? item.getString("exposure_when") : "";
-                                String exposure_description = item.has("exposure_description") ? item.getString("exposure_description") : "";
-                                int previous_exposures = item.has("previous_exposures") ? item.getInt("previous_exposures") : 0;
-                                String patient_hiv_status = item.has("patient_hiv_status") ? item.getString("patient_hiv_status") : "";
-                                String patient_hbv_status = item.has("patient_hbv_status") ? item.getString("patient_hbv_status") : "";
-                                String previous_pep_initiated = item.has("previous_pep_initiated") ? item.getString("previous_pep_initiated") : "";
+                                int id_no = item.has("id_no") ? item.getInt("id_no") : 0;
+                                String date_of_contact = item.has("date_of_contact") ? item.getString("date_of_contact") : "";
+                                String ppe_worn = item.has("ppe_worn") ? item.getString("ppe_worn") : "";
+                                String ppes = item.has("ppes") ? item.getString("ppes") : "";
+                                String ipc_training = item.has("ipc_training") ? item.getString("ipc_training") : "";
+                                String symptoms = item.has("symptoms") ? item.getString("symptoms") : "";
+                                String pcr_test = item.has("pcr_test") ? item.getString("pcr_test") : "";
+                                String management = item.has("management") ? item.getString("management") : "";
+                                String isolation_start_date = item.has("isolation_start_date") ? item.getString("isolation_start_date") : "";
+                                String contact_with = item.has("contact_with") ? item.getString("contact_with") : "";
 
-                                Exposure exposure = new Exposure(id,exposure_date,pep_date,exposure_location,exposure_type,device_used,result_of,device_purpose,
-                                        exposure_when,exposure_description,patient_hiv_status,patient_hbv_status,previous_exposures,previous_pep_initiated);
+                                CovidExposures covid_exposure = new CovidExposures(id,id_no,date_of_contact,ppe_worn,ppes,ipc_training,symptoms, pcr_test,management, isolation_start_date, contact_with);
 
-                                exposureArrayList.add(exposure);
+                                covidExposuresArrayList.add(covid_exposure);
                                 mAdapter.notifyDataSetChanged();
                             }
 
@@ -366,77 +361,7 @@ public class CovidExposuresFragment extends Fragment {
         AppController.getInstance().addToRequestQueue(jsonObjReq);
     }
 
-    /*private void showDialogContact() {
-        final Dialog dialog = new Dialog(context);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
-        dialog.setContentView(R.layout.dialog_contact);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        dialog.setCancelable(true);
-        (dialog.findViewById(R.id.bt_close)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
 
-        (dialog.findViewById(R.id.btn_report)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(isPermissionGranted()){
-                    call_action(Constants.NASCOP_CONTACT);
-                }
-            }
-        });
-
-        dialog.show();
-    }*/
-
-
-    public  boolean isPermissionGranted() {
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE)
-                    == PackageManager.PERMISSION_GRANTED) {
-                Log.v("TAG","Permission is granted");
-                return true;
-            } else {
-
-                Log.v("TAG","Permission is revoked");
-                ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.CALL_PHONE}, 1);
-                return false;
-            }
-        }
-        else { //permission is automatically granted on sdk<23 upon installation
-            Log.v("TAG","Permission is granted");
-            return true;
-        }
-    }
-
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
-        switch (requestCode) {
-
-            case 1: {       //call request code
-
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    call_action(Constants.NASCOP_CONTACT);
-                } else {
-                    Toast.makeText(context, "Unable to make call without call permissions", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            // other 'case' lines to check for other
-            // permissions this app might request
-        }
-    }
-
-    public void call_action(String phoneNo){
-        Intent callIntent = new Intent(Intent.ACTION_CALL);
-        callIntent.setData(Uri.parse("tel:" + phoneNo));
-        startActivity(callIntent);
-    }
 
 
 }

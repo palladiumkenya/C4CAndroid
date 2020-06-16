@@ -42,6 +42,7 @@ public class Constants {
     public static String GET_EXPOSURES = "exposures";
     public static String REPORT_EXPOSURE = "exposures/new";
     public static String REPORT_COVID_EXPOSURE = "exposures/covid/new";
+    public static String MY_COVID_EXPOSURES = "exposures/covid";
 
 
     //resources

@@ -77,6 +77,7 @@ public class ReportCovidExposureFragment extends Fragment {
 
     private User loggedInUser;
 
+    private String contactWithStr = "";
     private String ppeWornStr = "";
     private String ppes = "";
     private String ipcTrainingStr = "";
@@ -96,7 +97,7 @@ public class ReportCovidExposureFragment extends Fragment {
     private int wardID = 2620;
 
 
-    private ArrayAdapter<String> arrayPpeWorn, arrayIpcTraining, arrayCovidSymptoms, arrayPcrTest, arrayIsolationMethod;
+    private ArrayAdapter<String> arrayContactWith,arrayPpeWorn, arrayIpcTraining, arrayCovidSymptoms, arrayPcrTest, arrayIsolationMethod;
 
     @BindView(R.id.til_id_number)
     TextInputLayout til_id_number;
@@ -109,6 +110,9 @@ public class ReportCovidExposureFragment extends Fragment {
 
     @BindView(R.id.etxt_date_of_covid_exposure)
     TextInputEditText etxt_date_of_covid_exposure;
+
+    @BindView(R.id.contact_with)
+    MaterialBetterSpinner contact_with;
 
     @BindView(R.id.ppe_worn)
     MaterialBetterSpinner ppe_worn;
@@ -237,6 +241,27 @@ public class ReportCovidExposureFragment extends Fragment {
             }
         });
 
+        arrayContactWith = new ArrayAdapter<String>(context,
+                android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(R.array.contact_with));
+        contact_with.setAdapter(arrayContactWith);
+        contact_with.setText("");
+        contact_with.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                contactWithStr=contact_with.getText().toString();
+
+            }
+        });
 
         arrayPpeWorn = new ArrayAdapter<String>(context,
                 android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(R.array.ppe_worn));
@@ -433,51 +458,6 @@ public class ReportCovidExposureFragment extends Fragment {
             }
         });
 
-       /* etxt_id_no.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                if (etxt_id_no.length() < 5){
-                    til_id_number.setError("Please input a complete");
-                }else {
-                    til_id_number.setError(null);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-
-            }
-        });
-
-        etxt_place_of_diagnosis.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                if (etxt_place_of_diagnosis.length() < 3){
-                    til_place_of_diagnosis.setError("Please input your place of diagnosis");
-                }else {
-                    til_place_of_diagnosis.setError(null);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-
-            }
-        });*/
 
     }
 
@@ -961,6 +941,7 @@ public class ReportCovidExposureFragment extends Fragment {
     private void reportCovidExposure() {
         JSONObject payload  = new JSONObject();
         try {
+            payload.put("contact_with",contactWithStr);
             payload.put("id_no",etxt_id_no.getText().toString());
             payload.put("date_of_contact", DATE_OF_EXPOSURE);
             payload.put("ppe_worn", ppeWorn);

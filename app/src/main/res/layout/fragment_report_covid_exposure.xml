@@ -63,6 +63,17 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+            android:id="@+id/contact_with"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_middle"
+            android:layout_marginVertical="@dimen/spacing_middle"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:hint="How did you come to contact with COVID-19?"
+            android:textColorHint="@color/places_ui_default_text"
+            app:met_floatingLabel="normal" />
+
 
 
         <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
