@@ -104,6 +104,12 @@
         android:id="@+id/nav_resource_links"
         android:name="mhealth.login.fragments.Reasources.ResourceLinksFragment"
         android:label="Resource Links" />
+    <fragment
+        android:id="@+id/nav_report_covid_exposure"
+        android:name="mhealth.login.fragments.Exposures.ReportCovidExposureFragment"
+        tools:layout="@layout/fragment_report_covid_exposure"
+        android:label="Report COVID-19 Exposure"/>
+
 
 
 </navigation>

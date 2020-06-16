@@ -6,19 +6,19 @@ import android.content.DialogInterface;
 import android.util.AttributeSet;
 import android.widget.ArrayAdapter;
 import android.widget.SpinnerAdapter;
+
 import androidx.appcompat.widget.AppCompatSpinner;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-
-public class MultiSelectSpinner extends AppCompatSpinner implements DialogInterface.OnMultiChoiceClickListener {
+public class MultiSelectSpinnerSymptoms extends AppCompatSpinner implements DialogInterface.OnMultiChoiceClickListener {
     public interface OnMultipleItemsSelectedListener{
         void selectedIndices(List<Integer> indices);
         void selectedStrings(List<String> strings);
     }
-    private OnMultipleItemsSelectedListener listener;
+    private MultiSelectSpinner.OnMultipleItemsSelectedListener listener;
 
     String[] _items = null;
     boolean[] mSelection = null;
@@ -28,7 +28,7 @@ public class MultiSelectSpinner extends AppCompatSpinner implements DialogInterf
     ArrayAdapter<String> simple_adapter;
     private boolean hasNone = false;
 
-    public MultiSelectSpinner(Context context) {
+    public MultiSelectSpinnerSymptoms(Context context) {
         super(context);
         c = context;
         simple_adapter = new ArrayAdapter<>(context,
@@ -36,7 +36,7 @@ public class MultiSelectSpinner extends AppCompatSpinner implements DialogInterf
         super.setAdapter(simple_adapter);
     }
 
-    public MultiSelectSpinner(Context context, AttributeSet attrs) {
+    public MultiSelectSpinnerSymptoms(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         simple_adapter = new ArrayAdapter<>(context,
@@ -44,7 +44,7 @@ public class MultiSelectSpinner extends AppCompatSpinner implements DialogInterf
         super.setAdapter(simple_adapter);
     }
 
-    public void setListener(OnMultipleItemsSelectedListener listener){
+    public void setListener(MultiSelectSpinner.OnMultipleItemsSelectedListener listener){
         this.listener = listener;
     }
 
@@ -73,7 +73,7 @@ public class MultiSelectSpinner extends AppCompatSpinner implements DialogInterf
     @Override
     public boolean performClick() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle("Please select cadre(s)");
+        builder.setTitle("Please select symptoms experienced.");
         builder.setMultiChoiceItems(_items, mSelection, this);
         _itemsAtStart = getSelectedItemsAsString();
 //        builder.setNeutralButton("Clear", new DialogInterface.OnClickListener() {

@@ -164,7 +164,7 @@ public class ExposuresFragment extends Fragment {
         fab_cov_exposure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDialogContact();
+                Navigation.findNavController(view).navigate(R.id.nav_report_covid_exposure);
             }
         });
 
@@ -439,7 +439,7 @@ public class ExposuresFragment extends Fragment {
         AppController.getInstance().addToRequestQueue(jsonObjReq);
     }
 
-    private void showDialogContact() {
+    /*private void showDialogContact() {
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
         dialog.setContentView(R.layout.dialog_contact);
@@ -462,7 +462,7 @@ public class ExposuresFragment extends Fragment {
         });
 
         dialog.show();
-    }
+    }*/
 
 
     public  boolean isPermissionGranted() {

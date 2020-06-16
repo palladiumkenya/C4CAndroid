@@ -166,6 +166,56 @@
 
     </string-array>
 
+    <string-array name="ppe_worn">
+        <item>Yes</item>
+        <item>No</item>
+
+    </string-array>
+
+    <string-array name="ppes">
+        <item>Single gloves</item>
+        <item>N95 mask (or equivalent)</item>
+        <item>Face shield or goggles/protective glasses</item>
+        <item>Disposable gown</item>
+        <item>Waterproof apron</item>
+
+    </string-array>
+
+    <string-array name="covid_symptoms">
+        <item>Yes</item>
+        <item>No</item>
+
+    </string-array>
+
+    <string-array name="syptoms">
+        <item>Single gloves</item>
+        <item>N95 mask (or equivalent)</item>
+        <item>Face shield or goggles/protective glasses</item>
+        <item>Disposable gown</item>
+        <item>Waterproof apron</item>
+
+    </string-array>
+
+    <string-array name="ipc_training">
+        <item>Yes</item>
+        <item>No</item>
+
+    </string-array>
+
+    <string-array name="pcr_test">
+        <item>Positive</item>
+        <item>Negative</item>
+        <item>Not done</item>
+
+    </string-array>
+
+    <string-array name="isolation_method">
+        <item>Home-Quarantine</item>
+        <item>Center-Quarantine; Hospital-Isolation</item>
+        <item>Home-based care</item>
+
+    </string-array>
+
     <string-array name="patient_hiv">
         <item>UNKNOWN</item>
         <item>POSITIVE</item>

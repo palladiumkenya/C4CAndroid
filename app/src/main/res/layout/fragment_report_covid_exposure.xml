@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_report_covid"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.Exposures.ReportCovidExposureFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_middle"
+            android:layout_marginVertical="@dimen/spacing_middle"
+            android:text="COVID 19 Exposure"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textStyle="bold"
+            android:textColor="@color/grey_80" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_id_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_middle"
+            android:layout_marginVertical="@dimen/spacing_middle"
+            android:layout_marginTop="@dimen/spacing_middle"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etxt_id_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_xsmall"
+                android:inputType="number"
+                android:maxLines="1"
+                android:maxLength="15"
+                android:hint="Passport or ID NUmber" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_date_of_covid_exposure"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_middle"
+            android:layout_marginVertical="@dimen/spacing_middle"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etxt_date_of_covid_exposure"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Probable date of exposure"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:clickable="true"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+            android:id="@+id/ppe_worn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_middle"
+            android:layout_marginVertical="@dimen/spacing_middle"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:hint="Were you wearing PPE's?"
+            android:textColorHint="@color/places_ui_default_text"
+            app:met_floatingLabel="normal" />
+
+        <LinearLayout
+            android:id="@+id/lyt_ppe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_middle"
+            android:layout_marginVertical="@dimen/spacing_middle"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Please select all PPE's worn:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/grey_80" />
+
+            <mhealth.login.dependencies.MultiSelectSpinnerPpe
+                android:id="@+id/ppe_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_xxlarge"
+                android:drawSelectorOnTop="true"
+                />
+
+        </LinearLayout>
+
+        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+            android:id="@+id/ipc_training"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_middle"
+            android:layout_marginVertical="@dimen/spacing_middle"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:hint="Did you recieve IPC training?"
+            android:textColorHint="@color/places_ui_default_text"
+            app:met_floatingLabel="normal" />
+
+        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+            android:id="@+id/covid_symptoms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_middle"
+            android:layout_marginVertical="@dimen/spacing_middle"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:hint="Are your experiencing any symptoms?"
+            android:textColorHint="@color/places_ui_default_text"
+            app:met_floatingLabel="normal" />
+
+        <LinearLayout
+            android:id="@+id/lyt_symptoms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_middle"
+            android:layout_marginVertical="@dimen/spacing_middle"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Please select all symptoms experienced:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/grey_80" />
+
+            <mhealth.login.dependencies.MultiSelectSpinnerSymptoms
+                android:id="@+id/symptoms_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_xxlarge"
+                android:drawSelectorOnTop="true" />
+                />
+
+        </LinearLayout>
+
+
+
+        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+            android:id="@+id/pcr_test"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_middle"
+            android:layout_marginVertical="@dimen/spacing_middle"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:hint="Have you gotten a PCR Test done?"
+            android:textColorHint="@color/places_ui_default_text"
+            app:met_floatingLabel="normal" />
+
+        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+            android:id="@+id/isolation_method"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_middle"
+            android:layout_marginVertical="@dimen/spacing_middle"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:hint="How are you handling isolation?"
+            android:textColorHint="@color/places_ui_default_text"
+            app:met_floatingLabel="normal" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_date_isolation_start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_middle"
+            android:layout_marginVertical="@dimen/spacing_middle"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etxt_date_isolation_start"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Date started isolation"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:clickable="true"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_place_of_diagnosis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_middle"
+            android:layout_marginVertical="@dimen/spacing_middle"
+            android:layout_marginTop="@dimen/spacing_middle"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etxt_place_of_diagnosis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_xsmall"
+                android:inputType="text"
+                android:maxLines="1"
+                android:maxLength="26"
+                android:hint="Where were you diagnosed?" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+            android:id="@+id/countySpinner"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_xlarge"
+            android:layout_marginHorizontal="@dimen/spacing_middle"
+            android:layout_marginVertical="@dimen/spacing_middle"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:drawSelectorOnTop="true" />
+
+
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+            android:id="@+id/subCountySpinner"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_xlarge"
+            android:layout_marginHorizontal="@dimen/spacing_middle"
+            android:layout_marginVertical="@dimen/spacing_middle"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:drawSelectorOnTop="true" />
+
+
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+            android:id="@+id/wardSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_xlarge"
+            android:layout_marginHorizontal="@dimen/spacing_middle"
+            android:layout_marginVertical="@dimen/spacing_middle"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:drawSelectorOnTop="true" />
+
+        <LinearLayout
+            android:id="@+id/lyt_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_medium"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <mhealth.login.widgets.ViewLoadingDotsBounce
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:background="@color/colorAccent" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_marginHorizontal="@dimen/spacing_large"
+            android:layout_marginVertical="@dimen/spacing_mxlarge"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:layout_marginBottom="@dimen/spacing_mxlarge"
+            android:orientation="horizontal">
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_report_covid_exposure"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/spacing_large"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:text="Report COVID-19 Exposure"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

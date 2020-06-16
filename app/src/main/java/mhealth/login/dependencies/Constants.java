@@ -41,6 +41,7 @@ public class Constants {
     /*exposures*/
     public static String GET_EXPOSURES = "exposures";
     public static String REPORT_EXPOSURE = "exposures/new";
+    public static String REPORT_COVID_EXPOSURE = "exposures/covid/new";
 
 
     //resources
@@ -56,6 +57,10 @@ public class Constants {
 
     public static String IMMUNIZATIONS = "immunizations";
     public static String NEW_IMMUNIZATIONS = "immunizations/new";
+
+    public static String COUNTIES = "http://ears-covid.mhealthkenya.co.ke/api/counties";
+    public static String SUB_COUNTIES = "http://ears-covid.mhealthkenya.co.ke/api/sub/counties";
+    public static String WARDS = "http://ears-covid.mhealthkenya.co.ke/api/wards";
 
     public static String DISEASES = "diseases";
     public static String NASCOP_CONTACT = "0800724848";
