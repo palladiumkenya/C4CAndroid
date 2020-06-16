@@ -3,6 +3,8 @@ package mhealth.login.fragments;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,6 +74,9 @@ public class HomeFragment extends Fragment {
 
     @BindView(R.id.feedbackLayout)
     CardView feedbackLayout;
+
+    @BindView(R.id.jitengeLayout)
+    CardView jitengeLayout;
 
 
 
@@ -149,6 +154,34 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 //Navigation.findNavController(v).navigate(R.id.nav_feedback);
                 NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.nav_feedback);
+
+            }
+        });
+
+
+        jitengeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Navigation.findNavController(v).navigate(R.id.nav_feedback);
+//                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.mhealthkenya.dm.mohkenya"));
+//                startActivity(intent);
+
+                Intent i;
+                PackageManager manager = context.getPackageManager();
+                try {
+                    i = manager.getLaunchIntentForPackage("com.mhealthkenya.dm.mohkenya");
+                    if (i == null)
+                        throw new PackageManager.NameNotFoundException();
+                    i.addCategory(Intent.CATEGORY_LAUNCHER);
+                    startActivity(i);
+                } catch (PackageManager.NameNotFoundException e) {
+
+                    //if not found in device then will come here
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse("market://details?id=com.mhealthkenya.dm.mohkenya"));
+                    startActivity(intent);
+                }
+
 
             }
         });

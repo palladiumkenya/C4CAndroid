@@ -2,29 +2,24 @@ package mhealth.login.fragments.Exposures;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -34,8 +29,6 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.fxn.stash.Stash;
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
@@ -50,20 +43,18 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import mhealth.login.R;
-import mhealth.login.adapters.CheckinAdapter;
 import mhealth.login.adapters.ExposuresAdapter;
 import mhealth.login.dependencies.AppController;
 import mhealth.login.dependencies.Constants;
 import mhealth.login.dependencies.VolleyErrors;
 import mhealth.login.dialogs.InfoMessage;
-import mhealth.login.models.CheckIn;
 import mhealth.login.models.Exposure;
 import mhealth.login.models.User;
 
 import static mhealth.login.dependencies.AppController.TAG;
 
 
-public class ExposuresFragment extends Fragment {
+public class CovidExposuresFragment extends Fragment {
     private Unbinder unbinder;
     private View root;
     private Context context;
@@ -77,24 +68,7 @@ public class ExposuresFragment extends Fragment {
     private ArrayList<Exposure> exposureArrayList;
 
 
-    private boolean fabExpanded = false;
 
-
-
-    @BindView(R.id.fabReport)
-    ExtendedFloatingActionButton fabReport;
-
-    @BindView(R.id.layoutFabC19)
-    LinearLayout layoutFabC19;
-
-    @BindView(R.id.layoutFabOther)
-    LinearLayout layoutFabOther;
-
-    @BindView(R.id.fab_other_exposure)
-    FloatingActionButton fab_other_exposure;
-
-    @BindView(R.id.fab_cov_exposure)
-    FloatingActionButton fab_cov_exposure;
 
 //    @BindView(R.id.fab_add_exposure)
 //    FloatingActionButton fab_add_exposure;
@@ -127,46 +101,15 @@ public class ExposuresFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        root =  inflater.inflate(R.layout.fragment_exposures, container, false);
+        root =  inflater.inflate(R.layout.fragment_covid_exposures, container, false);
         unbinder = ButterKnife.bind(this, root);
 
         loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
 
         if (loggedInUser.getProfile_complete() == 0){
-            NavHostFragment.findNavController(ExposuresFragment.this).navigate(R.id.nav_complete_profile);
+            NavHostFragment.findNavController(CovidExposuresFragment.this).navigate(R.id.nav_complete_profile);
         }
 
-
-        fabReport.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (fabExpanded == true){
-                    closeSubMenusFab();
-                } else {
-                    openSubMenusFab();
-                }
-            }
-        });
-
-        //Only main FAB is visible in the beginning
-        closeSubMenusFab();
-
-
-
-
-        fab_other_exposure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.nav_add_exposure);
-            }
-        });
-
-        fab_cov_exposure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.nav_report_covid_exposure);
-            }
-        });
 
         exposureArrayList = new ArrayList<>();
         mAdapter = new ExposuresAdapter(context,exposureArrayList);
@@ -178,7 +121,7 @@ public class ExposuresFragment extends Fragment {
         //set data and list adapter
         recyclerView.setAdapter(mAdapter);
 
-        firstLoad();
+       // firstLoad();
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -187,7 +130,7 @@ public class ExposuresFragment extends Fragment {
 
                 if (!recyclerView.canScrollHorizontally(1)) {
                     if (myShouldLoadMore && !MY_NEXT_LINK.equals("null")) {
-                        loadMore();
+                        //loadMore();
                     }
                 }
             }
@@ -209,22 +152,6 @@ public class ExposuresFragment extends Fragment {
     }
 
 
-    //closes FAB submenus
-    private void closeSubMenusFab(){
-        layoutFabC19.setVisibility(View.INVISIBLE);
-        layoutFabOther.setVisibility(View.INVISIBLE);
-        fabReport.setIcon(getResources().getDrawable(R.drawable.ic_exposure));
-        fabExpanded = false;
-    }
-
-    //Opens FAB submenus
-    private void openSubMenusFab(){
-        layoutFabC19.setVisibility(View.VISIBLE);
-        layoutFabOther.setVisibility(View.VISIBLE);
-        //Change settings icon to 'X' icon
-        fabReport.setIcon(getResources().getDrawable(R.drawable.ic_close));
-        fabExpanded = true;
-    }
 
     @Override
     public void onDestroyView() {
@@ -467,7 +394,7 @@ public class ExposuresFragment extends Fragment {
 
     public  boolean isPermissionGranted() {
         if (Build.VERSION.SDK_INT >= 23) {
-            if (ActivityCompat.checkSelfPermission(context, android.Manifest.permission.CALL_PHONE)
+            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE)
                     == PackageManager.PERMISSION_GRANTED) {
                 Log.v("TAG","Permission is granted");
                 return true;

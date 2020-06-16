@@ -393,6 +393,8 @@
     <string name="otp_required">OTP is required</string>
     <string name="new_pass_re">New password is required</string>
     <string name="bath_pass">Both passwords must match</string>
+    <string name="jitenge">Jitenge</string>
+    <string name="self_isolate_yourself">Self isolate yourself</string>
 
 
 </resources>
