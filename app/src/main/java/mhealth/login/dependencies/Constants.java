@@ -7,11 +7,14 @@ public class Constants {
     public static String LOGGED_IN_USER = "LOGGED_IN_USER";
     public static String END_POINT = "END_POINT";
 
+
+
     public static String PLACES_API_KEY = "AIzaSyBlSCHUHi9XIDiePNWUqReopqLk1X0AilU";
 
 
     /*API Variables*/
     public static String API_VERSION = "c4c_api_v0";
+
 
     /*auth*/
     public static String REGISTER = "auth/signup";
@@ -28,6 +31,8 @@ public class Constants {
     public static String FACILITIES = "facilities";
     public static String FACILITY_DEPARTMENTS = "facility_departments/";
     public static String CADRES = "cadres";
+    public static String PARTNERS = "partners";
+
     public static String DEVICES = "devices";
 
 
@@ -61,7 +66,7 @@ public class Constants {
 
     public static String COUNTIES = "http://ears-covid.mhealthkenya.co.ke/api/counties";
     public static String SUB_COUNTIES = "http://ears-covid.mhealthkenya.co.ke/api/sub/counties";
-    public static String WARDS = "http://ears-covid.mhealthkenya.co.ke/api/wards";
+    public static String WARDS = "https://ears-covid.mhealthkenya.co.ke/api/wards";
 
     public static String DISEASES = "diseases";
     public static String NASCOP_CONTACT = "0800724848";
@@ -72,13 +77,6 @@ public class Constants {
 
     public static String PORTAL_LINK = "https://eportal.uonbi.ac.ke/";
     public static String REGISTRATION_LINK = "https://docs.google.com/forms/d/e/1FAIpQLScd_ZtamUKNrQ4qN4Raf4qT-5vhdjOf4k3gYpCIsEdcnCzw3g/viewform";
-
-
-
-
-
-
-
 
 
 

@@ -242,6 +242,12 @@
                                     android:layout_height="@dimen/spacing_xxlarge"
                                     android:drawSelectorOnTop="true" />
 
+                                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                                    android:id="@+id/partner"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/spacing_xxlarge"
+                                    android:drawSelectorOnTop="true" />
+
 
                             </LinearLayout>
 
@@ -393,7 +399,8 @@
                                     <RadioButton
                                         android:id="@+id/dose_two_no"
                                         android:layout_width="0dp"
-                                        android:layout_weight="1"                    android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:layout_height="wrap_content"
                                         android:layout_gravity="center"
                                         android:padding="10dp"
                                         android:text="@string/dose2_no" />

@@ -76,10 +76,16 @@ public class CreateProfileFragment extends Fragment {
     ArrayList<String> cadreList;
     ArrayList<Cadre> cadres;
 
+    ArrayList<String> partnerList;
+    ArrayList<Cadre> partners;
+
+
+
     private User loggedInUser;
     private int facilityID = 0;
     private int facilityDepartmentID = 0;
     private int cadreID = 0;
+    private int partnerID = 0;
     private String first_dose = "";
     private String second_dose = "";
     private String third_dose = "";
@@ -95,6 +101,9 @@ public class CreateProfileFragment extends Fragment {
 
     @BindView(R.id.cadre)
     SearchableSpinner cadreSpinner;
+
+    @BindView(R.id.partner)
+    SearchableSpinner partnerSpinner;
 
     @BindView(R.id.id_no)
     EditText id_no;
@@ -161,6 +170,10 @@ public class CreateProfileFragment extends Fragment {
         cadreSpinner.setTitle("Select Cadre");
         cadreSpinner.setPositiveButton("OK");
 
+
+        partnerSpinner.setTitle("Select Partner");
+        partnerSpinner.setPositiveButton("OK");
+
         tv_dob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -176,7 +189,7 @@ public class CreateProfileFragment extends Fragment {
         });
 
         dose2_date.setOnClickListener(new View.OnClickListener() {
-            @Override
+           @Override
             public void onClick(View v) {
                 getDoseDate(2);
             }

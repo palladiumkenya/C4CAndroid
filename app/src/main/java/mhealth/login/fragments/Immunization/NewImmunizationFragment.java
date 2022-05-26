@@ -71,6 +71,7 @@ public class NewImmunizationFragment extends Fragment {
     private User loggedInUser;
 
     private int DISEASE_ID = 0;
+
     private String DATE_OF_IMMUNIZAION1 = null;
     private String DATE_OF_IMMUNIZAION2 = null;
     private String DATE_OF_IMMUNIZAION3 = null;
@@ -199,10 +200,17 @@ public class NewImmunizationFragment extends Fragment {
             public void onClick(View view) {
                 if (DISEASE_ID == 0){
                     Snackbar.make(view, "Please select a disease", Snackbar.LENGTH_LONG).show();
-                }else {
-                    if (DATE_OF_IMMUNIZAION1 == null){
+                }
+               /* else if (DATE_OF_IMMUNIZAION1 <= DATE_OF_IMMUNIZAION2){
+
+                }*/
+
+                else {
+                    if (DATE_OF_IMMUNIZAION1 == null ){
                         Snackbar.make(view, "Please set date of first immunization", Snackbar.LENGTH_LONG).show();
-                    }else {
+                    }
+
+                    else {
                         lyt_progress.setVisibility(View.GONE);
                         doReport();
                     }
