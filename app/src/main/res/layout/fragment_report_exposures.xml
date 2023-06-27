@@ -138,7 +138,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint="@string/pep_initiated"
-                                    android:textColorHint="@color/places_ui_default_text"
+
                                     app:met_floatingLabel="normal" />
 
                                 <com.google.android.material.textfield.TextInputLayout
@@ -164,7 +164,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint="@string/where_did_the_exposure_occur"
-                                    android:textColorHint="@color/places_ui_default_text"
+
                                     app:met_floatingLabel="normal" />
 
                                 <com.google.android.material.textfield.TextInputLayout
@@ -188,7 +188,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint="@string/type_of_exposure"
-                                    android:textColorHint="@color/places_ui_default_text"
+
                                     app:met_floatingLabel="normal" />
 
                                 <LinearLayout
@@ -203,7 +203,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:hint="@string/which_devices_caused"
-                                        android:textColorHint="@color/places_ui_default_text"
+
                                         app:met_floatingLabel="normal" />
 
                                     <com.google.android.material.textfield.TextInputLayout
@@ -226,7 +226,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:hint="@string/for_what_purpose_was_the_sharp_item_originally_used"
-                                        android:textColorHint="@color/places_ui_default_text"
+
                                         app:met_floatingLabel="normal" />
 
                                     <com.google.android.material.textfield.TextInputLayout
@@ -248,7 +248,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:hint="@string/how_did_the_injury_exposure_occur"
-                                        android:textColorHint="@color/places_ui_default_text"
+
                                         app:met_floatingLabel="normal" />
 
                                     <com.google.android.material.textfield.TextInputLayout
@@ -270,7 +270,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:hint="@string/how_would_you_describe"
-                                        android:textColorHint="@color/places_ui_default_text"
+
                                         app:met_floatingLabel="normal" />
 
 
@@ -289,7 +289,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:hint="@string/the_exposure_was_a_result_of"
-                                        android:textColorHint="@color/places_ui_default_text"
+
                                         app:met_floatingLabel="normal" />
 
                                     <com.google.android.material.textfield.TextInputLayout
@@ -314,7 +314,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint="@string/patient_s_hiv_status"
-                                    android:textColorHint="@color/places_ui_default_text"
+
                                     app:met_floatingLabel="normal" />
 
                                 <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
@@ -322,7 +322,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint="@string/patient_s_hbv_status"
-                                    android:textColorHint="@color/places_ui_default_text"
+
                                     app:met_floatingLabel="normal" />
 
 
@@ -445,7 +445,7 @@
                                     android:layout_height="wrap_content"
                                     android:visibility="gone"
                                     android:hint="@string/was_pep_initiated"
-                                    android:textColorHint="@color/places_ui_default_text"
+
                                     app:met_floatingLabel="normal" />
 
 

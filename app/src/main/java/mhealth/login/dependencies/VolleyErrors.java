@@ -129,7 +129,7 @@ public class VolleyErrors {
                     return context.getResources().getString(R.string.error_504);
                 case 505:
                     return context.getResources().getString(R.string.error_505);
-oj
+
                 default:
                     return context.getResources().getString(R.string.generic_server_down);
             }

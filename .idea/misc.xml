@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/This/c4ct/app/src/main/res/layout/frag_login.xml" value="0.1" />
+        <entry key="..\:/Users/This/c4ct/app/src/main/res/layout/fragment_report_covid_exposure.xml" value="0.17" />
+        <entry key="..\:/Users/This/c4ct/app/src/main/res/layout/fragment_report_exposures.xml" value="0.1" />
         <entry key="..\:/Users/vikog/AndroidStudioProjects/c4c_mobile/app/src/main/res/layout/activity_main.xml" value="0.12952898550724637" />
         <entry key="..\:/Users/vikog/AndroidStudioProjects/c4c_mobile/app/src/main/res/layout/fragment_new_immunization.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/vikog/AndroidStudioProjects/c4c_mobile/app/src/main/res/layout/fragment_reasources_fragments.xml" value="0.10099637681159421" />

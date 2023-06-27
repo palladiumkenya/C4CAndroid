@@ -16,6 +16,11 @@ public class Constants {
     public static String API_VERSION = "c4c_api_v0";
 
 
+    //https://prod.kenyahmis.org:8003/api/facilities
+    //https://prod.kenyahmis.org:8003/api/facility_departments/
+    //https://prod.kenyahmis.org:8003/api/exposures/covid/new
+
+
     /*auth*/
     public static String REGISTER = "auth/signup";
     public static String LOGIN = "auth/login";
@@ -64,9 +69,14 @@ public class Constants {
     public static String IMMUNIZATIONS = "immunizations";
     public static String NEW_IMMUNIZATIONS = "immunizations/new";
 
-    public static String COUNTIES = "http://ears-covid.mhealthkenya.co.ke/api/counties";
-    public static String SUB_COUNTIES = "http://ears-covid.mhealthkenya.co.ke/api/sub/counties";
-    public static String WARDS = "https://ears-covid.mhealthkenya.co.ke/api/wards";
+
+    public static String COUNTIES = "https://ushauriapi.nascop.org/locator/counties";
+    public static String SUB_COUNTIES = "https://ushauriapi.nascop.org/locator/scounties?county=";
+    public static String WARDS = "https://ushauriapi.nascop.org/locator/wards?scounty=";
+
+   // public static String COUNTIES = "http://ears-covid.mhealthkenya.co.ke/api/counties";
+    //public static String SUB_COUNTIES = "http://ears-covid.mhealthkenya.co.ke/api/sub/counties";
+    //public static String WARDS = "https://ears-covid.mhealthkenya.co.ke/api/wards";
 
     public static String DISEASES = "diseases";
     public static String NASCOP_CONTACT = "0800724848";

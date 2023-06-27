@@ -71,7 +71,7 @@
             android:layout_marginVertical="@dimen/spacing_middle"
             android:layout_marginTop="@dimen/spacing_middle"
             android:hint="How did you come to contact with COVID-19?"
-            android:textColorHint="@color/places_ui_default_text"
+
             app:met_floatingLabel="normal" />
 
 
@@ -84,7 +84,7 @@
             android:layout_marginVertical="@dimen/spacing_middle"
             android:layout_marginTop="@dimen/spacing_middle"
             android:hint="Were you wearing PPE's?"
-            android:textColorHint="@color/places_ui_default_text"
+
             app:met_floatingLabel="normal" />
 
         <LinearLayout
@@ -121,7 +121,7 @@
             android:layout_marginVertical="@dimen/spacing_middle"
             android:layout_marginTop="@dimen/spacing_middle"
             android:hint="Did you recieve IPC training?"
-            android:textColorHint="@color/places_ui_default_text"
+
             app:met_floatingLabel="normal" />
 
         <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
@@ -132,7 +132,7 @@
             android:layout_marginVertical="@dimen/spacing_middle"
             android:layout_marginTop="@dimen/spacing_middle"
             android:hint="Are your experiencing any symptoms?"
-            android:textColorHint="@color/places_ui_default_text"
+
             app:met_floatingLabel="normal" />
 
         <LinearLayout
@@ -171,7 +171,7 @@
             android:layout_marginVertical="@dimen/spacing_middle"
             android:layout_marginTop="@dimen/spacing_middle"
             android:hint="Have you gotten a PCR Test done?"
-            android:textColorHint="@color/places_ui_default_text"
+
             app:met_floatingLabel="normal" />
 
         <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
@@ -182,7 +182,7 @@
             android:layout_marginVertical="@dimen/spacing_middle"
             android:layout_marginTop="@dimen/spacing_middle"
             android:hint="How are you handling isolation?"
-            android:textColorHint="@color/places_ui_default_text"
+
             app:met_floatingLabel="normal" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -225,6 +225,15 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <TextView
+
+            android:id="@+id/affiliation_facility"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="County of Residence*"
+            android:textSize="13sp"/>
+
         <com.toptoche.searchablespinnerlibrary.SearchableSpinner
             android:id="@+id/countySpinner"
             android:layout_width="match_parent"
@@ -233,6 +242,15 @@
             android:layout_marginVertical="@dimen/spacing_middle"
             android:layout_marginTop="@dimen/spacing_middle"
             android:drawSelectorOnTop="true" />
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sub County of Residence*"
+            android:textSize="13sp"
+            android:textStyle="bold"/>
+
 
 
         <com.toptoche.searchablespinnerlibrary.SearchableSpinner
@@ -243,6 +261,16 @@
             android:layout_marginVertical="@dimen/spacing_middle"
             android:layout_marginTop="@dimen/spacing_middle"
             android:drawSelectorOnTop="true" />
+
+        <TextView
+            android:id="@+id/RanksText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ward of Residence*"
+            android:textSize="13sp"
+            android:textStyle="bold"
+
+            />
 
 
         <com.toptoche.searchablespinnerlibrary.SearchableSpinner

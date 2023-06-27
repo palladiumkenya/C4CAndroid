@@ -209,7 +209,21 @@
                         android:textColor="@color/colorPrimary"
                         android:textStyle="bold" />
 
+
+
                 </LinearLayout>
+                <TextView
+                    android:id="@+id/sign_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:text="Test"
+                    android:visibility="gone"
+                    android:layout_gravity="left|end"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                    android:textColor="@color/colorAccent"
+                    android:textStyle="bold" />
 
                 <View
                     android:layout_width="0dp"
