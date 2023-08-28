@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateDataSnapshot(DataSnapshot dataSnapshot) {
-        Stash.put(Constants.END_POINT, Objects.requireNonNull(dataSnapshot.getValue(Creds.class)).getEnd_point());
+      //  Stash.put(Constants.END_POINT, Objects.requireNonNull(dataSnapshot.getValue(Creds.class)).getEnd_point());
     }
 
 
@@ -236,10 +236,10 @@ public class MainActivity extends AppCompatActivity {
         mAuth.signOut();
         //shared prefs sign out
 
-        String endPoint = Stash.getString(Constants.END_POINT);
-        Stash.clearAll();
+       // String endPoint = Stash.getString(Constants.END_POINT);
+        //Stash.clearAll();
 
-        Stash.put(Constants.END_POINT, endPoint);
+       // Stash.put(Constants.END_POINT, endPoint);
 
         Intent intent = new Intent(MainActivity.this, SignInActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -249,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void getProfile(){
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                Stash.getString(Constants.END_POINT)+ Constants.GET_PROFILE, null, new Response.Listener<JSONObject>() {
+                Constants.END_POINT+ Constants.GET_PROFILE, null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {

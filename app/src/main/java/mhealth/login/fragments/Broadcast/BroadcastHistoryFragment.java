@@ -164,7 +164,7 @@ public class BroadcastHistoryFragment extends Fragment {
         myShouldLoadMore =false;
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                Stash.getString(Constants.END_POINT)+ Constants.APPROVED_BROADCASTS, null, new Response.Listener<JSONObject>() {
+                Constants.END_POINT+ Constants.APPROVED_BROADCASTS, null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {

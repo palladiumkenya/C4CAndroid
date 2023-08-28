@@ -149,7 +149,7 @@ public class CreateBroadcastFragment extends Fragment {
 
     private void getCadres() {
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                Stash.getString(Constants.END_POINT)+Constants.CADRES, null, new Response.Listener<JSONObject>() {
+                Constants.END_POINT+Constants.CADRES, null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
@@ -292,7 +292,7 @@ public class CreateBroadcastFragment extends Fragment {
         Log.e("Payload:",payload.toString());
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
-                Stash.getString(Constants.END_POINT)+Constants.CREATE_BROADCAST, payload, new Response.Listener<JSONObject>() {
+                Constants.END_POINT+Constants.CREATE_BROADCAST, payload, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {

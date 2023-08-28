@@ -1,11 +1,18 @@
 package mhealth.login.dependencies;
 
+import com.fxn.stash.Stash;
+
 public class Constants {
 
     /*Stash Variables*/
     public static String HCW = "health_care_worker";
     public static String LOGGED_IN_USER = "LOGGED_IN_USER";
-    public static String END_POINT = "END_POINT";
+    //public static String END_POINT = "END_POINT";
+
+    public static String END_POINT = "https://c4c-api.mhealthkenya.co.ke/api/";
+    //"https://c4c-api.mhealthkenya.co.ke/api/
+    //https://c4c_api.mhealthkenya.org/api/
+    //Stash.put(Constants.END_POINT, "https://c4c_api.mhealthkenya.org/api/");
 
 
 
@@ -68,6 +75,8 @@ public class Constants {
 
     public static String IMMUNIZATIONS = "immunizations";
     public static String NEW_IMMUNIZATIONS = "immunizations/new";
+
+
 
 
     public static String COUNTIES = "https://ushauriapi.nascop.org/locator/counties";

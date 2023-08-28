@@ -226,7 +226,7 @@ public class RegisterFragment extends Fragment {
 
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
-                Stash.getString(Constants.END_POINT)+Constants.REGISTER, payload, new Response.Listener<JSONObject>() {
+                Constants.END_POINT+Constants.REGISTER, payload, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {

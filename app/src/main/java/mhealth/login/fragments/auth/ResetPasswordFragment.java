@@ -148,7 +148,7 @@ public class ResetPasswordFragment extends Fragment {
 
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
-                Stash.getString(Constants.END_POINT)+Constants.RESET_PASSWORD, payload, new Response.Listener<JSONObject>() {
+                Constants.END_POINT+Constants.RESET_PASSWORD, payload, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {

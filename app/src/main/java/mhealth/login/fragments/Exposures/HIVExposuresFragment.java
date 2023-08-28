@@ -178,7 +178,7 @@ public class HIVExposuresFragment extends Fragment {
         myShouldLoadMore =false;
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                Stash.getString(Constants.END_POINT)+ Constants.GET_EXPOSURES, null, new Response.Listener<JSONObject>() {
+                Constants.END_POINT+ Constants.GET_EXPOSURES, null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
@@ -264,8 +264,8 @@ public class HIVExposuresFragment extends Fragment {
                 myShouldLoadMore =true;
 
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
-                if (root!=null)
-                    Snackbar.make(root.findViewById(R.id.fragment_exposures), VolleyErrors.getVolleyErrorMessages(error, context), Snackbar.LENGTH_LONG).show();
+                //if (root!=null)
+                  //  Snackbar.make(root.findViewById(R.id.fragment_exposures), VolleyErrors.getVolleyErrorMessages(error, context), Snackbar.LENGTH_LONG).show();
 
             }
         }){

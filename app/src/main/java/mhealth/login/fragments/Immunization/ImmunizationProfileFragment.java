@@ -143,7 +143,7 @@ public class ImmunizationProfileFragment extends Fragment {
     private void loadImmunizations() {
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                Stash.getString(Constants.END_POINT)+ Constants.IMMUNIZATIONS, null, new Response.Listener<JSONObject>() {
+                Constants.END_POINT+ Constants.IMMUNIZATIONS, null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {

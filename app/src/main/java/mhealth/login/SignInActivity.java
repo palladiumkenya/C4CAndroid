@@ -88,7 +88,7 @@ public class SignInActivity extends AppCompatActivity implements NavigationHost 
         //live
        // Stash.put(Constants.END_POINT, "https://c4c_api.mhealthkenya.org/api/"); //temporary endpoint
         //test
-        Stash.put(Constants.END_POINT,"https://prod.kenyahmis.org:8003/api/");
+       // Stash.put(Constants.END_POINT,"https://prod.kenyahmis.org:8003/api/");
 
 
 
@@ -170,7 +170,7 @@ public class SignInActivity extends AppCompatActivity implements NavigationHost 
     }
 
     public void updateDataSnapshot(DataSnapshot dataSnapshot) {
-        Stash.put(Constants.END_POINT, Objects.requireNonNull(dataSnapshot.getValue(Creds.class)).getEnd_point());
+      //  Stash.put(Constants.END_POINT, Objects.requireNonNull(dataSnapshot.getValue(Creds.class)).getEnd_point());
 
 //        Toast.makeText(SignInActivity.this, Objects.requireNonNull(dataSnapshot.getValue(Creds.class)).getEnd_point(), Toast.LENGTH_LONG).show();
 

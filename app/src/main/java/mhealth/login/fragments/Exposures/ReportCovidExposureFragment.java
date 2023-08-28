@@ -995,7 +995,7 @@ public class ReportCovidExposureFragment extends Fragment {
         Log.e("Payload", payload.toString());
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
-                Stash.getString(Constants.END_POINT)+Constants.REPORT_COVID_EXPOSURE, payload, new Response.Listener<JSONObject>() {
+                Constants.END_POINT+Constants.REPORT_COVID_EXPOSURE, payload, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {

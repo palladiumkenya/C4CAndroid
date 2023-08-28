@@ -308,7 +308,7 @@ public class NewImmunizationFragment extends Fragment {
 
     private void getDiseases() {
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                Stash.getString(Constants.END_POINT)+Constants.DISEASES, null, new Response.Listener<JSONObject>() {
+                Constants.END_POINT+Constants.DISEASES, null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
@@ -451,7 +451,7 @@ public class NewImmunizationFragment extends Fragment {
 
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
-                Stash.getString(Constants.END_POINT)+Constants.NEW_IMMUNIZATIONS, payload, new Response.Listener<JSONObject>() {
+                Constants.END_POINT+Constants.NEW_IMMUNIZATIONS, payload, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {

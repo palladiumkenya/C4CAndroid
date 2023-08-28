@@ -84,6 +84,7 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
        root = inflater.inflate(R.layout.frag_login,container,false);
+       // Stash.put(Constants.END_POINT, "https://c4c_api.mhealthkenya.org/api/");
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -212,11 +213,11 @@ public class LoginFragment extends Fragment {
 
 
         Log.e("SENDING PAYLOAD", payload.toString());
-        Log.e("SENDING TO", Stash.getString(Constants.END_POINT)+ Constants.LOGIN);
+        Log.e("SENDING TO", Constants.END_POINT+ Constants.LOGIN);
 
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
-                Stash.getString(Constants.END_POINT)+ Constants.LOGIN, payload, new Response.Listener<JSONObject>() {
+                Constants.END_POINT+ Constants.LOGIN, payload, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {

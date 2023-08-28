@@ -203,7 +203,7 @@ public class UpdateProfileFragment extends Fragment {
 
     private void getFacilities() {
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                Stash.getString(Constants.END_POINT)+Constants.FACILITIES, null, new Response.Listener<JSONObject>() {
+                Constants.END_POINT+Constants.FACILITIES, null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
@@ -355,7 +355,7 @@ public class UpdateProfileFragment extends Fragment {
 
     private void getDepartments(int id) {
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                Stash.getString(Constants.END_POINT)+Constants.FACILITY_DEPARTMENTS+id, null, new Response.Listener<JSONObject>() {
+                Constants.END_POINT+Constants.FACILITY_DEPARTMENTS+id, null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
@@ -499,7 +499,7 @@ public class UpdateProfileFragment extends Fragment {
 
     private void getCadres() {
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                Stash.getString(Constants.END_POINT)+Constants.CADRES, null, new Response.Listener<JSONObject>() {
+                Constants.END_POINT+Constants.CADRES, null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
@@ -636,7 +636,7 @@ public class UpdateProfileFragment extends Fragment {
 
     private void getProfile(){
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                Stash.getString(Constants.END_POINT)+ Constants.GET_PROFILE, null, new Response.Listener<JSONObject>() {
+                Constants.END_POINT+ Constants.GET_PROFILE, null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
@@ -812,7 +812,7 @@ public class UpdateProfileFragment extends Fragment {
 
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
-                Stash.getString(Constants.END_POINT)+Constants.UPDATE_PROFILE, payload, new Response.Listener<JSONObject>() {
+                Constants.END_POINT+Constants.UPDATE_PROFILE, payload, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {

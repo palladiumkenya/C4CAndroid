@@ -158,7 +158,7 @@ public class SendOtpFragment extends Fragment {
 
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
-                Stash.getString(Constants.END_POINT)+Constants.SEND_OTP, payload, new Response.Listener<JSONObject>() {
+                Constants.END_POINT+Constants.SEND_OTP, payload, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
