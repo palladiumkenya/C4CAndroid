@@ -10,6 +10,7 @@ public class Constants {
     //public static String END_POINT = "END_POINT";
 
     public static String END_POINT = "https://c4c-api.mhealthkenya.co.ke/api/";
+    //facilities
     //"https://c4c-api.mhealthkenya.co.ke/api/
     //https://c4c_api.mhealthkenya.org/api/
     //Stash.put(Constants.END_POINT, "https://c4c_api.mhealthkenya.org/api/");

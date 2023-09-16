@@ -60,6 +60,7 @@ import mhealth.login.dependencies.AppController;
 import mhealth.login.dependencies.Constants;
 import mhealth.login.dependencies.VolleyErrors;
 import mhealth.login.dialogs.InfoMessage;
+import mhealth.login.fragments.auth.LoginFragment;
 import mhealth.login.models.Creds;
 import mhealth.login.models.Hcw;
 import mhealth.login.models.User;
@@ -233,13 +234,22 @@ public class MainActivity extends AppCompatActivity {
 
     public void signout(){
         // Firebase sign out
-        mAuth.signOut();
+       // mAuth.signOut();
         //shared prefs sign out
 
        // String endPoint = Stash.getString(Constants.END_POINT);
         //Stash.clearAll();
 
        // Stash.put(Constants.END_POINT, endPoint);
+       // Intent intent = new Intent(MainActivity.this, LoginFragment.class);
+        //Log.e(TAG, "dfghnjm,");
+
+        // Firebase sign out
+        mAuth.signOut();
+        //shared prefs sign out
+        String endPoint = Stash.getString(Constants.END_POINT);
+        Stash.clearAll();
+        Stash.put(Constants.END_POINT, endPoint);
 
         Intent intent = new Intent(MainActivity.this, SignInActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);

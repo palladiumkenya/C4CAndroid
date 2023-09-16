@@ -86,7 +86,7 @@ public class SignInActivity extends AppCompatActivity implements NavigationHost 
 
 //        Stash.put(Constants.END_POINT, "http://c4ctest.mhealthkenya.org/api/"); //temporary endpoint
         //live
-       // Stash.put(Constants.END_POINT, "https://c4c_api.mhealthkenya.org/api/"); //temporary endpoint
+       // Stash.put(Constants.END_POINT, "https://c4c-api.mhealthkenya.org/api/"); //temporary endpoint
         //test
        // Stash.put(Constants.END_POINT,"https://prod.kenyahmis.org:8003/api/");
 

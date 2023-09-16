@@ -74,7 +74,7 @@ public class LoginFragment extends Fragment {
 
     public static Fragment getInstance(SignInActivity context){
 
-        LoginFragment frag =     new LoginFragment();
+        LoginFragment frag = new LoginFragment();
         frag.navigationDelegate = context;
 
         return frag;

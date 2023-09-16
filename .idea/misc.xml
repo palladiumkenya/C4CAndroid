@@ -3,7 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/This/c4cAug/app/src/main/res/drawable/ic_coronavirus.xml" value="0.1" />
+        <entry key="..\:/Users/This/c4cAug/app/src/main/res/drawable/ic_description.xml" value="0.1" />
+        <entry key="..\:/Users/This/c4cAug/app/src/main/res/drawable/ic_doctor.xml" value="0.1" />
+        <entry key="..\:/Users/This/c4cAug/app/src/main/res/drawable/ic_exposure.xml" value="0.1" />
+        <entry key="..\:/Users/This/c4cAug/app/src/main/res/drawable/ic_home.xml" value="0.1" />
+        <entry key="..\:/Users/This/c4cAug/app/src/main/res/drawable/ic_immunization.xml" value="0.1" />
+        <entry key="..\:/Users/This/c4cAug/app/src/main/res/drawable/ic_phone.xml" value="0.1" />
+        <entry key="..\:/Users/This/c4cAug/app/src/main/res/layout/activity_sign_in.xml" value="0.2" />
+        <entry key="..\:/Users/This/c4cAug/app/src/main/res/layout/frag_login.xml" value="0.2" />
         <entry key="..\:/Users/This/c4cAug/app/src/main/res/layout/fragment_hiv_exposures.xml" value="0.17239583333333333" />
+        <entry key="..\:/Users/This/c4cAug/app/src/main/res/layout/fragment_report_exposures.xml" value="0.215625" />
+        <entry key="..\:/Users/This/c4cAug/app/src/main/res/layout/item_resource_file.xml" value="0.215625" />
+        <entry key="..\:/Users/This/c4cAug/app/src/main/res/layout/nav_header_main.xml" value="0.215625" />
+        <entry key="..\:/Users/This/c4cAug/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/Users/This/c4ct/app/src/main/res/layout/frag_login.xml" value="0.1" />
         <entry key="..\:/Users/This/c4ct/app/src/main/res/layout/fragment_report_covid_exposure.xml" value="0.17" />
         <entry key="..\:/Users/This/c4ct/app/src/main/res/layout/fragment_report_exposures.xml" value="0.1" />
