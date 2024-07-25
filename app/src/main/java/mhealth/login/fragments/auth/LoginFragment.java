@@ -275,6 +275,10 @@ public class LoginFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
 
+                Log.e("error response message", error.toString()+error.getMessage());
+
+
+
 
 
                 lyt_progress.setVisibility(View.GONE);

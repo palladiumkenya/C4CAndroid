@@ -356,6 +356,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:gravity="center"
                                 android:orientation="vertical">
 
                                 <TextView
@@ -364,11 +365,13 @@
                                     android:maxLines="1"
                                     android:singleLine="true"
                                     android:text="@string/resources"
+                                    android:gravity="center"
                                     android:textColor="@color/grey_90" />
 
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:gravity="center"
                                     android:text="@string/a_collection_of_useful_medical_resources" />
 
                             </LinearLayout>
@@ -383,6 +386,7 @@
                     android:layout_height="match_parent"
                     android:id="@+id/jitengeLayout"
                     android:layout_margin="@dimen/spacing_medium"
+                    android:visibility="gone"
                     android:layout_weight="1"
                     app:cardCornerRadius="2dp"
                     app:cardElevation="2dp">

@@ -9,10 +9,13 @@ public class Constants {
     public static String LOGGED_IN_USER = "LOGGED_IN_USER";
     //public static String END_POINT = "END_POINT";
 
-    public static String END_POINT = "https://c4c-api.mhealthkenya.co.ke/api/";
-    //facilities
-    //"https://c4c-api.mhealthkenya.co.ke/api/
-    //https://c4c_api.mhealthkenya.org/api/
+   //Decommissioned
+   // public static String END_POINT = "https://c4c-api.mhealthkenya.co.ke/api/";
+   //live instance
+    public static String END_POINT = "https://c4c-api.kenyahmis.org/api/";
+    //Test Instance
+   //public static String END_POINT = "https://prod.kenyahmis.org:8003/";
+
     //Stash.put(Constants.END_POINT, "https://c4c_api.mhealthkenya.org/api/");
 
 
