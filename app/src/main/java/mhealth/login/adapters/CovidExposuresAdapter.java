@@ -77,50 +77,43 @@ public class CovidExposuresAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         CovidExposure obj = items.get(position);
+
         if (holder instanceof CovidExposuresAdapter.OriginalViewHolder) {
             CovidExposuresAdapter.OriginalViewHolder view = (CovidExposuresAdapter.OriginalViewHolder) holder;
 
             view.date_of_contact.setText(obj.getDate_of_contact());
-            view.place_of_diagnosis.setText("Diagnosis: "+obj.getPlace_of_diagnosis());
-            view.symptoms.setText("Symptoms: "+obj.getSymptoms());
-            view.contact.setText("Contact: "+obj.getContact_with());
-            view.ppe_list.setText("PPE List: "+obj.getPpes());
-            view.pcr_test_result.setText("PCR Test: "+obj.getPcr_test());
+            view.place_of_diagnosis.setText("Diagnosis: " + obj.getPlace_of_diagnosis());
+            view.symptoms.setText("Symptoms: " + obj.getSymptoms());
+            view.contact.setText("Contact: " + obj.getContact_with());
+            view.ppe_list.setText("PPE List: " + obj.getPpes());
+            view.pcr_test_result.setText("PCR Test: " + obj.getPcr_test());
 
-            if (obj.getPpe_worn().equals("1")){
+            if ("1".equals(obj.getPpe_worn())) {
                 view.ppe.setText("PPE Worn: Yes");
-            }
-            if (obj.getPpe_worn().equals("0")){
+            } else if ("0".equals(obj.getPpe_worn())) {
                 view.ppe.setText("PPE Worn: No");
             }
 
-            if (obj.getIpc_training().equals("1")){
+            if ("1".equals(obj.getIpc_training())) {
                 view.ipc_train.setText("IPC Training: Yes");
-            }
-            if (obj.getIpc_training().equals("0")){
+            } else if ("0".equals(obj.getIpc_training())) {
                 view.ipc_train.setText("IPC Training: No");
             }
 
-//            view.lyt_parent.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    if (mOnItemClickListener != null) {
-//                        mOnItemClickListener.onItemClick(view, items.get(position), position);
-//                    }
-//                }
-//            });
-
+            // Use holder.getAdapterPosition() instead of the method parameter 'position'
             view.bt_expand.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    boolean show = toggleLayoutExpand(!obj.expanded, v, view.lyt_expand);
-                    items.get(position).expanded = show;
+                    int adapterPosition = holder.getAdapterPosition();
+                    if (adapterPosition != RecyclerView.NO_POSITION) {
+                        boolean show = toggleLayoutExpand(!items.get(adapterPosition).expanded, v, view.lyt_expand);
+                        items.get(adapterPosition).expanded = show;
+                    }
                 }
             });
 
-
-            // void recycling view
-            if(obj.expanded){
+            // Avoid recycling view
+            if (obj.expanded) {
                 view.lyt_expand.setVisibility(View.VISIBLE);
             } else {
                 view.lyt_expand.setVisibility(View.GONE);

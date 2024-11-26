@@ -16,37 +16,33 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.fxn.stash.Stash;
+//import com.fxn.stash.Stash;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import mhealth.login.R;
 import mhealth.login.adapters.FAQsAdapter;
 import mhealth.login.dependencies.Constants;
+import mhealth.login.dependencies.UserStorage;
 import mhealth.login.models.FAQ;
+import mhealth.login.models.Token;
 import mhealth.login.models.User;
 
 
 public class NascopTrainingFragment extends Fragment {
-    private Unbinder unbinder;
+   // private Unbinder unbinder;
     private View root;
     private Context context;
 
     private User loggedInUser;
 
 
-    @BindView(R.id.recyclerView)
+
     RecyclerView recyclerView;
-
-    @BindView(R.id.portallink)
     TextView portallink;
-
-    @BindView(R.id.registrationlink)
     TextView registrationlink;
 
 
@@ -73,9 +69,26 @@ public class NascopTrainingFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         root =  inflater.inflate(R.layout.fragment_nascop_training, container, false);
-        unbinder = ButterKnife.bind(this, root);
+       // unbinder = ButterKnife.bind(this, root);
 
-        loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+        //loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+//        try{
+//            List<Token> _url =Token.findWithQuery(Token.class, "SELECT *from Token ORDER BY id DESC LIMIT 1");
+//            if (_url.size()==1){
+//                for (int x=0; x<_url.size(); x++){
+//                    loggedInUser=   _url.get(x).getToken();
+//                }
+//            }
+//
+//        } catch(Exception e){
+//
+//        }
+        loggedInUser = UserStorage.getUser(context);
+
+
+        recyclerView= (RecyclerView) root.findViewById(R.id.recyclerView);
+        portallink= (TextView) root.findViewById(R.id.portallink);
+        registrationlink= (TextView) root.findViewById(R.id.registrationlink);
 
 
         faqArrayList = new ArrayList<>();
@@ -130,11 +143,7 @@ public class NascopTrainingFragment extends Fragment {
         return root;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
+
 
 
     private void loadFAQs() {

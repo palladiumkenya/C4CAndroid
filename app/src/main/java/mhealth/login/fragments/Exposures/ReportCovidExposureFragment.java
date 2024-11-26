@@ -34,14 +34,15 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.fxn.stash.Stash;
+//import com.fxn.stash.Stash;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
+//import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
+import org.angmarch.views.NiceSpinner;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,19 +57,19 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
+
 import mhealth.login.R;
 import mhealth.login.dependencies.AppController;
 import mhealth.login.dependencies.Constants;
 import mhealth.login.dependencies.MultiSelectSpinner;
 import mhealth.login.dependencies.MultiSelectSpinnerPpe;
 import mhealth.login.dependencies.MultiSelectSpinnerSymptoms;
+import mhealth.login.dependencies.UserStorage;
 import mhealth.login.dependencies.VolleyErrors;
 import mhealth.login.dialogs.InfoMessage;
 import mhealth.login.models.County;
 import mhealth.login.models.SubCounty;
+import mhealth.login.models.Token;
 import mhealth.login.models.User;
 import mhealth.login.models.Ward;
 import mhealth.login.models.counties;
@@ -98,7 +99,7 @@ public class ReportCovidExposureFragment extends Fragment {
 
 
 
-    private Unbinder unbinder;
+   // private Unbinder unbinder;
     private View root;
     private Context context;
 
@@ -126,73 +127,73 @@ public class ReportCovidExposureFragment extends Fragment {
 
     private ArrayAdapter<String> arrayContactWith,arrayPpeWorn, arrayIpcTraining, arrayCovidSymptoms, arrayPcrTest, arrayIsolationMethod;
 
-    @BindView(R.id.til_id_number)
+//    @BindView(R.id.til_id_number)
     TextInputLayout til_id_number;
-
-    @BindView(R.id.etxt_id_no)
-    TextInputEditText etxt_id_no;
-
-    @BindView(R.id.til_date_of_covid_exposure)
+//
+//    @BindView(R.id.etxt_id_no)
+   TextInputEditText etxt_id_no;
+//
+//    @BindView(R.id.til_date_of_covid_exposure)
     TextInputLayout til_date_of_covid_exposure;
-
-    @BindView(R.id.etxt_date_of_covid_exposure)
-    TextInputEditText etxt_date_of_covid_exposure;
-
-    @BindView(R.id.contact_with)
-    MaterialBetterSpinner contact_with;
-
-    @BindView(R.id.ppe_worn)
-    MaterialBetterSpinner ppe_worn;
-
-    @BindView(R.id.lyt_ppe)
-    LinearLayout lyt_ppe;
-
-    @BindView(R.id.ppe_spinner)
+//
+//    @BindView(R.id.etxt_date_of_covid_exposure)
+   TextInputEditText etxt_date_of_covid_exposure;
+//
+//    @BindView(R.id.contact_with)
+   MaterialBetterSpinner contact_with;
+//
+//    @BindView(R.id.ppe_worn)
+   MaterialBetterSpinner ppe_worn;
+//
+//    @BindView(R.id.lyt_ppe)
+   LinearLayout lyt_ppe;
+//
+//    @BindView(R.id.ppe_spinner)
     MultiSelectSpinnerPpe ppe_spinner;
-
-    @BindView(R.id.ipc_training)
+//
+//    @BindView(R.id.ipc_training)
     MaterialBetterSpinner ipc_training;
-
-    @BindView(R.id.covid_symptoms)
+//
+//    @BindView(R.id.covid_symptoms)
     MaterialBetterSpinner covid_symptoms;
-
-    @BindView(R.id.lyt_symptoms)
+//
+//    @BindView(R.id.lyt_symptoms)
     LinearLayout lyt_symptoms;
-
-    @BindView(R.id.symptoms_spinner)
+//
+//    @BindView(R.id.symptoms_spinner)
     MultiSelectSpinnerSymptoms symptoms_spinner;
-
-    @BindView(R.id.pcr_test)
-    MaterialBetterSpinner pcr_test;
-
-    @BindView(R.id.isolation_method)
+//
+//    @BindView(R.id.pcr_test)
+   MaterialBetterSpinner pcr_test;
+//
+//    @BindView(R.id.isolation_method)
     MaterialBetterSpinner isolation_method;
-
-    @BindView(R.id.til_date_isolation_start)
+//
+//    @BindView(R.id.til_date_isolation_start)
     TextInputLayout til_date_isolation_start;
-
-    @BindView(R.id.etxt_date_isolation_start)
+//
+//    @BindView(R.id.etxt_date_isolation_start)
     TextInputEditText etxt_date_isolation_start;
-
-    @BindView(R.id.til_place_of_diagnosis)
-    TextInputLayout til_place_of_diagnosis;
-
-    @BindView(R.id.etxt_place_of_diagnosis)
+//
+//    @BindView(R.id.til_place_of_diagnosis)
+   TextInputLayout til_place_of_diagnosis;
+//
+//    @BindView(R.id.etxt_place_of_diagnosis)
     TextInputEditText etxt_place_of_diagnosis;
-
-    @BindView(R.id.countySpinner)
-    SearchableSpinner countySpinner;
-
-    @BindView(R.id.subCountySpinner)
-    SearchableSpinner subCountySpinner;
-
-    @BindView(R.id.wardSpinner)
-    SearchableSpinner wardSpinner;
-
-    @BindView(R.id.lyt_progress)
+//
+//    @BindView(R.id.countySpinner)
+    NiceSpinner countySpinner;
+//
+//    @BindView(R.id.subCountySpinner)
+    NiceSpinner subCountySpinner;
+//
+//    @BindView(R.id.wardSpinner)
+    NiceSpinner wardSpinner;
+//
+//    @BindView(R.id.lyt_progress)
     LinearLayout lyt_progress;
-
-    @BindView(R.id.btn_report_covid_exposure)
+//
+//    @BindView(R.id.btn_report_covid_exposure)
     MaterialButton btn_report_covid_exposure;
 
   //  ArrayList<String> countiesList;
@@ -228,9 +229,79 @@ public class ReportCovidExposureFragment extends Fragment {
         // Inflate the layout for this fragment
         rq = Volley.newRequestQueue(context);
         root = inflater.inflate(R.layout.fragment_report_covid_exposure, container, false);
-        unbinder = ButterKnife.bind(this, root);
+        //unbinder = ButterKnife.bind(this, root);
 
-        loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+        til_id_number= (TextInputLayout) root.findViewById(R.id.til_id_number);
+        etxt_id_no= (TextInputEditText) root.findViewById(R.id.etxt_id_no);
+        til_date_of_covid_exposure= (TextInputLayout) root.findViewById(R.id.til_date_of_covid_exposure);
+        etxt_date_of_covid_exposure= (TextInputEditText) root.findViewById(R.id.etxt_date_of_covid_exposure);
+        contact_with= (MaterialBetterSpinner) root.findViewById(R.id.contact_with);
+        ppe_worn= (MaterialBetterSpinner) root.findViewById(R.id.ppe_worn);
+
+       lyt_ppe= ( LinearLayout) root.findViewById(R.id.lyt_ppe);
+
+         ppe_spinner= (MultiSelectSpinnerPpe) root.findViewById(R.id.ppe_spinner);
+
+       ipc_training= (MaterialBetterSpinner) root.findViewById(R.id.ipc_training);
+
+         covid_symptoms= (MaterialBetterSpinner) root.findViewById(R.id.covid_symptoms);
+
+       lyt_symptoms= ( LinearLayout) root.findViewById(R.id.lyt_symptoms);
+
+        symptoms_spinner= (MultiSelectSpinnerSymptoms) root.findViewById(R.id.symptoms_spinner);
+
+        pcr_test= (MaterialBetterSpinner) root.findViewById(R.id.pcr_test);
+
+         isolation_method= (MaterialBetterSpinner) root.findViewById(R.id.isolation_method);
+
+        til_date_isolation_start= (TextInputLayout) root.findViewById(R.id.til_date_isolation_start);
+
+        etxt_date_isolation_start= (TextInputEditText) root.findViewById(R.id.etxt_date_isolation_start);
+
+        til_place_of_diagnosis= (TextInputLayout) root.findViewById(R.id.til_place_of_diagnosis);
+
+        etxt_place_of_diagnosis= (TextInputEditText) root.findViewById(R.id.etxt_place_of_diagnosis);
+
+         countySpinner= ( NiceSpinner) root.findViewById(R.id.countySpinner);
+
+        subCountySpinner= (NiceSpinner) root.findViewById(R.id.subCountySpinner);
+
+         wardSpinner= (NiceSpinner) root.findViewById(R.id.wardSpinner);
+
+         lyt_progress= (LinearLayout) root.findViewById(R.id.lyt_progress);
+
+        btn_report_covid_exposure= (MaterialButton) root.findViewById(R.id.btn_report_covid_exposure);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+//        try{
+//            List<Token> _url =Token.findWithQuery(Token.class, "SELECT *from Token ORDER BY id DESC LIMIT 1");
+//            if (_url.size()==1){
+//                for (int x=0; x<_url.size(); x++){
+//                    loggedInUser=   _url.get(x).getToken();
+//                }
+//            }
+//
+//        } catch(Exception e){
+//
+//        }
+        loggedInUser = UserStorage.getUser(context);
 
         if (loggedInUser.getProfile_complete() == 0){
             NavHostFragment.findNavController(ReportCovidExposureFragment.this).navigate(R.id.nav_complete_profile);
@@ -255,11 +326,11 @@ public class ReportCovidExposureFragment extends Fragment {
         return root;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
+//    @Override
+//    public void onDestroyView() {
+//        super.onDestroyView();
+//        unbinder.unbind();
+//    }
 
     private void  initialise(){
 
@@ -652,7 +723,8 @@ public class ReportCovidExposureFragment extends Fragment {
                     aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
                     countySpinner.setAdapter(aa);
-                    countySpinner.setSelection(aa.getCount()-1);
+                   // countySpinner.setSelection(aa.getCount()-1);
+                    countySpinner.setSelectedIndex(aa.getCount()-1);
 
                     countyID = counties.get(aa.getCount()-1).getId();
 
@@ -772,7 +844,8 @@ public class ReportCovidExposureFragment extends Fragment {
                     aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
                     subCountySpinner.setAdapter(aa);
-                    subCountySpinner.setSelection(aa.getCount()-1);
+                   // subCountySpinner.setSelection(aa.getCount()-1);
+                    subCountySpinner.setSelectedIndex(aa.getCount()-1);
 
                     scountyID = subCounties.get(aa.getCount()-1).getId();
 
@@ -894,7 +967,8 @@ public class ReportCovidExposureFragment extends Fragment {
                     aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
                     wardSpinner.setAdapter(aa);
-                    wardSpinner.setSelection(aa.getCount()-1);
+                   // wardSpinner.setSelection(aa.getCount()-1);
+                    wardSpinner.setSelectedIndex(aa.getCount()-1);
 
                     wardID = wards.get(aa.getCount()-1).getId();
 
@@ -1119,7 +1193,8 @@ public class ReportCovidExposureFragment extends Fragment {
 
                     // if (ServiceSpinner != null){
                     countySpinner.setAdapter(aa);
-                    countySpinner.setSelection(aa.getCount() - 1);
+                    //countySpinner.setSelection(aa.getCount() - 1);
+                    countySpinner.setSelectedIndex(aa.getCount()-1);
 
                     countyID = countiess.get(aa.getCount() - 1).getId();
 
@@ -1250,7 +1325,8 @@ public class ReportCovidExposureFragment extends Fragment {
                     aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
                     subCountySpinner.setAdapter(aa);
-                    subCountySpinner.setSelection(aa.getCount() - 1);
+                   // subCountySpinner.setSelection(aa.getCount() - 1);
+                    subCountySpinner.setSelectedIndex(aa.getCount()-1);
 
                     scountyID = scountiess.get(aa.getCount() - 1).getId();
 
@@ -1371,7 +1447,8 @@ public class ReportCovidExposureFragment extends Fragment {
                     aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
                     wardSpinner.setAdapter(aa);
-                    wardSpinner.setSelection(aa.getCount() - 1);
+                    //wardSpinner.setSelection(aa.getCount() - 1);
+                    wardSpinner.setSelectedIndex(aa.getCount()-1);
 
                     //wardID = wardss.get(aa.getCount() - 1).getId();
                     wardID = wardss.get(aa.getCount() -1).getId();

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -32,10 +33,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.fxn.stash.Stash;
+//import com.fxn.stash.Stash;
 import com.google.android.material.snackbar.Snackbar;
-import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
+//import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
+import org.angmarch.views.NiceSpinner;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,23 +45,27 @@ import org.json.JSONObject;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
+//import butterknife.BindView;
+//import butterknife.ButterKnife;
+//import butterknife.Unbinder;
 import mhealth.login.MainActivity;
 import mhealth.login.R;
 import mhealth.login.SignInActivity;
 import mhealth.login.dependencies.AppController;
 import mhealth.login.dependencies.Constants;
+import mhealth.login.dependencies.UserStorage;
 import mhealth.login.dependencies.VolleyErrors;
 import mhealth.login.dialogs.InfoMessage;
 import mhealth.login.models.Cadre;
 import mhealth.login.models.Facility;
 import mhealth.login.models.FacilityDepartment;
 import mhealth.login.models.Hcw;
+import mhealth.login.models.Profile;
+import mhealth.login.models.Token;
 import mhealth.login.models.User;
 
 import static mhealth.login.dependencies.AppController.TAG;
@@ -67,7 +73,8 @@ import static mhealth.login.dependencies.AppController.TAG;
 
 public class UpdateProfileFragment extends Fragment {
 
-    private Unbinder unbinder;
+//    private Unbinder unbinder;
+    Hcw hcw;
     private View root;
     private Context context;
 
@@ -87,46 +94,20 @@ public class UpdateProfileFragment extends Fragment {
 
 
 
-    @BindView(R.id.card_name)
+
     TextView card_name;
-
-    @BindView(R.id.card_phone)
     TextView card_phone;
-
-    @BindView(R.id.first_name)
     EditText first_name;
-
-    @BindView(R.id.sur_name)
     EditText sur_name;
-
-    @BindView(R.id.email)
     EditText email;
-
-    @BindView(R.id.phone_number)
     EditText phone_number;
-
-    @BindView(R.id.facilitySpinner)
-    SearchableSpinner facilitySpinner;
-
-    @BindView(R.id.facilityDepartment)
-    SearchableSpinner facilityDepartmentSpinner;
-
-    @BindView(R.id.cadre)
-    SearchableSpinner cadreSpinner;
-
-    @BindView(R.id.old_password)
+   NiceSpinner facilitySpinner;
+    NiceSpinner facilityDepartmentSpinner;
+    NiceSpinner cadreSpinner;
     EditText old_password;
-
-    @BindView(R.id.input_password)
     EditText input_password;
-
-    @BindView(R.id.input_confirm_password)
     EditText input_confirm_password;
-
-    @BindView(R.id.btn_update_profile)
     Button btn_update_profile;
-
-    @BindView(R.id.lyt_progress)
     LinearLayout lyt_progress;
 
 
@@ -150,9 +131,41 @@ public class UpdateProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         root =  inflater.inflate(R.layout.fragment_update_profile, container, false);
-        unbinder = ButterKnife.bind(this, root);
+       // unbinder = ButterKnife.bind(this, root);
 
-        loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+        //loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+
+//        try{
+//            List<Token> _url =Token.findWithQuery(Token.class, "SELECT *from Token ORDER BY id DESC LIMIT 1");
+//            if (_url.size()==1){
+//                for (int x=0; x<_url.size(); x++){
+//                    loggedInUser=   _url.get(x).getToken();
+//                }
+//            }
+//
+//        } catch(Exception e){
+//
+//        }
+        loggedInUser = UserStorage.getUser(context);
+
+
+
+
+        card_name= (TextView) root.findViewById(R.id.card_name);
+        card_phone= (TextView) root.findViewById(R.id.card_phone);
+
+        first_name= (EditText) root.findViewById(R.id.first_name);
+        sur_name= (EditText) root.findViewById(R.id.sur_name);
+        email= (EditText) root.findViewById(R.id.email);
+        phone_number= (EditText) root.findViewById(R.id.phone_number);
+        facilitySpinner= (NiceSpinner) root.findViewById(R.id.facilitySpinner);
+        facilityDepartmentSpinner= (NiceSpinner) root.findViewById(R.id.facilityDepartment);
+        cadreSpinner= (NiceSpinner) root.findViewById(R.id.cadre);
+        old_password= (EditText) root.findViewById(R.id.old_password);
+        input_password= (EditText) root.findViewById(R.id.input_password);
+        input_confirm_password= (EditText) root.findViewById(R.id.input_confirm_password);
+        btn_update_profile= (Button) root.findViewById(R.id.btn_update_profile);
+        lyt_progress= (LinearLayout) root.findViewById(R.id.lyt_progress);
 
         if (loggedInUser.getProfile_complete() == 0){
             NavHostFragment.findNavController(UpdateProfileFragment.this).navigate(R.id.nav_complete_profile);
@@ -168,14 +181,14 @@ public class UpdateProfileFragment extends Fragment {
         phone_number.setText(loggedInUser.getMsisdn());
 
 
-        facilitySpinner.setTitle("Select Facility");
-        facilitySpinner.setPositiveButton("OK");
-
-        facilityDepartmentSpinner.setTitle("Select Department");
-        facilityDepartmentSpinner.setPositiveButton("OK");
-
-        cadreSpinner.setTitle("Select Cadre");
-        cadreSpinner.setPositiveButton("OK");
+//        facilitySpinner.setTitle("Select Facility");
+//        facilitySpinner.setPositiveButton("OK");
+//
+//        facilityDepartmentSpinner.setTitle("Select Department");
+//        facilityDepartmentSpinner.setPositiveButton("OK");
+//
+//        cadreSpinner.setTitle("Select Cadre");
+//        cadreSpinner.setPositiveButton("OK");
 
         getProfile();
 
@@ -195,11 +208,11 @@ public class UpdateProfileFragment extends Fragment {
         return root;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
+//    @Override
+//    public void onDestroyView() {
+//        super.onDestroyView();
+//        unbinder.unbind();
+//    }
 
     private void getFacilities() {
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
@@ -248,7 +261,19 @@ public class UpdateProfileFragment extends Fragment {
 //                        facilitiesList.add("--select facility--");
 
 
-                        Hcw hcw = (Hcw) Stash.getObject(Constants.HCW, Hcw.class);
+                       // Hcw hcw = (Hcw) Stash.getObject(Constants.HCW, Hcw.class);
+
+                        try{
+                            List<Profile> _url =Profile.findWithQuery(Profile.class, "SELECT *from Profile ORDER BY id DESC LIMIT 1");
+                            if (_url.size()==1){
+                                for (int x=0; x<_url.size(); x++){
+                                hcw=   _url.get(x).getProfile();
+                                }
+                            }
+
+                        } catch(Exception e){
+
+                        }
 
                         Log.e("HCW:", hcw.getDob()+" "+hcw.getId_number()+" "+hcw.getFacility_id());
 
@@ -273,7 +298,8 @@ public class UpdateProfileFragment extends Fragment {
                         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
                         facilitySpinner.setAdapter(aa);
-                        facilitySpinner.setSelection(pos);
+                       // facilitySpinner.setSelection(pos);
+                        facilitySpinner.setSelectedIndex(pos);
 //                        facilitySpinner.setSelection(aa.getCount()-1);
 
                         facilityID = facilities.get(pos).getId();
@@ -398,7 +424,18 @@ public class UpdateProfileFragment extends Fragment {
                         facilityDepartments.add(new FacilityDepartment(0,0,"--select department--"));
                         facilityDepartmentsList.add("--select department--");
 
-                        Hcw hcw = (Hcw) Stash.getObject(Constants.HCW, Hcw.class);
+                       // Hcw hcw = (Hcw) Stash.getObject(Constants.HCW, Hcw.class);
+                        try{
+                            List<Profile> _url =Profile.findWithQuery(Profile.class, "SELECT *from Profile ORDER BY id DESC LIMIT 1");
+                            if (_url.size()==1){
+                                for (int x=0; x<_url.size(); x++){
+                                    hcw=   _url.get(x).getProfile();
+                                }
+                            }
+
+                        } catch(Exception e){
+
+                        }
 
                         Log.e("HCW:", hcw.getDob()+" "+hcw.getId_number()+" "+hcw.getFacility_id());
 
@@ -422,7 +459,8 @@ public class UpdateProfileFragment extends Fragment {
                         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
                         facilityDepartmentSpinner.setAdapter(aa);
-                        facilityDepartmentSpinner.setSelection(pos);
+                        //facilityDepartmentSpinner.setSelection(pos);
+                        facilityDepartmentSpinner.setSelectedIndex(pos);
 //                        facilityDepartmentSpinner.setSelection(aa.getCount()-1);
 
                         facilityDepartmentID = facilityDepartments.get(pos).getId();
@@ -540,7 +578,18 @@ public class UpdateProfileFragment extends Fragment {
 
 //                        cadres.add(new Cadre(0,"--select cadre--"));
 //                        cadreList.add("--select cadre--");
-                        Hcw hcw = (Hcw) Stash.getObject(Constants.HCW, Hcw.class);
+                        //Hcw hcw = (Hcw) Stash.getObject(Constants.HCW, Hcw.class);
+                        try{
+                            List<Profile> _url =Profile.findWithQuery(Profile.class, "SELECT *from Profile ORDER BY id DESC LIMIT 1");
+                            if (_url.size()==1){
+                                for (int x=0; x<_url.size(); x++){
+                                    hcw=   _url.get(x).getProfile();
+                                }
+                            }
+
+                        } catch(Exception e){
+
+                        }
 
 
                         int pos =cadres.indexOf(new Cadre(hcw.getCadre_id(),""));
@@ -560,7 +609,8 @@ public class UpdateProfileFragment extends Fragment {
                         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
                         cadreSpinner.setAdapter(aa);
-                        cadreSpinner.setSelection(pos);
+                       // cadreSpinner.setSelection(pos);
+                        cadreSpinner.setSelectedIndex(pos);
 //                        cadreSpinner.setSelection(aa.getCount()-1);
 
                         cadreID = cadres.get(pos).getId();
@@ -664,7 +714,17 @@ public class UpdateProfileFragment extends Fragment {
 
                         Hcw hcw1 = new Hcw(id,facility_id,facility_department_id,cadre_id,facility_name,dob,id_number);
 
-                        Stash.put(Constants.HCW, hcw1);
+                       // Stash.put(Constants.HCW, hcw1);
+                        try {
+                            Profile.deleteAll(Profile.class);
+                            Profile profileTable =new Profile(hcw1);
+                            profileTable.save();
+                            // finish();
+
+
+                        } catch (Exception e) {
+                            Log.d("error saving data", "error on server saving");
+                        }
 
                         facilityID = facility_id;
 
@@ -829,11 +889,41 @@ public class UpdateProfileFragment extends Fragment {
                     if (status){
 
                         //update HCW stash object
-                        Hcw hcw = (Hcw) Stash.getObject(Constants.HCW, Hcw.class);
+                       // Hcw hcw = (Hcw) Stash.getObject(Constants.HCW, Hcw.class);
+
+
+                        try{
+                            List<Profile> _url =Profile.findWithQuery(Profile.class, "SELECT *from Profile ORDER BY id DESC LIMIT 1");
+                            if (_url.size()==1){
+                                for (int x=0; x<_url.size(); x++){
+                                    hcw=   _url.get(x).getProfile();
+                                }
+                            }
+
+                        } catch(Exception e){
+
+                        }
+
+
+
+
+
+
                         hcw.setFacility_id(facilityID);
                         hcw.setFacility_department_id(facilityDepartmentID);
                         hcw.setCadre_id(cadreID);
-                        Stash.put(Constants.HCW, hcw);
+                       // Stash.put(Constants.HCW, hcw);
+
+                        try {
+                            Profile.deleteAll(Profile.class);
+                            Profile profileTable =new Profile(hcw);
+                            profileTable.save();
+                            // finish();
+
+
+                        } catch (Exception e) {
+                            Log.d("error saving data", "error on server saving");
+                        }
 
 
                         //updatge lofgged in user
@@ -841,7 +931,19 @@ public class UpdateProfileFragment extends Fragment {
                         loggedInUser.setSurname(surname);
                         loggedInUser.setEmail(email);
                         loggedInUser.setMsisdn(phone_no);
-                        Stash.put(Constants.LOGGED_IN_USER, loggedInUser);
+                       // Stash.put(Constants.LOGGED_IN_USER, loggedInUser);
+
+
+                        try {
+                            Token.deleteAll(Token.class);
+                            Token tokenTable =new Token(loggedInUser);
+                            tokenTable.save();
+                            // finish();
+
+
+                        } catch (Exception e) {
+                            Log.d("error saving data", "error on server saving");
+                        }
 
                         NavHostFragment.findNavController(UpdateProfileFragment.this).navigate(R.id.nav_home);
 

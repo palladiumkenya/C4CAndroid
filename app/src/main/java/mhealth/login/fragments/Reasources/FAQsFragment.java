@@ -19,7 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.fxn.stash.Stash;
+//import com.fxn.stash.Stash;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
@@ -30,33 +30,31 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import mhealth.login.R;
 import mhealth.login.adapters.FAQsAdapter;
 import mhealth.login.adapters.ImmunizationsAdapter;
 import mhealth.login.dependencies.AppController;
 import mhealth.login.dependencies.Constants;
+import mhealth.login.dependencies.UserStorage;
 import mhealth.login.dependencies.VolleyErrors;
 import mhealth.login.dialogs.InfoMessage;
 import mhealth.login.models.FAQ;
 import mhealth.login.models.Immunization;
+import mhealth.login.models.Token;
 import mhealth.login.models.User;
 
 import static mhealth.login.dependencies.AppController.TAG;
 
 
 public class FAQsFragment extends Fragment {
-    private Unbinder unbinder;
+    //private Unbinder unbinder;
     private View root;
     private Context context;
 
     private User loggedInUser;
 
 
-    @BindView(R.id.recyclerView)
+   // @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
 
@@ -83,9 +81,24 @@ public class FAQsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         root =  inflater.inflate(R.layout.fragment_faqs, container, false);
-        unbinder = ButterKnife.bind(this, root);
+        //unbinder = ButterKnife.bind(this, root);
 
-        loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+        recyclerView= (RecyclerView) root.findViewById(R.id.recyclerView);
+
+       // loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+//        try{
+//            List<Token> _url =Token.findWithQuery(Token.class, "SELECT *from Token ORDER BY id DESC LIMIT 1");
+//            if (_url.size()==1){
+//                for (int x=0; x<_url.size(); x++){
+//                    loggedInUser=   _url.get(x).getToken();
+//                }
+//            }
+//
+//        } catch(Exception e){
+//
+//        }
+        loggedInUser = UserStorage.getUser(context);
+
 
 
         faqArrayList = new ArrayList<>();
@@ -120,11 +133,6 @@ public class FAQsFragment extends Fragment {
         return root;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
 
 
     private void loadFAQs() {

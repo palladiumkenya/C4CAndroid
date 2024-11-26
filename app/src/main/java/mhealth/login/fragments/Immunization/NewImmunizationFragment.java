@@ -30,10 +30,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.fxn.stash.Stash;
+//import com.fxn.stash.Stash;
 import com.google.android.material.snackbar.Snackbar;
-import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
+//import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
+import org.angmarch.views.NiceSpinner;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,20 +44,20 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import mhealth.login.R;
 import mhealth.login.dependencies.AppController;
 import mhealth.login.dependencies.Constants;
+import mhealth.login.dependencies.UserStorage;
 import mhealth.login.dependencies.VolleyErrors;
 import mhealth.login.dialogs.InfoMessage;
 import mhealth.login.fragments.Exposures.ReportExposuresFragment;
 import mhealth.login.models.Device;
 import mhealth.login.models.Disease;
+import mhealth.login.models.Token;
 import mhealth.login.models.User;
 
 import static mhealth.login.dependencies.AppController.TAG;
@@ -66,7 +67,7 @@ public class NewImmunizationFragment extends Fragment {
 
     private Context context;
     private View root;
-    private Unbinder unbinder;
+    //private Unbinder unbinder;
 
     private User loggedInUser;
 
@@ -81,28 +82,16 @@ public class NewImmunizationFragment extends Fragment {
     ArrayList<Disease> diseases;
 
 
-    @BindView(R.id.disease)
-    SearchableSpinner diseaseSpinner ;
 
-    @BindView(R.id.immunization_date1)
+    NiceSpinner diseaseSpinner ;
+
+
     TextView immunization_date1 ;
-
-    @BindView(R.id.immunization_date2)
     TextView immunization_date2 ;
-
-    @BindView(R.id.immunization_date3)
     TextView immunization_date3 ;
-
-    @BindView(R.id.submit_immunization)
     Button btn_submit_immunization;
-
-    @BindView(R.id.secondDoseRadioGroup)
     RadioGroup secondDoseRadioGroup;
-
-    @BindView(R.id.thirdDoseRadioGroup)
     RadioGroup thirdDoseRadioGroup;
-
-    @BindView(R.id.lyt_progress)
     LinearLayout lyt_progress;
 
     @Override
@@ -122,10 +111,31 @@ public class NewImmunizationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_new_immunization, container, false);
-        unbinder = ButterKnife.bind(this, root);
 
 
-        loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+       // loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+//        try{
+//            List<Token> _url =Token.findWithQuery(Token.class, "SELECT *from Token ORDER BY id DESC LIMIT 1");
+//            if (_url.size()==1){
+//                for (int x=0; x<_url.size(); x++){
+//                    loggedInUser=   _url.get(x).getToken();
+//                }
+//            }
+//
+//        } catch(Exception e){
+//
+//        }
+        loggedInUser = UserStorage.getUser(context);
+
+
+         diseaseSpinner= (NiceSpinner) root.findViewById(R.id.disease);
+         immunization_date1 = (TextView ) root.findViewById(R.id.immunization_date1);
+         immunization_date2 = (TextView) root.findViewById(R.id.immunization_date2);
+         immunization_date3 = (TextView ) root.findViewById(R.id.immunization_date3);
+         btn_submit_immunization= (Button) root.findViewById(R.id.submit_immunization);
+         secondDoseRadioGroup= (RadioGroup) root.findViewById(R.id.secondDoseRadioGroup);
+         thirdDoseRadioGroup= (RadioGroup) root.findViewById(R.id.thirdDoseRadioGroup);
+         lyt_progress= (LinearLayout) root.findViewById(R.id.lyt_progress);
 
         if (loggedInUser.getProfile_complete() == 0){
             NavHostFragment.findNavController(NewImmunizationFragment.this).navigate(R.id.nav_complete_profile);
@@ -190,8 +200,8 @@ public class NewImmunizationFragment extends Fragment {
             }
         });
 
-        diseaseSpinner.setTitle("Select disease immunized");
-        diseaseSpinner.setPositiveButton("OK");
+//        diseaseSpinner.setTitle("Select disease immunized");
+//        diseaseSpinner.setPositiveButton("OK");
 
         getDiseases();
 
@@ -300,11 +310,11 @@ public class NewImmunizationFragment extends Fragment {
         datePickerDialog.show();
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
+//    @Override
+//    public void onDestroyView() {
+//        super.onDestroyView();
+//        unbinder.unbind();
+//    }
 
     private void getDiseases() {
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
@@ -367,7 +377,9 @@ public class NewImmunizationFragment extends Fragment {
                         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
                         diseaseSpinner.setAdapter(aa);
-                        diseaseSpinner.setSelection(aa.getCount()-1);
+                       // diseaseSpinner.setSelection(aa.getCount()-1);
+
+                        diseaseSpinner.setSelectedIndex(aa.getCount()-1);
 
                         DISEASE_ID = diseases.get(aa.getCount()-1).getId();
 

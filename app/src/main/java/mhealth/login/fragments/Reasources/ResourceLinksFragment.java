@@ -20,61 +20,42 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.fxn.stash.Stash;
+//import com.fxn.stash.Stash;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
+//import butterknife.BindView;
+//import butterknife.ButterKnife;
+//import butterknife.Unbinder;
 import mhealth.login.R;
 import mhealth.login.adapters.FAQsAdapter;
 import mhealth.login.dependencies.Constants;
+import mhealth.login.dependencies.UserStorage;
 import mhealth.login.models.FAQ;
+import mhealth.login.models.Token;
 import mhealth.login.models.User;
 
 
 public class ResourceLinksFragment extends Fragment {
-    private Unbinder unbinder;
+   // private Unbinder unbinder;
     private View root;
     private Context context;
 
     private User loggedInUser;
 
 
-    @BindView(R.id.lk1)
+
     TextView lk1;
-
-    @BindView(R.id.lk2)
     TextView lk2;
-
-    @BindView(R.id.lk3)
     TextView lk3;
-
-    @BindView(R.id.lk4)
     TextView lk4;
-
-    @BindView(R.id.lk5)
     TextView lk5;
-
-    @BindView(R.id.lk6)
     TextView lk6;
-
-    @BindView(R.id.lk7)
     TextView lk7;
-
-    @BindView(R.id.lk8)
     TextView lk8;
-
-    @BindView(R.id.lk9)
     TextView lk9;
-
-    @BindView(R.id.lk10)
     TextView lk10;
-
-
-
-
 
 
     private FAQsAdapter mAdapter;
@@ -99,9 +80,33 @@ public class ResourceLinksFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         root =  inflater.inflate(R.layout.fragment_resource_links, container, false);
-        unbinder = ButterKnife.bind(this, root);
+       // unbinder = ButterKnife.bind(this, root);
 
-        loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+        lk1= (TextView) root.findViewById(R.id.lk1);
+        lk2= (TextView) root.findViewById(R.id.lk2);
+        lk3= (TextView) root.findViewById(R.id.lk3);
+        lk4= (TextView) root.findViewById(R.id.lk4);
+        lk5= (TextView) root.findViewById(R.id.lk5);
+        lk6= (TextView) root.findViewById(R.id.lk6);
+        lk7= (TextView) root.findViewById(R.id.lk7);
+        lk8= (TextView) root.findViewById(R.id.lk8);
+        lk9= (TextView) root.findViewById(R.id.lk9);
+        lk10= (TextView) root.findViewById(R.id.lk10);
+
+       // loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+//        try{
+//            List<Token> _url =Token.findWithQuery(Token.class, "SELECT *from Token ORDER BY id DESC LIMIT 1");
+//            if (_url.size()==1){
+//                for (int x=0; x<_url.size(); x++){
+//                    loggedInUser=   _url.get(x).getToken();
+//                }
+//            }
+//
+//        } catch(Exception e){
+//
+//        }
+
+        loggedInUser = UserStorage.getUser(context);
 
 
 
@@ -112,11 +117,11 @@ public class ResourceLinksFragment extends Fragment {
         return root;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
+//    @Override
+//    public void onDestroyView() {
+//        super.onDestroyView();
+//        unbinder.unbind();
+//    }
 
 
     private void setLinks(){

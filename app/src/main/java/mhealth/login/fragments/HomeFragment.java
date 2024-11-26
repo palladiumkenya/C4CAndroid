@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -28,7 +29,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
-import com.fxn.stash.Stash;
+//import com.fxn.stash.Stash;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,20 +37,23 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
+//import butterknife.BindView;
+//import butterknife.ButterKnife;
+//import butterknife.Unbinder;
 import mhealth.login.R;
 import mhealth.login.dependencies.Constants;
+import mhealth.login.dependencies.UserStorage;
+import mhealth.login.models.Token;
 import mhealth.login.models.User;
 
 public class HomeFragment extends Fragment {
 
 
-    private Unbinder unbinder;
+   // private Unbinder unbinder;
     private View root;
     private Context context;
 
@@ -57,25 +61,13 @@ public class HomeFragment extends Fragment {
 
 
 
-    @BindView(R.id.exposuresLayout)
+
     CardView exposuresLayout;
-
-    @BindView(R.id.immunizationLayout)
     CardView immunizationLayout;
-
-    @BindView(R.id.broadcastsLayout)
     CardView broadcastsLayout;
-
-    @BindView(R.id.resourceCenterLayout)
     CardView resourceCenterLayout;
-
-    @BindView(R.id.checkinLayout)
     CardView checkinLayout;
-
-    @BindView(R.id.feedbackLayout)
     CardView feedbackLayout;
-
-    @BindView(R.id.jitengeLayout)
     CardView jitengeLayout;
 
 
@@ -95,9 +87,33 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_home, container, false);
-        unbinder = ButterKnife.bind(this, root);
+       // unbinder = ButterKnife.bind(this, root);
 
-        loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+       // loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+//        try{
+//            List<Token> _url =Token.findWithQuery(Token.class, "SELECT *from Token ORDER BY id DESC LIMIT 1");
+//            if (_url.size()==1){
+//                for (int x=0; x<_url.size(); x++){
+//                    loggedInUser=   _url.get(x).getToken();
+//            }
+//        }
+//
+//        } catch(Exception e){
+//
+//        }
+        loggedInUser = UserStorage.getUser(context);
+
+
+
+
+         exposuresLayout= (CardView) root.findViewById(R.id.exposuresLayout);
+         immunizationLayout= (CardView) root.findViewById(R.id.immunizationLayout);
+         broadcastsLayout= (CardView) root.findViewById(R.id.broadcastsLayout);
+        resourceCenterLayout= (CardView) root.findViewById(R.id.resourceCenterLayout);
+        checkinLayout= (CardView) root.findViewById(R.id.checkinLayout);
+        feedbackLayout= (CardView) root.findViewById(R.id.feedbackLayout);
+        jitengeLayout= (CardView) root.findViewById(R.id.jitengeLayout);
+
 
 
         if (loggedInUser.getProfile_complete() == 0){
@@ -192,11 +208,11 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
+//    @Override
+//    public void onDestroyView() {
+//        super.onDestroyView();
+//        unbinder.unbind();
+//    }
 
     @Override
     public void onResume() {

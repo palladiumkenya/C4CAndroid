@@ -85,8 +85,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/spacing_medium"
                     app:srcCompat="@drawable/ic_person"
-                    android:tint="@color/grey_80"
-                    android:contentDescription="@string/todo" />
+                    android:contentDescription="@string/todo"
+                    app:tint="@color/grey_80" />
 
                 <View
                     android:layout_width="@dimen/spacing_middle"

@@ -28,7 +28,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.fxn.stash.Stash;
+//import com.fxn.stash.Stash;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -42,17 +42,19 @@ import org.json.JSONObject;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
+//import butterknife.BindView;
+//import butterknife.ButterKnife;
+//import butterknife.Unbinder;
 import mhealth.login.R;
 import mhealth.login.dependencies.AppController;
 import mhealth.login.dependencies.Constants;
 import mhealth.login.dependencies.VolleyErrors;
 import mhealth.login.fragments.CheckinFragment;
 import mhealth.login.fragments.CreateProfileFragment;
+import mhealth.login.models.Token;
 import mhealth.login.models.User;
 
 import static mhealth.login.dependencies.AppController.TAG;
@@ -62,23 +64,17 @@ public class CheckInDialog extends BottomSheetDialogFragment {
 
 
     private Context context;
-    private Unbinder unbinder;
+   // private Unbinder unbinder;
     private User loggedInUser;
 
     private FusedLocationProviderClient fusedLocationClient;
 
 
 
-    @BindView(R.id.image)
+
     ImageView image;
-
-    @BindView(R.id.title)
     TextView titleTextView;
-
-    @BindView(R.id.checkin)
     Button checkIn;
-
-    @BindView(R.id.cancel_checkin)
     Button cancelCheckin;
 
     Location location; // location
@@ -119,48 +115,65 @@ public class CheckInDialog extends BottomSheetDialogFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.info_check_in, container, false);
-        unbinder = ButterKnife.bind(this, view);
 
-        loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+        ImageView image =view.findViewById(R.id.image);
+        TextView titleTextView=view.findViewById(R.id.title);
+        Button checkIn=view.findViewById(R.id.checkin);
+        Button cancelCheckin=view.findViewById(R.id.cancel_checkin);
 
-        fusedLocationClient.getLastLocation()
-                .addOnSuccessListener((Activity) context, new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        // Got last known location. In some rare situations this can be null.
-                        if (location != null) {
-                            // Logic to handle location object
-                            Log.e("Location: ", location.getLatitude()+" : "+location.getLongitude());
+        // unbinder = ButterKnife.bind(this, view);
 
-                            lat = String.valueOf(location.getLatitude());
-                            lng = String.valueOf(location.getLongitude());
-
-                            checkIn.setVisibility(View.VISIBLE);
-                            cancelCheckin.setVisibility(View.VISIBLE);
-
-                            String mapUrl = "https://maps.googleapis.com/maps/api/staticmap?center="+ location.getLatitude()+","+location.getLongitude()+ "&zoom=16&size=600x300&sensor=true&markers=color:red%7label:C%7C|"+location.getLatitude()+","+location.getLongitude()+"&key=" + Constants.PLACES_API_KEY;
-
-                            Log.e("map url: ", mapUrl);
-
-                            Picasso.get()
-                                    .load(mapUrl)
-                                    .into(image);
-
-
-                        }else {
-                            Log.e("Location: ", "location is null");
-                            checkIn.setVisibility(View.GONE);
-                            cancelCheckin.setVisibility(View.GONE);
-                        }
-                    }
-                });
-
-        cancelCheckin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavHostFragment.findNavController(CheckInDialog.this).navigate(R.id.nav_check_in);
+       // loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+        try{
+            List<Token> _url =Token.findWithQuery(Token.class, "SELECT *from Token ORDER BY id DESC LIMIT 1");
+            if (_url.size()==1){
+                for (int x=0; x<_url.size(); x++){
+                    loggedInUser=   _url.get(x).getToken();
+                }
             }
-        });
+
+        } catch(Exception e){
+
+        }
+
+//        fusedLocationClient.getLastLocation()
+//                .addOnSuccessListener((Activity) context, new OnSuccessListener<Location>() {
+//                    @Override
+//                    public void onSuccess(Location location) {
+//                        // Got last known location. In some rare situations this can be null.
+//                        if (location != null) {
+//                            // Logic to handle location object
+//                            Log.e("Location: ", location.getLatitude()+" : "+location.getLongitude());
+//
+//                            lat = String.valueOf(location.getLatitude());
+//                            lng = String.valueOf(location.getLongitude());
+//
+//                            checkIn.setVisibility(View.VISIBLE);
+//                            cancelCheckin.setVisibility(View.VISIBLE);
+//
+//                            String mapUrl = "https://maps.googleapis.com/maps/api/staticmap?center="+ location.getLatitude()+","+location.getLongitude()+ "&zoom=16&size=600x300&sensor=true&markers=color:red%7label:C%7C|"+location.getLatitude()+","+location.getLongitude()+"&key=" + Constants.PLACES_API_KEY;
+//
+//                            Log.e("map url: ", mapUrl);
+//
+//                            Picasso.get()
+//                                    .load(mapUrl)
+//                                    .into(image);
+//
+//
+//                        }else {
+//                            Log.e("Location: ", "location is null");
+//                            checkIn.setVisibility(View.GONE);
+//                            cancelCheckin.setVisibility(View.GONE);
+//                        }
+//                    }
+//                });
+
+//        cancelCheckin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                NavHostFragment.findNavController(CheckInDialog.this).navigate(R.id.nav_check_in);
+//            }
+//        });
 
         checkIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,7 +204,7 @@ public class CheckInDialog extends BottomSheetDialogFragment {
 
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
-                Stash.getString(Constants.END_POINT)+Constants.CHECKIN, payload, new Response.Listener<JSONObject>() {
+                Constants.END_POINT+Constants.CHECKIN, payload, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
@@ -263,9 +276,9 @@ public class CheckInDialog extends BottomSheetDialogFragment {
         super.onDetach();
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
+//    @Override
+//    public void onDestroyView() {
+//        super.onDestroyView();
+//        unbinder.unbind();
+//    }
 }

@@ -20,8 +20,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.facebook.shimmer.ShimmerFrameLayout;
-import com.fxn.stash.Stash;
+//import com.fxn.stash.Stash;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,25 +30,26 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
+import mhealth.login.MainActivity;
 import mhealth.login.R;
 import mhealth.login.adapters.SentBroadcastsAdapter;
 import mhealth.login.dependencies.AppController;
 import mhealth.login.dependencies.Constants;
+import mhealth.login.dependencies.UserStorage;
 import mhealth.login.dependencies.VolleyErrors;
 import mhealth.login.dialogs.InfoMessage;
 import mhealth.login.models.BroadCast;
+import mhealth.login.models.Token;
 import mhealth.login.models.User;
 
 import static mhealth.login.dependencies.AppController.TAG;
 
 
 public class BroadcastHistoryFragment extends Fragment {
-    private Unbinder unbinder;
+   // private Unbinder unbinder;
     private View root;
     private Context context;
 
@@ -61,14 +63,14 @@ public class BroadcastHistoryFragment extends Fragment {
     private ArrayList<BroadCast> broadCastArrayList;
 
 
-    @BindView(R.id.shimmer_my_container)
+//    @BindView(R.id.shimmer_my_container)
     ShimmerFrameLayout shimmer_my_container;
-
-
-    @BindView(R.id.no_broadcasts)
+//
+//
+//    @BindView(R.id.no_broadcasts)
     LinearLayout no_broadcasts;
-
-    @BindView(R.id.recyclerView)
+//
+//    @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
     @Override
@@ -90,9 +92,25 @@ public class BroadcastHistoryFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         root =  inflater.inflate(R.layout.fragment_broadcast_history, container, false);
-        unbinder = ButterKnife.bind(this, root);
+        //unbinder = ButterKnife.bind(this, root);
+        shimmer_my_container= (ShimmerFrameLayout) root.findViewById(R.id.shimmer_my_container);
+        no_broadcasts= (LinearLayout) root.findViewById(R.id.no_broadcasts);
+        recyclerView= (RecyclerView) root.findViewById(R.id.recyclerView);
 
-        loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+
+        //loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+//        try{
+//            List<Token> _url =Token.findWithQuery(Token.class, "SELECT *from Token ORDER BY id DESC LIMIT 1");
+//            if (_url.size()==1){
+//                for (int x=0; x<_url.size(); x++){
+//                    loggedInUser=   _url.get(x).getToken();
+//                }
+//            }
+//
+//        } catch(Exception e){
+//
+//        }
+        loggedInUser = UserStorage.getUser(context);
 
         if (loggedInUser.getProfile_complete() == 0){
             NavHostFragment.findNavController(BroadcastHistoryFragment.this).navigate(R.id.nav_complete_profile);
@@ -140,21 +158,18 @@ public class BroadcastHistoryFragment extends Fragment {
         return root;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
 
     @Override
     public void onResume() {
         super.onResume();
-        shimmer_my_container.startShimmerAnimation();
+//        shimmer_my_container.startShimmerAnimation();
+        shimmer_my_container.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onPause() {
-        shimmer_my_container.stopShimmerAnimation();
+        //shimmer_my_container.stopShimmerAnimation();
+        shimmer_my_container.setVisibility(View.GONE);
         super.onPause();
     }
 
@@ -178,7 +193,7 @@ public class BroadcastHistoryFragment extends Fragment {
                     recyclerView.setVisibility(View.VISIBLE);
 
                     if (shimmer_my_container!=null){
-                        shimmer_my_container.stopShimmerAnimation();
+//                        shimmer_my_container.stopShimmerAnimation();
                         shimmer_my_container.setVisibility(View.GONE);
                     }
 

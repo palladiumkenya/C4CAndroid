@@ -13,39 +13,40 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.fxn.stash.Stash;
+import com.facebook.shimmer.ShimmerFrameLayout;
+//import com.fxn.stash.Stash;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
+import mhealth.login.MainActivity;
 import mhealth.login.R;
 import mhealth.login.dependencies.Constants;
+import mhealth.login.dependencies.UserStorage;
 import mhealth.login.fragments.HomeFragment;
 import mhealth.login.fragments.Immunization.ImmunizationFragment;
 import mhealth.login.fragments.Immunization.ImmunizationProfileFragment;
 import mhealth.login.fragments.Immunization.ImmunizationScheduleFragment;
+import mhealth.login.models.Token;
 import mhealth.login.models.User;
 
 
 public class BroadcastFragment extends Fragment {
-    private Unbinder unbinder;
+   // private Unbinder unbinder;
     private View root;
     private Context context;
 
     private User loggedInUser;
 
-    @BindView(R.id.tab_layout)
+//    @BindView(R.id.tab_layout)
     TabLayout tab_layout;
-
-    @BindView(R.id.view_pager)
-    ViewPager view_pager;
-
-    @BindView(R.id.fab_broadcast)
+//
+//    @BindView(R.id.view_pager)
+   ViewPager view_pager;
+//
+//    @BindView(R.id.fab_broadcast)
     FloatingActionButton fab_broadcast;
 
     @Override
@@ -64,9 +65,27 @@ public class BroadcastFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         root =  inflater.inflate(R.layout.fragment_broadcast, container, false);
-        unbinder = ButterKnife.bind(this, root);
+       // unbinder = ButterKnife.bind(this, root);
 
-        loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+         tab_layout = (TabLayout) root.findViewById(R.id.tab_layout);
+         view_pager= (ViewPager) root.findViewById(R.id.view_pager);
+         fab_broadcast= (FloatingActionButton) root.findViewById(R.id.fab_broadcast);
+
+
+        //loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+
+//        try{
+//            List<Token> _url =Token.findWithQuery(Token.class, "SELECT *from Token ORDER BY id DESC LIMIT 1");
+//            if (_url.size()==1){
+//                for (int x=0; x<_url.size(); x++){
+//                    loggedInUser=   _url.get(x).getToken();
+//                }
+//            }
+//
+//        } catch(Exception e){
+//
+//        }
+        loggedInUser = UserStorage.getUser(context);
 
         if (loggedInUser.getProfile_complete() == 0){
             NavHostFragment.findNavController(BroadcastFragment.this).navigate(R.id.nav_complete_profile);
@@ -92,11 +111,7 @@ public class BroadcastFragment extends Fragment {
         return root;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
+
 
 
     // Add Fragments to Tabs

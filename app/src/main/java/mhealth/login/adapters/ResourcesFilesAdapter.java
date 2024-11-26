@@ -75,8 +75,9 @@ public class ResourcesFilesAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             view.lyt_parent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    int adapterposition =holder.getAdapterPosition();
                     if (onItemClickListener != null) {
-                        onItemClickListener.onItemClick(position);
+                        onItemClickListener.onItemClick(adapterposition);
                     }
                 }
             });

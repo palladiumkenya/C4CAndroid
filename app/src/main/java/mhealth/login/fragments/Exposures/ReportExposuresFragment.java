@@ -30,7 +30,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.fxn.stash.Stash;
+//import com.fxn.stash.Stash;
 import com.google.android.material.snackbar.Snackbar;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
@@ -41,24 +41,23 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import mhealth.login.R;
 import mhealth.login.dependencies.AppController;
 import mhealth.login.dependencies.Constants;
+import mhealth.login.dependencies.UserStorage;
 import mhealth.login.dependencies.VolleyErrors;
 import mhealth.login.dialogs.InfoMessage;
 import mhealth.login.fragments.auth.LoginFragment;
+import mhealth.login.models.Token;
 import mhealth.login.models.User;
 
 import static mhealth.login.dependencies.AppController.TAG;
 
 
 public class ReportExposuresFragment extends Fragment {
-    private Unbinder unbinder;
+   // private Unbinder unbinder;
     private View root;
     private Context context;
 
@@ -86,77 +85,77 @@ public class ReportExposuresFragment extends Fragment {
             arrayExposureLocation, arrayHIVStatus,arrayHBVStatus,arrayDeviceUsed, arrayDevicePurpose, arrayHow,arrayDescribe,arrayExposureCause;
 
 
-    @BindView(R.id.exposure_date)
+    //@BindView(R.id.exposure_date)
     EditText exposure_date;
 
 
 
-    @BindView(R.id.pep_initiated)
+//    @BindView(R.id.pep_initiated)
     MaterialBetterSpinner pep_initiated;
-
-    @BindView(R.id.pep_date)
+//
+//    @BindView(R.id.pep_date)
     EditText pep_date;
-
-
-    @BindView(R.id.exposure_type)
-    MaterialBetterSpinner exposure_type;
-
-    @BindView(R.id.device_used)
-    MaterialBetterSpinner device_used;
-
-
-    @BindView(R.id.otherDeviceET)
+//
+//
+//    @BindView(R.id.exposure_type)
+   MaterialBetterSpinner exposure_type;
+//
+//    @BindView(R.id.device_used)
+   MaterialBetterSpinner device_used;
+//
+//
+//    @BindView(R.id.otherDeviceET)
     EditText otherDeviceET;
-
-    @BindView(R.id.describe_exposure)
-    MaterialBetterSpinner describe_exposure;
-
-    @BindView(R.id.device_purpose)
+//
+//    @BindView(R.id.describe_exposure)
+   MaterialBetterSpinner describe_exposure;
+//
+//    @BindView(R.id.device_purpose)
     MaterialBetterSpinner device_purpose;
-
-    @BindView(R.id.otherPurposeET)
-    EditText otherPurposeET;
-
-    @BindView(R.id.exposure_location)
+//
+//    @BindView(R.id.otherPurposeET)
+   EditText otherPurposeET;
+//
+//    @BindView(R.id.exposure_location)
     MaterialBetterSpinner exposure_location;
-
-    @BindView(R.id.otherLocationET)
-    EditText otherLocationET;
-
-    @BindView(R.id.exposure_how)
+//
+//    @BindView(R.id.otherLocationET)
+   EditText otherLocationET;
+//
+//    @BindView(R.id.exposure_how)
     MaterialBetterSpinner exposure_how;
-
-    @BindView(R.id.otherHowET)
+//
+//    @BindView(R.id.otherHowET)
     EditText otherHowET;
-
-    @BindView(R.id.exposure_cause)
-    MaterialBetterSpinner exposure_cause;
-
-    @BindView(R.id.otherExposureCauseET)
+//
+//    @BindView(R.id.exposure_cause)
+   MaterialBetterSpinner exposure_cause;
+//
+//    @BindView(R.id.otherExposureCauseET)
     EditText otherExposureCauseET;
-
-    @BindView(R.id.patient_hiv)
+//
+//    @BindView(R.id.patient_hiv)
     MaterialBetterSpinner patient_hiv;
-
-    @BindView(R.id.patient_hbv)
+//
+//    @BindView(R.id.patient_hbv)
     MaterialBetterSpinner patient_hbv;
-
-    @BindView(R.id.previous_exposures)
+//
+//    @BindView(R.id.previous_exposures)
     EditText previous_exposures;
-
-    @BindView(R.id.pepPreviousSpinner)
+//
+//    @BindView(R.id.pepPreviousSpinner)
     MaterialBetterSpinner pepPreviousSpinner;
-
-    @BindView(R.id.layoutSharp)
+//
+//    @BindView(R.id.layoutSharp)
     LinearLayout layoutSharp;
-
-    @BindView(R.id.layoutNotSharp)
+//
+//    @BindView(R.id.layoutNotSharp)
     LinearLayout layoutNotSharp;
-
-    @BindView(R.id.btn_submit)
+//
+//    @BindView(R.id.btn_submit)
     Button btn_submit;
-
-    @BindView(R.id.lyt_progress)
+//
+//    @BindView(R.id.lyt_progress)
     LinearLayout lyt_progress;
 
 
@@ -183,9 +182,77 @@ public class ReportExposuresFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         root =  inflater.inflate(R.layout.fragment_report_exposures, container, false);
-        unbinder = ButterKnife.bind(this, root);
+        //unbinder = ButterKnife.bind(this, root);
 
-        loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+
+
+        pep_initiated= (MaterialBetterSpinner) root.findViewById(R.id.pep_initiated);
+
+         pep_date= (EditText) root.findViewById(R.id.pep_date);
+         exposure_date =(EditText) root.findViewById(R.id.exposure_date);
+
+
+         exposure_type= (MaterialBetterSpinner) root.findViewById(R.id.exposure_type);
+
+        device_used= (MaterialBetterSpinner) root.findViewById(R.id.device_used);
+
+
+        otherDeviceET= (EditText) root.findViewById(R.id.otherDeviceET);
+
+        describe_exposure= (MaterialBetterSpinner) root.findViewById(R.id.describe_exposure);
+
+        device_purpose= (MaterialBetterSpinner) root.findViewById(R.id.device_purpose);
+
+        otherPurposeET= (EditText) root.findViewById(R.id.otherPurposeET);
+
+        exposure_location= (MaterialBetterSpinner) root.findViewById(R.id.exposure_location);
+
+        otherLocationET= (EditText ) root.findViewById(R.id.otherLocationET);
+
+        exposure_how= (MaterialBetterSpinner) root.findViewById(R.id.exposure_how);
+
+        otherHowET= ( EditText) root.findViewById(R.id.otherHowET);
+
+         exposure_cause= (MaterialBetterSpinner) root.findViewById(R.id.exposure_cause);
+
+         otherExposureCauseET= (EditText) root.findViewById(R.id.otherExposureCauseET);
+
+        patient_hiv= (MaterialBetterSpinner) root.findViewById(R.id.patient_hiv);
+
+         patient_hbv= (MaterialBetterSpinner) root.findViewById(R.id.patient_hbv);
+
+        previous_exposures= (EditText) root.findViewById(R.id.previous_exposures);
+
+        pepPreviousSpinner= (MaterialBetterSpinner) root.findViewById(R.id.pepPreviousSpinner);
+
+        layoutSharp= (LinearLayout) root.findViewById(R.id.layoutSharp);
+
+       layoutNotSharp= ( LinearLayout) root.findViewById(R.id.layoutNotSharp);
+
+        btn_submit= (Button) root.findViewById(R.id.btn_submit);
+        lyt_progress= ( LinearLayout) root.findViewById(R.id.lyt_progress);
+
+
+
+
+
+
+
+
+        //loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+
+//        try{
+//            List<Token> _url =Token.findWithQuery(Token.class, "SELECT *from Token ORDER BY id DESC LIMIT 1");
+//            if (_url.size()==1){
+//                for (int x=0; x<_url.size(); x++){
+//                    loggedInUser=   _url.get(x).getToken();
+//                }
+//            }
+//
+//        } catch(Exception e){
+//
+//        }
+        loggedInUser = UserStorage.getUser(context);
 
         if (loggedInUser.getProfile_complete() == 0){
             NavHostFragment.findNavController(ReportExposuresFragment.this).navigate(R.id.nav_complete_profile);
@@ -680,11 +747,11 @@ public class ReportExposuresFragment extends Fragment {
 
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
+//    @Override
+//    public void onDestroyView() {
+//        super.onDestroyView();
+//        unbinder.unbind();
+//    }
 
     private boolean checkNulls() {
 

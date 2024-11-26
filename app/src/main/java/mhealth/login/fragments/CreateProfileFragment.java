@@ -30,9 +30,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.fxn.stash.Stash;
+import com.facebook.shimmer.ShimmerFrameLayout;
+//import com.fxn.stash.Stash;
 import com.google.android.material.snackbar.Snackbar;
 
+import org.angmarch.views.NiceSpinner;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,27 +44,30 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
+//import butterknife.BindView;
+//import butterknife.ButterKnife;
+//import butterknife.Unbinder;
 import mhealth.login.R;
 import mhealth.login.dependencies.AppController;
 import mhealth.login.dependencies.Constants;
+import mhealth.login.dependencies.UserStorage;
 import mhealth.login.dependencies.VolleyErrors;
 import mhealth.login.dialogs.InfoMessage;
 import mhealth.login.models.Cadre;
 import mhealth.login.models.Facility;
 import mhealth.login.models.FacilityDepartment;
+import mhealth.login.models.Token;
 import mhealth.login.models.User;
 import static mhealth.login.dependencies.AppController.TAG;
-import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
+//import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 
 
 public class CreateProfileFragment extends Fragment {
-    private Unbinder unbinder;
+    //private Unbinder unbinder;
     private View root;
     private Context context;
 
@@ -93,46 +98,21 @@ public class CreateProfileFragment extends Fragment {
 
 
 
-    @BindView(R.id.facilitySpinner)
-    SearchableSpinner facilitySpinner;
 
-    @BindView(R.id.facilityDepartment)
-    SearchableSpinner facilityDepartmentSpinner;
-
-    @BindView(R.id.cadre)
-    SearchableSpinner cadreSpinner;
-
-    @BindView(R.id.partner)
-    SearchableSpinner partnerSpinner;
-
-    @BindView(R.id.id_no)
+    NiceSpinner facilitySpinner;
+    NiceSpinner facilityDepartmentSpinner;
+    NiceSpinner cadreSpinner;
+    NiceSpinner partnerSpinner;
     EditText id_no;
-
-    @BindView(R.id.tv_dob)
     TextView tv_dob;
-
-    @BindView(R.id.dose1_date)
     TextView dose1_date;
-
-    @BindView(R.id.dose2_date)
     TextView dose2_date;
-
-    @BindView(R.id.dose3_date)
     TextView dose3_date;
 
-    @BindView(R.id.doseOneRadioGroup)
     RadioGroup doseOneRadioGroup;
-
-    @BindView(R.id.doseTwoRadioGroup)
     RadioGroup doseTwoRadioGroup;
-
-    @BindView(R.id.doseThreeRadioGroup)
     RadioGroup doseThreeRadioGroup;
-
-    @BindView(R.id.lyt_progress)
     LinearLayout lyt_progress;
-
-    @BindView(R.id.btn_submit)
     Button btn_submit;
 
 
@@ -157,22 +137,50 @@ public class CreateProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         root =  inflater.inflate(R.layout.fragment_create_profile, container, false);
-        unbinder = ButterKnife.bind(this, root);
+        //unbinder = ButterKnife.bind(this, root);
 
-        loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+       // loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+//        try{
+//            List<Token> _url =Token.findWithQuery(Token.class, "SELECT *from Token ORDER BY id DESC LIMIT 1");
+//            if (_url.size()==1){
+//                for (int x=0; x<_url.size(); x++){
+//                    loggedInUser=   _url.get(x).getToken();
+//                }
+//            }
+//
+//        } catch(Exception e){
+//
+//        }
+        loggedInUser = UserStorage.getUser(context);
 
-        facilitySpinner.setTitle("Select Facility");
-        facilitySpinner.setPositiveButton("OK");
 
-        facilityDepartmentSpinner.setTitle("Select Department");
-        facilityDepartmentSpinner.setPositiveButton("OK");
+         facilitySpinner= (NiceSpinner) root.findViewById(R.id.facilitySpinner);
+         facilityDepartmentSpinner= (NiceSpinner) root.findViewById(R.id.facilityDepartment);
+         cadreSpinner= (NiceSpinner) root.findViewById(R.id.cadre);
+         partnerSpinner= (NiceSpinner) root.findViewById(R.id.partner);
+         id_no= (EditText) root.findViewById(R.id.id_no);
+         tv_dob= ( TextView) root.findViewById(R.id.tv_dob);
+         dose1_date= ( TextView) root.findViewById(R.id.dose1_date);
+         dose2_date= ( TextView) root.findViewById(R.id.dose2_date);
+         dose3_date= ( TextView) root.findViewById(R.id.dose3_date);
+         doseOneRadioGroup= (RadioGroup) root.findViewById(R.id.doseOneRadioGroup);
+         doseTwoRadioGroup= (RadioGroup) root.findViewById(R.id.doseTwoRadioGroup);
+         doseThreeRadioGroup= (RadioGroup) root.findViewById(R.id.doseThreeRadioGroup);
+         lyt_progress= (LinearLayout) root.findViewById(R.id.lyt_progress);
+         btn_submit= ( Button) root.findViewById(R.id.btn_submit);
 
-        cadreSpinner.setTitle("Select Cadre");
-        cadreSpinner.setPositiveButton("OK");
-
-
-        partnerSpinner.setTitle("Select Partner");
-        partnerSpinner.setPositiveButton("OK");
+//        facilitySpinner.setTitle("Select Facility");
+//        facilitySpinner.setPositiveButton("OK");
+//
+//        facilityDepartmentSpinner.setTitle("Select Department");
+//        facilityDepartmentSpinner.setPositiveButton("OK");
+//
+//        cadreSpinner.setTitle("Select Cadre");
+//        cadreSpinner.setPositiveButton("OK");
+//
+//
+//        partnerSpinner.setTitle("Select Partner");
+//        partnerSpinner.setPositiveButton("OK");
 
         tv_dob.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -279,11 +287,11 @@ public class CreateProfileFragment extends Fragment {
         return root;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
+//    @Override
+//    public void onDestroyView() {
+//        super.onDestroyView();
+//        unbinder.unbind();
+//    }
 
     private void getFacilities() {
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
@@ -348,7 +356,8 @@ public class CreateProfileFragment extends Fragment {
 
                         if (facilitySpinner != null){
                             facilitySpinner.setAdapter(aa);
-                            facilitySpinner.setSelection(aa.getCount()-1);
+                            //facilitySpinner.setSelection(aa.getCount()-1);
+                            facilitySpinner.setSelectedIndex(aa.getCount()-1);
 
                             facilityID = facilities.get(aa.getCount()-1).getId();
 
@@ -489,7 +498,8 @@ public class CreateProfileFragment extends Fragment {
                         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
                         facilityDepartmentSpinner.setAdapter(aa);
-                        facilityDepartmentSpinner.setSelection(aa.getCount()-1);
+                        //facilityDepartmentSpinner.setSelection(aa.getCount()-1);
+                        facilityDepartmentSpinner.setSelectedIndex(aa.getCount()-1);
 
                         facilityDepartmentID = facilityDepartments.get(aa.getCount()-1).getId();
 
@@ -621,7 +631,8 @@ public class CreateProfileFragment extends Fragment {
                         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
                         cadreSpinner.setAdapter(aa);
-                        cadreSpinner.setSelection(aa.getCount()-1);
+                        //cadreSpinner.setSelection(aa.getCount()-1);
+                        cadreSpinner.setSelectedIndex(aa.getCount()-1);
 
                         cadreID = cadres.get(aa.getCount()-1).getId();
 
@@ -815,7 +826,18 @@ public class CreateProfileFragment extends Fragment {
 
                         loggedInUser.setProfile_complete(1);
 
-                        Stash.put(Constants.LOGGED_IN_USER, loggedInUser);
+                       // Stash.put(Constants.LOGGED_IN_USER, loggedInUser);
+
+                        try {
+                            Token.deleteAll(Token.class);
+                            Token tokenTable =new Token(loggedInUser);
+                            tokenTable.save();
+                            // finish();
+
+
+                        } catch (Exception e) {
+                            Log.d("error saving data", "error on server saving");
+                        }
                         NavHostFragment.findNavController(CreateProfileFragment.this).navigate(R.id.nav_home);
 
                     }else {

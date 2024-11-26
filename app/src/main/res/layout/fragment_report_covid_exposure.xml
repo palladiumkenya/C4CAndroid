@@ -234,14 +234,16 @@
             android:text="County of Residence*"
             android:textSize="13sp"/>
 
-        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+        <org.angmarch.views.NiceSpinner
             android:id="@+id/countySpinner"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/spacing_xlarge"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/spacing_middle"
             android:layout_marginVertical="@dimen/spacing_middle"
             android:layout_marginTop="@dimen/spacing_middle"
-            android:drawSelectorOnTop="true" />
+            android:drawSelectorOnTop="true"
+            android:contentDescription="Select County of residence"
+            android:importantForAccessibility="yes"/>
 
         <TextView
 
@@ -253,14 +255,16 @@
 
 
 
-        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+        <org.angmarch.views.NiceSpinner
             android:id="@+id/subCountySpinner"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/spacing_xlarge"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/spacing_middle"
             android:layout_marginVertical="@dimen/spacing_middle"
             android:layout_marginTop="@dimen/spacing_middle"
-            android:drawSelectorOnTop="true" />
+            android:drawSelectorOnTop="true"
+            android:contentDescription="Select sub-county"
+            android:importantForAccessibility="yes"/>
 
         <TextView
             android:id="@+id/RanksText"
@@ -273,14 +277,16 @@
             />
 
 
-        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+        <org.angmarch.views.NiceSpinner
             android:id="@+id/wardSpinner"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/spacing_xlarge"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/spacing_middle"
             android:layout_marginVertical="@dimen/spacing_middle"
             android:layout_marginTop="@dimen/spacing_middle"
-            android:drawSelectorOnTop="true" />
+            android:drawSelectorOnTop="true"
+            android:contentDescription="Select Ward"
+            android:importantForAccessibility="yes"/>
 
         <LinearLayout
             android:id="@+id/lyt_progress"

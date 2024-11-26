@@ -12,12 +12,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.bumptech.glide.Glide;
-import com.fxn.stash.Stash;
+//import com.fxn.stash.Stash;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
 import android.view.MenuItem;
@@ -53,16 +54,20 @@ import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 import mhealth.login.dependencies.AppController;
 import mhealth.login.dependencies.Constants;
+import mhealth.login.dependencies.UserStorage;
 import mhealth.login.dependencies.VolleyErrors;
 import mhealth.login.dialogs.InfoMessage;
 import mhealth.login.fragments.auth.LoginFragment;
 import mhealth.login.models.Creds;
 import mhealth.login.models.Hcw;
+import mhealth.login.models.Profile;
+import mhealth.login.models.Token;
 import mhealth.login.models.User;
 
 import static mhealth.login.dependencies.AppController.TAG;
@@ -86,7 +91,21 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+       // loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+//        try{
+//            List<Token> _url =Token.findWithQuery(Token.class, "SELECT *from Token ORDER BY id DESC LIMIT 1");
+//            if (_url.size()==1){
+//                for (int x=0; x<_url.size(); x++){
+//                    loggedInUser=   _url.get(x).getToken();
+//                }
+//            }
+//
+//        } catch(Exception e){
+//
+//        }
+        //UserStorage userStorage =new UserStorage();
+       loggedInUser = UserStorage.getUser(MainActivity.this);
+
 
         if (loggedInUser == null){
             startActivity(new Intent(MainActivity.this, SignInActivity.class));
@@ -247,9 +266,9 @@ public class MainActivity extends AppCompatActivity {
         // Firebase sign out
         mAuth.signOut();
         //shared prefs sign out
-        String endPoint = Stash.getString(Constants.END_POINT);
-        Stash.clearAll();
-        Stash.put(Constants.END_POINT, endPoint);
+//        String endPoint = Stash.getString(Constants.END_POINT);
+//        Stash.clearAll();
+//        Stash.put(Constants.END_POINT, endPoint);
 
         Intent intent = new Intent(MainActivity.this, SignInActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -287,7 +306,18 @@ public class MainActivity extends AppCompatActivity {
 
                         Hcw hcw1 = new Hcw(id,facility_id,facility_department_id,cadre_id,facility_name,dob,id_number);
 
-                        Stash.put(Constants.HCW, hcw1);
+                        //Stash.put(Constants.HCW, hcw1);
+
+                        try {
+                            Profile.deleteAll(Profile.class);
+                            Profile profileTable =new Profile(hcw1);
+                            profileTable.save();
+                            // finish();
+
+
+                        } catch (Exception e) {
+                            Log.d("error saving data", "error on server saving");
+                        }
 
                     }else {
                         Log.e("errors: ",message+"==>"+errors);

@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-import com.fxn.stash.Stash;
+//import com.fxn.stash.Stash;
 
 
 public class AppController extends Application {
@@ -36,7 +36,7 @@ public class AppController extends Application {
         super.onCreate();
         instance = this;
 
-        Stash.init(this);
+       // Stash.init(this);
 
 
         this.setAppContext(getApplicationContext());

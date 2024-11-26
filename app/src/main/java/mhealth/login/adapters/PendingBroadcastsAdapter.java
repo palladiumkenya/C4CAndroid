@@ -86,8 +86,9 @@ public class PendingBroadcastsAdapter extends RecyclerView.Adapter<RecyclerView.
             view.btn_approve.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    int adapterposition =holder.getAdapterPosition();
                     if (onItemClickListener != null) {
-                        onItemClickListener.onItemClick(position);
+                        onItemClickListener.onItemClick(adapterposition);
                     }
                 }
             });
@@ -95,8 +96,9 @@ public class PendingBroadcastsAdapter extends RecyclerView.Adapter<RecyclerView.
             view.bt_expand.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    int adapterposition =holder.getAdapterPosition();
                     boolean show = toggleLayoutExpand(!obj.expanded, v, view.lyt_expand);
-                    items.get(position).expanded = show;
+                    items.get(adapterposition).expanded = show;
                 }
             });
 

@@ -64,34 +64,31 @@ public class CheckinAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         CheckIn obj = items.get(position);
-        if (holder instanceof OriginalViewHolder) {
-            OriginalViewHolder view = (OriginalViewHolder) holder;
-            view.date.setText(obj.getCreated_at());
-            view.approved.setText(obj.getApproved() == 1 ? "Approved" : "Not Approved");
+        OriginalViewHolder view = (OriginalViewHolder) holder;
+        view.date.setText(obj.getCreated_at());
+        view.approved.setText(obj.getApproved() == 1 ? "Approved" : "Not Approved");
 
-            String mapUrl = "http://maps.google.com/maps/api/staticmap?center="
-                    + obj.getLat()+","+obj.getLng()
-                    + "&markers=color:red%7label:C%7C|" +obj.getLat()+","+obj.getLng()
-//                    + "&markers=color:red%7Clabel:C%7C" + myVehicle.getPick_address() + "&"
-                    + "&zoom=16&size=600x300&key=" + Constants.PLACES_API_KEY;
+        String mapUrl = "http://maps.google.com/maps/api/staticmap?center="
+                + obj.getLat() + "," + obj.getLng()
+                + "&markers=color:red%7Clabel:C%7C|" + obj.getLat() + "," + obj.getLng()
+                + "&zoom=16&size=600x300&key=" + Constants.PLACES_API_KEY;
 
+        Glide.with(context)
+                .load(mapUrl)
+                .fitCenter()
+                .placeholder(R.drawable.img_wizard_1)
+                .into(view.image);
 
-            Glide.with(context)
-                    .load(mapUrl)
-                    .fitCenter()
-                    .placeholder(R.drawable.img_wizard_1)
-                    .into(view.image);
-
-
-            view.lyt_parent.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (onItemClickListener != null) {
-                        onItemClickListener.onItemClick(position);
-                    }
+        // Use holder.getAdapterPosition() instead of the method parameter 'position'
+        view.lyt_parent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (onItemClickListener != null && holder.getAdapterPosition() != RecyclerView.NO_POSITION) {
+                    onItemClickListener.onItemClick(holder.getAdapterPosition());
                 }
-            });
-        }
+            }
+        });
+
     }
 
     @Override

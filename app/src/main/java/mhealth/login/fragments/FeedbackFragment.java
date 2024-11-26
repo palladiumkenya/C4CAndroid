@@ -27,23 +27,27 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.fxn.stash.Stash;
+import com.facebook.shimmer.ShimmerFrameLayout;
+//import com.fxn.stash.Stash;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
+//import butterknife.BindView;
+//import butterknife.ButterKnife;
+//import butterknife.Unbinder;
 import mhealth.login.R;
 import mhealth.login.dependencies.AppController;
 import mhealth.login.dependencies.Constants;
+import mhealth.login.dependencies.UserStorage;
 import mhealth.login.dependencies.VolleyErrors;
 import mhealth.login.dialogs.InfoMessage;
+import mhealth.login.models.Token;
 import mhealth.login.models.User;
 
 import static mhealth.login.dependencies.AppController.TAG;
@@ -51,28 +55,18 @@ import static mhealth.login.dependencies.AppController.TAG;
 
 public class FeedbackFragment extends Fragment {
 
-    private Unbinder unbinder;
+   // private Unbinder unbinder;
     private View root;
     private Context context;
 
     private User loggedInUser;
 
-    @BindView(R.id.type_feedback)
+
     Spinner type_feedback;
-
-    @BindView(R.id.category)
     Spinner category;
-
-    @BindView(R.id.et_post)
     EditText et_post;
-
-    @BindView(R.id.anonymous)
     CheckBox anonymous;
-
-    @BindView(R.id.btn_submit)
     Button btn_submit;
-
-    @BindView(R.id.lyt_progress)
     LinearLayout lyt_progress;
 
     @Override
@@ -93,9 +87,29 @@ public class FeedbackFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_feedback, container, false);
-        unbinder = ButterKnife.bind(this, root);
+        //unbinder = ButterKnife.bind(this, root);
 
-        loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+        //loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+//        try{
+//            List<Token> _url =Token.findWithQuery(Token.class, "SELECT *from Token ORDER BY id DESC LIMIT 1");
+//            if (_url.size()==1){
+//                for (int x=0; x<_url.size(); x++){
+//                    loggedInUser=   _url.get(x).getToken();
+//                }
+//            }
+//
+//        } catch(Exception e){
+//
+//        }
+        loggedInUser = UserStorage.getUser(context);
+
+        type_feedback= (Spinner) root.findViewById(R.id.type_feedback);
+        category= (Spinner) root.findViewById(R.id.category);
+        et_post= (EditText) root.findViewById(R.id.et_post);
+
+         anonymous= (CheckBox) root.findViewById(R.id.anonymous);
+         btn_submit= (Button) root.findViewById(R.id.btn_submit);
+         lyt_progress= ( LinearLayout) root.findViewById(R.id.lyt_progress);
 
         if (loggedInUser.getProfile_complete() == 0){
             NavHostFragment.findNavController(FeedbackFragment.this).navigate(R.id.nav_complete_profile);
@@ -197,11 +211,11 @@ public class FeedbackFragment extends Fragment {
 
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
+//    @Override
+//    public void onDestroyView() {
+//        super.onDestroyView();
+//        unbinder.unbind();
+//    }
 
     private boolean checkNulls() {
 

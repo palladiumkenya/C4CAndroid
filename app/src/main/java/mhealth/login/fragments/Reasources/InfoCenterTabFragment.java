@@ -14,36 +14,29 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
-import com.fxn.stash.Stash;
+//import com.fxn.stash.Stash;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
+
+import java.util.List;
+
 import mhealth.login.R;
 import mhealth.login.dependencies.Constants;
+import mhealth.login.dependencies.UserStorage;
+import mhealth.login.models.Token;
 import mhealth.login.models.User;
 
 
 public class InfoCenterTabFragment extends Fragment {
-    private Unbinder unbinder;
+   // private Unbinder unbinder;
     private View root;
     private Context context;
 
     private User loggedInUser;
 
-    @BindView(R.id.faqs)
     LinearLayout faqs;
-
-    @BindView(R.id.art_guidelines)
     LinearLayout art_guidelines;
-
-    @BindView(R.id.nascop)
     LinearLayout nascop;
-
-    @BindView(R.id.nascop_hiv)
     LinearLayout nascop_hiv;
-
-    @BindView(R.id.resources_links)
     LinearLayout resources_links;
 
     @Override
@@ -65,9 +58,29 @@ public class InfoCenterTabFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         root =  inflater.inflate(R.layout.fragment_info_center_tab, container, false);
-        unbinder = ButterKnife.bind(this, root);
+        //unbinder = ButterKnife.bind(this, root);
 
-        loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+        //loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+//        try{
+//            List<Token> _url =Token.findWithQuery(Token.class, "SELECT *from Token ORDER BY id DESC LIMIT 1");
+//            if (_url.size()==1){
+//                for (int x=0; x<_url.size(); x++){
+//                    loggedInUser=   _url.get(x).getToken();
+//                }
+//            }
+//
+//        } catch(Exception e){
+//
+//        }
+        loggedInUser = UserStorage.getUser(context);
+
+
+        faqs= (LinearLayout) root.findViewById(R.id.faqs);
+
+        art_guidelines= (LinearLayout) root.findViewById(R.id.art_guidelines);
+        nascop= (LinearLayout) root.findViewById(R.id.nascop);
+        nascop_hiv= (LinearLayout) root.findViewById(R.id.nascop_hiv);
+        resources_links= (LinearLayout) root.findViewById(R.id.resources_links);
 
         if (loggedInUser.getProfile_complete() == 0){
             NavHostFragment.findNavController(InfoCenterTabFragment.this).navigate(R.id.nav_complete_profile);
@@ -119,10 +132,5 @@ public class InfoCenterTabFragment extends Fragment {
         return root;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
 
 }

@@ -27,7 +27,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.bumptech.glide.Glide;
 import com.facebook.shimmer.ShimmerFrameLayout;
-import com.fxn.stash.Stash;
+//import com.fxn.stash.Stash;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
@@ -36,26 +36,27 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
+
 import mhealth.login.R;
 import mhealth.login.adapters.ResourcesAdapter;
 import mhealth.login.adapters.ResourcesFilesAdapter;
 import mhealth.login.dependencies.AppController;
 import mhealth.login.dependencies.Constants;
+import mhealth.login.dependencies.UserStorage;
 import mhealth.login.dependencies.VolleyErrors;
 import mhealth.login.dialogs.InfoMessage;
 import mhealth.login.models.Resource;
 import mhealth.login.models.ResourceFile;
+import mhealth.login.models.Token;
 import mhealth.login.models.User;
 
 import static mhealth.login.dependencies.AppController.TAG;
 
 public class ResourceDetailsFragment extends Fragment {
-    private Unbinder unbinder;
+    //private Unbinder unbinder;
     private View root;
     private Context context;
 
@@ -66,22 +67,12 @@ public class ResourceDetailsFragment extends Fragment {
 
 
 
-    @BindView(R.id.title)
+
     TextView title;
-
-    @BindView(R.id.date)
     TextView date;
-
-    @BindView(R.id.text)
     TextView text;
-
-    @BindView(R.id.image)
     ImageView image;
-
-    @BindView(R.id.additional_files)
     TextView additional_files;
-
-    @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
 
@@ -105,9 +96,29 @@ public class ResourceDetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         root =  inflater.inflate(R.layout.fragment_resource_details, container, false);
-        unbinder = ButterKnife.bind(this, root);
+       // unbinder = ButterKnife.bind(this, root);
 
-        loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+       // loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+//        try{
+//            List<Token> _url =Token.findWithQuery(Token.class, "SELECT *from Token ORDER BY id DESC LIMIT 1");
+//            if (_url.size()==1){
+//                for (int x=0; x<_url.size(); x++){
+//                    loggedInUser=   _url.get(x).getToken();
+//                }
+//            }
+//
+//        } catch(Exception e){
+//
+//        }
+        loggedInUser = UserStorage.getUser(context);
+
+        title= (TextView) root.findViewById(R.id.title);
+        date= (TextView) root.findViewById(R.id.date);
+        text= (TextView) root.findViewById(R.id.text);
+        image= (ImageView) root.findViewById(R.id.image);
+        additional_files= (TextView) root.findViewById(R.id.additional_files);
+        recyclerView= (RecyclerView) root.findViewById(R.id.recyclerView);
+
 
         if (loggedInUser.getProfile_complete() == 0){
             NavHostFragment.findNavController(ResourceDetailsFragment.this).navigate(R.id.nav_complete_profile);
@@ -176,10 +187,6 @@ public class ResourceDetailsFragment extends Fragment {
         return root;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
+
 
 }

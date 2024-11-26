@@ -3,19 +3,24 @@ apply plugin: "androidx.navigation.safeargs"
 apply plugin: 'com.google.gms.google-services'
 //apply plugin: 'com.google.firebase.firebase-perf'
 //apply plugin: 'io.fabric'
-apply plugin: 'com.google.firebase.crashlytics'
+//apply plugin: 'com.google.firebase.crashlytics'
 
 
 android {
-    compileSdkVersion 33
-    buildToolsVersion "30.0.3"
+    compileSdkVersion 34
+    buildToolsVersion "34.0.0"
+
+    lintOptions {
+        checkReleaseBuilds false
+    }
+
 
     defaultConfig {
         applicationId "mhealth.login"
-        minSdkVersion 19
-        targetSdkVersion 33
-        versionCode 64
-        versionName "3.6.8"
+        minSdkVersion 23
+        targetSdkVersion 34
+        versionCode 67
+        versionName "3.7.1"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -32,53 +37,91 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+//    tasks.withType(JavaCompile).configureEach {
+//        options.compilerArgs += [
+//                '--add-exports', 'jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED'
+//        ]
+//    }
+
+    // Apply the same --add-exports argument to annotation processor options
+//    tasks.withType(JavaCompile).configureEach {
+//        options.compilerArgs += [
+//                '--add-exports', 'jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED'
+//        ]
+//        options.forkOptions.jvmArgs += [
+//                '--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED'
+//        ]
+//    }
+
+
+    // Ensure annotation processor arguments are applied
+//    afterEvaluate {
+//        tasks.withType(JavaCompile).tap {
+//            configureEach {
+//                options.compilerArgs += [
+//                        '--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED',
+//                        '--add-opens=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED'
+//                ]
+//            }
+//        }
+//    }
+
+    namespace 'mhealth.login'
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
-    implementation 'androidx.navigation:navigation-fragment:2.4.1'
-    implementation 'androidx.navigation:navigation-ui:2.4.1'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.navigation:navigation-fragment:2.7.7'
+    implementation 'androidx.navigation:navigation-ui:2.7.7'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.firebase:firebase-auth:23.0.0'
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
 
     implementation 'com.android.volley:volley:1.2.1'
-    implementation 'androidx.recyclerview:recyclerview:1.2.1'
-    implementation 'com.fxn769:stash:1.3.2'
-    implementation 'com.airbnb.android:lottie:3.4.0'
-    implementation 'com.hbb20:ccp:2.2.3'
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'
+   // implementation 'com.fxn769:stash:1.3.2'
+    implementation 'com.airbnb.android:lottie:6.5.0'
+    implementation 'com.hbb20:ccp:2.5.0'
 
     //butterknife
-    implementation 'com.jakewharton:butterknife:10.2.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
+//    implementation 'com.jakewharton:butterknife:10.2.1'
+//    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
 
-    implementation 'com.mikhaellopez:circularimageview:3.2.0'          // circle image view
-    implementation 'com.github.bumptech.glide:glide:3.7.0'             // image loader
+    //implementation 'com.mikhaellopez:circularimageview:3.2.0'// circle image view
+    implementation 'com.mikhaellopez:circularimageview:4.3.0'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'             // image loader
     implementation 'com.balysv:material-ripple:1.0.2'                  // ripple effect
-    implementation 'com.wang.avi:library:2.1.3'                        //avloading indicator
+    //implementation 'com.wang.avi:library:2.1.3'                        //avloading indicator
 
-    implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'             // shimmer layout
+    implementation 'com.facebook.shimmer:shimmer:0.5.0@aar'             // shimmer layout
+    // SugarORM
+    implementation 'com.github.satyan:sugar:1.5'
+    implementation 'com.google.code.gson:gson:2.11.0'
+
 
     //firebase
-    implementation 'com.google.firebase:firebase-auth:21.0.1'
-    implementation 'com.google.firebase:firebase-analytics:20.1.0'
-    implementation 'com.google.firebase:firebase-crashlytics:18.2.8'
+    implementation 'com.google.firebase:firebase-auth:23.0.0'
+    implementation 'com.google.firebase:firebase-analytics:22.1.0'
+   // implementation 'com.google.firebase:firebase-crashlytics:19.0.3'
 
-//    implementation 'com.google.firebase:firebase-perf:19.0.5'
-    implementation 'com.google.firebase:firebase-messaging:23.0.0'
-    implementation 'com.google.firebase:firebase-database:20.0.3'
+    implementation 'com.google.firebase:firebase-perf:21.0.1'
+    implementation 'com.google.firebase:firebase-messaging:24.0.1'
+    implementation 'com.google.firebase:firebase-database:21.0.0'
 
     //searcheabel spinner
-    implementation 'com.toptoche.searchablespinner:searchablespinnerlibrary:1.3.1'
+    //implementation 'com.toptoche.searchablespinner:searchablespinnerlibrary:1.3.1'
+    implementation 'com.github.arcadefire:nice-spinner:1.4.3'
 
     // google maps library ------------------------------------------------------------------------
-    implementation 'com.google.android.gms:play-services-maps:18.0.2'
-    implementation 'com.google.android.libraries.places:places:2.5.0'
+    implementation 'com.google.android.gms:play-services-maps:19.0.0'
+    implementation 'com.google.android.libraries.places:places:3.5.0'
 
     //picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
@@ -87,6 +130,4 @@ dependencies {
 //    implementation 'com.github.pratikbutani:MultiSelectSpinner:-SNAPSHOT'
 
     implementation 'com.weiwangcn.betterspinner:library-material:1.1.0'
-
-
 }

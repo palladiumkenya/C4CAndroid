@@ -223,30 +223,71 @@
                                 android:layout_height="match_parent"
                                 android:orientation="vertical">
 
+                                <TextView
+                                    android:id="@+id/spinner_facility"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Select facility"
+                                    android:textSize="16sp"
+                                    android:layout_marginBottom="8dp" />
 
-                                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+
+                                <org.angmarch.views.NiceSpinner
                                     android:id="@+id/facilitySpinner"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content" />
+                                    android:layout_height="wrap_content"
+                                    android:contentDescription="Select Facility"
+                                    android:importantForAccessibility="yes"/>
+
+                                <TextView
+                                    android:id="@+id/spinner_department1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Select department"
+                                    android:textSize="16sp"
+                                    android:layout_marginBottom="8dp" />
 
 
-                                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                                <org.angmarch.views.NiceSpinner
                                     android:id="@+id/facilityDepartment"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/spacing_xxlarge"
-                                    android:drawSelectorOnTop="true" />
+                                    android:drawSelectorOnTop="true"
+                                    android:contentDescription="Select Facility"
+                                    android:importantForAccessibility="yes"/>
 
-                                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                                <TextView
+                                    android:id="@+id/spinner_cadre"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Select cadre"
+                                    android:textSize="16sp"
+                                    android:layout_marginBottom="8dp" />
+
+                                <org.angmarch.views.NiceSpinner
                                     android:id="@+id/cadre"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/spacing_xxlarge"
-                                    android:drawSelectorOnTop="true" />
+                                    android:drawSelectorOnTop="true"
+                                    android:contentDescription="Select Facility"
+                                    android:importantForAccessibility="yes"/>
 
-                                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                                <TextView
+                                    android:id="@+id/spinner_partner"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Select partner"
+                                    android:textSize="16sp"
+                                    android:layout_marginBottom="8dp" />
+
+                                <org.angmarch.views.NiceSpinner
                                     android:id="@+id/partner"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/spacing_xxlarge"
-                                    android:drawSelectorOnTop="true" />
+                                    android:drawSelectorOnTop="true"
+                                    android:contentDescription="Select Facility"
+                                    android:importantForAccessibility="yes"
+                                    />
 
 
                             </LinearLayout>
@@ -311,12 +352,23 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/spacing_xlarge"
                         android:gravity="center_vertical"
-                        android:onClick="clickLabel"
+
                         android:paddingLeft="@dimen/spacing_small"
                         android:paddingRight="@dimen/spacing_small"
                         android:text="@string/hepatitis_b_vaccinations"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="@color/grey_90" />
+                    <!--<TextView
+                        android:id="@+id/tv_label_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing_xlarge"
+                        android:gravity="center_vertical"
+                        android:onClick="clickLabel"
+                        android:paddingLeft="@dimen/spacing_small"
+                        android:paddingRight="@dimen/spacing_small"
+                        android:text="@string/hepatitis_b_vaccinations"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/grey_90" />-->
 
                     <LinearLayout
                         android:id="@+id/lyt_time"

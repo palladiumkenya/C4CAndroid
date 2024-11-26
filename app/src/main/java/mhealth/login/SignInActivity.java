@@ -28,7 +28,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.fxn.stash.Stash;
+//import com.fxn.stash.Stash;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
@@ -94,14 +94,14 @@ public class SignInActivity extends AppCompatActivity implements NavigationHost 
 
         mAuth = FirebaseAuth.getInstance();
 
-        if (Stash.getObject(Constants.LOGGED_IN_USER, User.class) == null){
-            //user not logged in. show login or register
-            firebaseAuthAnonymous();
-        }else {
-            //user logged in. take to home
-            startActivity(new Intent(SignInActivity.this, MainActivity.class));
-            finish();
-        }
+//        if (Stash.getObject(Constants.LOGGED_IN_USER, User.class) == null){
+//            //user not logged in. show login or register
+//            firebaseAuthAnonymous();
+//        }else {
+//            //user logged in. take to home
+//            startActivity(new Intent(SignInActivity.this, MainActivity.class));
+//            finish();
+//        }
 
 
         getCreds();

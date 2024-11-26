@@ -2,6 +2,7 @@ package mhealth.login.fragments.auth;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -27,9 +28,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.fxn.stash.Stash;
+//import com.fxn.stash.Stash;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.gson.Gson;
 
 
 import org.json.JSONException;
@@ -45,15 +47,20 @@ import mhealth.login.R;
 import mhealth.login.SignInActivity;
 import mhealth.login.dependencies.AppController;
 import mhealth.login.dependencies.Constants;
+import mhealth.login.dependencies.UserStorage;
 import mhealth.login.dependencies.VolleyErrors;
 import mhealth.login.dialogs.InfoMessage;
 import mhealth.login.interfaces.NavigationHost;
+import mhealth.login.models.Token;
 import mhealth.login.models.User;
 
 import static mhealth.login.dependencies.AppController.TAG;
 
 
 public class LoginFragment extends Fragment {
+
+    private static final String PREFS_NAME = "UserPrefs";
+    private static final String USER_KEY = "loggedInUser";
 
     NavigationHost navigationDelegate;
 
@@ -248,16 +255,28 @@ public class LoginFragment extends Fragment {
                         String created_at = user.has("created_at") ? user.getString("created_at") : "";
 
                         User newUser = new User(access_token,token_type,expires_at,first_name,surname,gender,email,msisdn,created_at,id,role_id,profile_complete);
+                       // Stash.put(Constants.LOGGED_IN_USER, newUser);
 
-//                    Stash.put(Constants.AUTHENTICATED, true);
-                        Stash.put(Constants.LOGGED_IN_USER, newUser);
+                        // Save newUser to SharedPreferences
+                        UserStorage.saveUser(context, newUser);
+
+//                        try {
+//                            Token.deleteAll(Token.class);
+//                            Token tokenTable =new Token(newUser);
+//                            tokenTable.save();
+//                            // finish();
+//
+//
+//                        } catch (Exception e) {
+//                            Log.d("error saving data", "error on server saving");
+//                        }
 
 
 
                         Intent intent = new Intent(context, MainActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
-                        Objects.requireNonNull(getActivity()).finish();
+                        requireActivity().finish();
 
                     }else {
                         InfoMessage bottomSheetFragment = InfoMessage.newInstance(message,errors,context);
@@ -343,6 +362,7 @@ public class LoginFragment extends Fragment {
         super.onAttach(ctx);
         this.context = ctx;
     }
+
 
 
 }

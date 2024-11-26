@@ -79,27 +79,27 @@
                 android:layout_width="?attr/actionBarSize"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:tint="@color/grey_40"
                 android:padding="12dp"
-                app:srcCompat="@drawable/ic_photo_camera" />
+                app:srcCompat="@drawable/ic_photo_camera"
+                app:tint="@color/grey_40" />
 
             <ImageButton
                 android:id="@+id/bt_link"
                 android:layout_width="?attr/actionBarSize"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:tint="@color/grey_40"
                 android:padding="12dp"
-                app:srcCompat="@drawable/ic_link" />
+                app:srcCompat="@drawable/ic_link"
+                app:tint="@color/grey_40" />
 
             <ImageButton
                 android:id="@+id/bt_file"
                 android:layout_width="?attr/actionBarSize"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:tint="@color/grey_40"
                 android:padding="12dp"
-                app:srcCompat="@drawable/ic_description" />
+                app:srcCompat="@drawable/ic_description"
+                app:tint="@color/grey_40" />
 
             <View
                 android:layout_width="0dp"
@@ -111,9 +111,9 @@
                 android:layout_width="?attr/actionBarSize"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:tint="@color/grey_40"
                 android:padding="12dp"
-                app:srcCompat="@drawable/ic_more" />
+                app:srcCompat="@drawable/ic_more"
+                app:tint="@color/grey_40" />
 
         </LinearLayout>
 

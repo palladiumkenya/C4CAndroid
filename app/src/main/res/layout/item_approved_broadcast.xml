@@ -49,8 +49,8 @@
             android:layout_width="?attr/actionBarSize"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:tint="@color/grey_60"
-            app:srcCompat="@drawable/ic_expand_arrow" />
+            app:srcCompat="@drawable/ic_expand_arrow"
+            app:tint="@color/grey_60" />
 
     </LinearLayout>
 

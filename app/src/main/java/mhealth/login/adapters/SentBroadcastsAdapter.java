@@ -98,8 +98,9 @@ public class SentBroadcastsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             view.bt_expand.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    int adapterposition =holder.getAdapterPosition();
                     boolean show = toggleLayoutExpand(!obj.expanded, v, view.lyt_expand);
-                    items.get(position).expanded = show;
+                    items.get(adapterposition).expanded = show;
                 }
             });
 

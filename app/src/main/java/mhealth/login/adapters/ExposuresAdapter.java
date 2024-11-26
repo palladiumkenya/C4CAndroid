@@ -93,20 +93,13 @@ public class ExposuresAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             view.patient_hbv.setText("Patient HBV: "+obj.getPatient_hbv_status());
             view.patient_hiv.setText("Patient HIV: "+obj.getPatient_hiv_status());
 
-//            view.lyt_parent.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    if (mOnItemClickListener != null) {
-//                        mOnItemClickListener.onItemClick(view, items.get(position), position);
-//                    }
-//                }
-//            });
 
             view.bt_expand.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    int adapterPosition =holder.getAbsoluteAdapterPosition();
                     boolean show = toggleLayoutExpand(!obj.expanded, v, view.lyt_expand);
-                    items.get(position).expanded = show;
+                    items.get(adapterPosition).expanded = show;
                 }
             });
 

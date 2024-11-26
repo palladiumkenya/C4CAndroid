@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.TextUtils;
 import android.util.Log;
@@ -26,7 +27,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.fxn.stash.Stash;
+//import com.fxn.stash.Stash;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
@@ -38,41 +39,41 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
+import mhealth.login.MainActivity;
 import mhealth.login.R;
 import mhealth.login.dependencies.AppController;
 import mhealth.login.dependencies.Constants;
 import mhealth.login.dependencies.MultiSelectSpinner;
+import mhealth.login.dependencies.UserStorage;
 import mhealth.login.dependencies.VolleyErrors;
 import mhealth.login.dialogs.InfoMessage;
 import mhealth.login.fragments.Exposures.ReportExposuresFragment;
 import mhealth.login.models.Cadre;
+import mhealth.login.models.Token;
 import mhealth.login.models.User;
 
 import static mhealth.login.dependencies.AppController.TAG;
 
 
 public class CreateBroadcastFragment extends Fragment {
-    private Unbinder unbinder;
+   // private Unbinder unbinder;
     private View root;
     private Context context;
 
     private User loggedInUser;
 
 
-    @BindView(R.id.cadre_spinner)
+//    @BindView(R.id.cadre_spinner)
     MultiSelectSpinner cadre_spinner;
-
-    @BindView(R.id.btn_submit)
+//
+//    @BindView(R.id.btn_submit)
     Button btn_submit;
-
-    @BindView(R.id.et_message)
-    EditText et_message;
-
-    @BindView(R.id.lyt_progress)
-    LinearLayout lyt_progress;
+//
+//    @BindView(R.id.et_message)
+   EditText et_message;
+//
+//    @BindView(R.id.lyt_progress)
+   LinearLayout lyt_progress;
 
     ArrayList<String> cadreList;
     ArrayList<Cadre> cadres;
@@ -103,9 +104,29 @@ public class CreateBroadcastFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         root =  inflater.inflate(R.layout.fragment_create_broadcast_message, container, false);
-        unbinder = ButterKnife.bind(this, root);
+        //unbinder = ButterKnife.bind(this, root);
 
-        loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+        cadre_spinner= (MultiSelectSpinner) root.findViewById(R.id.cadre_spinner);
+
+        btn_submit= (Button) root.findViewById(R.id.btn_submit);
+        et_message= (EditText) root.findViewById(R.id.et_message);
+
+        lyt_progress= (LinearLayout) root.findViewById(R.id.lyt_progress);
+
+        //loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+
+//        try{
+//            List<Token> _url =Token.findWithQuery(Token.class, "SELECT *from Token ORDER BY id DESC LIMIT 1");
+//            if (_url.size()==1){
+//                for (int x=0; x<_url.size(); x++){
+//                    loggedInUser=   _url.get(x).getToken();
+//                }
+//            }
+//
+//        } catch(Exception e){
+//
+//        }
+        loggedInUser = UserStorage.getUser(context);
 
         if (loggedInUser.getProfile_complete() == 0){
             NavHostFragment.findNavController(CreateBroadcastFragment.this).navigate(R.id.nav_complete_profile);
@@ -137,14 +158,6 @@ public class CreateBroadcastFragment extends Fragment {
         getCadres();
 
         return root;
-    }
-
-
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
     }
 
     private void getCadres() {

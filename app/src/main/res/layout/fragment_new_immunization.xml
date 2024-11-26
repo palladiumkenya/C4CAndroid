@@ -20,11 +20,13 @@
             android:text="@string/immunization_text"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+        <org.angmarch.views.NiceSpinner
             android:id="@+id/disease"
             android:layout_width="match_parent"
             android:layout_height="@dimen/spacing_xxlarge"
-            android:drawSelectorOnTop="true" />
+            android:drawSelectorOnTop="true"
+            android:contentDescription="Select disease"
+            android:importantForAccessibility="yes"/>
 
         <TextView
             android:id="@+id/immunization_date1"

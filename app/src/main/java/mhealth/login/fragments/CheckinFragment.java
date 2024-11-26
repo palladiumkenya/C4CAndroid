@@ -24,7 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.facebook.shimmer.ShimmerFrameLayout;
-import com.fxn.stash.Stash;
+//import com.fxn.stash.Stash;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -34,26 +34,29 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
+//import butterknife.BindView;
+//import butterknife.ButterKnife;
+//import butterknife.Unbinder;
 import mhealth.login.R;
 import mhealth.login.adapters.CheckinAdapter;
 import mhealth.login.dependencies.AppController;
 import mhealth.login.dependencies.Constants;
+import mhealth.login.dependencies.UserStorage;
 import mhealth.login.dependencies.VolleyErrors;
 import mhealth.login.dialogs.CheckInDialog;
 import mhealth.login.dialogs.InfoMessage;
 import mhealth.login.models.CheckIn;
+import mhealth.login.models.Token;
 import mhealth.login.models.User;
 import static mhealth.login.dependencies.AppController.TAG;
 
 
 public class CheckinFragment extends Fragment {
 
-    private Unbinder unbinder;
+    //private Unbinder unbinder;
     private View root;
     private Context context;
 
@@ -68,17 +71,9 @@ public class CheckinFragment extends Fragment {
 
     private static final int REQUEST_LOCATION = 100;
 
-
-    @BindView(R.id.fab_checkin)
     FloatingActionButton fab_checkin;
-
-    @BindView(R.id.shimmer_my_container)
     ShimmerFrameLayout shimmer_my_container;
-
-    @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
-
-    @BindView(R.id.no_checkins)
     LinearLayout no_checkins;
 
 
@@ -102,9 +97,25 @@ public class CheckinFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         root =  inflater.inflate(R.layout.fragment_checkin, container, false);
-        unbinder = ButterKnife.bind(this, root);
+       // unbinder = ButterKnife.bind(this, root);
 
-        loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+        //loggedInUser = (User) Stash.getObject(Constants.LOGGED_IN_USER, User.class);
+//        try{
+//            List<Token> _url =Token.findWithQuery(Token.class, "SELECT *from Token ORDER BY id DESC LIMIT 1");
+//            if (_url.size()==1){
+//                for (int x=0; x<_url.size(); x++){
+//                    loggedInUser=   _url.get(x).getToken();
+//                }
+//            }
+//
+//        } catch(Exception e){
+//
+//        }
+        loggedInUser = UserStorage.getUser(context);
+        fab_checkin= (FloatingActionButton) root.findViewById(R.id.fab_checkin);
+        shimmer_my_container= (ShimmerFrameLayout) root.findViewById(R.id.shimmer_my_container);
+        recyclerView= (RecyclerView) root.findViewById(R.id.recyclerView);
+        no_checkins= (LinearLayout) root.findViewById(R.id.no_checkins);
 
         if (loggedInUser.getProfile_complete() == 0){
             NavHostFragment.findNavController(CheckinFragment.this).navigate(R.id.nav_complete_profile);
@@ -168,21 +179,23 @@ public class CheckinFragment extends Fragment {
         return root;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
+//    @Override
+//    public void onDestroyView() {
+//        super.onDestroyView();
+//        unbinder.unbind();
+//    }
 
     @Override
     public void onResume() {
         super.onResume();
-        shimmer_my_container.startShimmerAnimation();
+//        shimmer_my_container.startShimmerAnimation();
+        shimmer_my_container.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onPause() {
-        shimmer_my_container.stopShimmerAnimation();
+//        shimmer_my_container.stopShimmerAnimation();
+        shimmer_my_container.setVisibility(View.GONE);
         super.onPause();
     }
 
@@ -206,7 +219,7 @@ public class CheckinFragment extends Fragment {
                     recyclerView.setVisibility(View.VISIBLE);
 
                     if (shimmer_my_container!=null){
-                        shimmer_my_container.stopShimmerAnimation();
+//                        shimmer_my_container.stopShimmerAnimation();
                         shimmer_my_container.setVisibility(View.GONE);
                     }
 
